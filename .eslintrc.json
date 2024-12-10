@@ -37,6 +37,11 @@
   "rules": {
     "react/react-in-jsx-scope": "off",
     "@typescript-eslint/lines-between-class-members": "off",
+    "@typescript-eslint/no-require-imports": "off",
+    "@typescript-eslint/no-var-requires": "warn",
+    "@typescript-eslint/no-unused-vars": "warn",
+    "@typescript-eslint/no-unused-expressions": "warn",
+    "@typescript-eslint/no-explicit-any": "warn",
     "@typescript-eslint/no-throw-literal": "off",
     "prettier/prettier": [
       "error",

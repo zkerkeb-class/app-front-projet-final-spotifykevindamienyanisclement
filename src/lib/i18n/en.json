@@ -1,0 +1,28 @@
+{
+  "common": {
+    "welcome": "Welcome",
+    "search": "Search",
+    "library": "Library",
+    "home": "Home",
+    "settings": "Settings",
+    "language": "Language"
+  },
+  "auth": {
+    "login": "Login",
+    "signup": "Sign up",
+    "logout": "Logout"
+  },
+  "player": {
+    "play": "Play",
+    "pause": "Pause",
+    "next": "Next",
+    "previous": "Previous",
+    "shuffle": "Shuffle",
+    "repeat": "Repeat"
+  },
+  "playlist": {
+    "create": "Create playlist",
+    "addToPlaylist": "Add to playlist",
+    "removeFromPlaylist": "Remove from playlist"
+  }
+}

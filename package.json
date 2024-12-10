@@ -1,7 +1,7 @@
 {
   "name": "spotify-clone",
   "description": "Spotify clone using Next.js",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
@@ -10,22 +10,34 @@
     "prepare": "husky install",
     "prettier": "prettier --check .",
     "prettier:fix": "prettier --write .",
-    "lint:fix": "eslint --fix",
+    "lint:fix": "eslint . --fix",
     "lint": "eslint .",
     "type:check": "tsc --noEmit",
-    "type:watch": "tsc --noEmit --watch"
+    "type:watch": "tsc --noEmit --watch",
+    "docker:build": "docker build -t spotify-clone .",
+    "docker:run": "docker run --name spotify-clone -p 3000:3000 spotify-clone",
+    "docker:run:detach": "docker run --name spotify-clone -d -p 3000:3000 spotify-clone",
+    "docker:stop": "docker stop $(docker ps -a -q)",
+    "docker:clean": "docker system prune -a"
   },
   "dependencies": {
-    "next": "15.0.3",
+    "i18next": "^24.0.5",
+    "next": "^15.0.4",
+    "next-i18next": "^15.4.0",
+    "next-pwa": "^5.6.0",
     "react": "19.0.0-rc-66855b96-20241106",
-    "react-dom": "19.0.0-rc-66855b96-20241106"
+    "react-dom": "19.0.0-rc-66855b96-20241106",
+    "react-i18next": "^15.1.3",
+    "sass": "^1.82.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.6.0",
     "@commitlint/config-conventional": "^19.6.0",
+    "@types/next-pwa": "^5.6.9",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/react-i18next": "^8.1.0",
     "@typescript-eslint/eslint-plugin": "^8.15.0",
     "@typescript-eslint/parser": "^8.15.0",
     "eslint": "^8.57.1",

@@ -1,0 +1,28 @@
+{
+  "common": {
+    "welcome": "مرحباً",
+    "search": "بحث",
+    "library": "المكتبة",
+    "home": "الرئيسية",
+    "settings": "الإعدادات",
+    "language": "اللغة"
+  },
+  "auth": {
+    "login": "تسجيل الدخول",
+    "signup": "إنشاء حساب",
+    "logout": "تسجيل الخروج"
+  },
+  "player": {
+    "play": "تشغيل",
+    "pause": "إيقاف مؤقت",
+    "next": "التالي",
+    "previous": "السابق",
+    "shuffle": "عشوائي",
+    "repeat": "تكرار"
+  },
+  "playlist": {
+    "create": "إنشاء قائمة تشغيل",
+    "addToPlaylist": "إضافة إلى قائمة التشغيل",
+    "removeFromPlaylist": "إزالة من قائمة التشغيل"
+  }
+}
