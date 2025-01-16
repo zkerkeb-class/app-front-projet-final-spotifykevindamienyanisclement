@@ -1,0 +1,36 @@
+.scrollContainer {
+  display: flex;
+  gap: 2.4rem;
+  padding: 0.8rem 0;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none; // Firefox
+  -ms-overflow-style: none; // IE/Edge
+  -webkit-overflow-scrolling: touch;
+
+  // Masquer la scrollbar pour Chrome/Safari/Opera
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  // Style des éléments enfants
+  > * {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    min-width: 18rem;
+    padding: 1.6rem;
+    border-radius: 0.8rem;
+    background: var(--color-background-elevated);
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+      background: var(--color-opacity-hover);
+    }
+
+    @media (max-width: 768px) {
+      min-width: 15rem;
+      padding: 1.2rem;
+    }
+  }
+}

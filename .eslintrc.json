@@ -20,6 +20,12 @@
       "rules": {
         "react/prop-types": "off"
       }
+    },
+    {
+      "files": ["next.config.mjs"],
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off"
+      }
     }
   ],
   "parser": "@typescript-eslint/parser",
@@ -29,8 +35,7 @@
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
-    },
-    "extraFileExtensions": [".css"]
+    }
   },
   "plugins": ["react", "@typescript-eslint", "prettier"],
   "ignorePatterns": ["*.css", "*.scss", "*.less", "commitlint.config.js"],
@@ -49,7 +54,8 @@
         "endOfLine": "auto"
       }
     ],
-    "semi": ["error", "always"]
+    "semi": ["error", "always"],
+    "no-console": "warn"
   },
   "settings": {
     "react": {

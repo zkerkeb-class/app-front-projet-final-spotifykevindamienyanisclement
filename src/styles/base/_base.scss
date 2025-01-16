@@ -1,0 +1,80 @@
+// Base body styles
+body {
+  background-color: $backgroundColor;
+  color: $textBase;
+  font-family: $mainFont;
+  font-size: map-get($fontSizes, 'base');
+  line-height: map-get($lineHeights, 'normal');
+}
+
+// Typography classes
+h1,
+.h1 {
+  font-family: $mainFontBold;
+  font-size: map-get($fontSizes, '4xl');
+  line-height: map-get($lineHeights, 'tight');
+}
+
+h2,
+.h2 {
+  font-family: $mainFontBold;
+  font-size: map-get($fontSizes, '3xl');
+  line-height: map-get($lineHeights, 'tight');
+}
+
+h3,
+.h3 {
+  font-family: $mainFontBold;
+  font-size: map-get($fontSizes, '2xl');
+  line-height: map-get($lineHeights, 'snug');
+}
+
+p,
+.text {
+  font-family: $secondaryFont;
+  font-size: map-get($fontSizes, 'base');
+  line-height: map-get($lineHeights, 'normal');
+}
+
+.text-sm {
+  font-size: map-get($fontSizes, 'sm');
+}
+
+.text-lg {
+  font-size: map-get($fontSizes, 'lg');
+}
+
+// Text colors
+.text-subdued {
+  color: $textSubdued;
+}
+
+.text-bright {
+  color: $textBrightAccent;
+}
+
+// Background utility classes
+.bg-base {
+  background-color: $backgroundBase;
+}
+
+.bg-elevated {
+  background-color: $backgroundElevatedBase;
+}
+
+.bg-highlight {
+  background-color: $backgroundHighlight;
+}
+
+// Font weight utilities
+.font-bold {
+  font-family: $mainFontBold;
+}
+
+.font-light {
+  font-family: $mainFontLight;
+}
+
+.font-thin {
+  font-family: $mainFontThin;
+}

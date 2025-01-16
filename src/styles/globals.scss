@@ -1,0 +1,10 @@
+// 1. Load variables first
+@import './helpers/_variables.scss';
+
+// 2. Load reset and fonts
+@import './base/_reset.scss';
+@import './base/_font.scss';
+
+// 3. Load base styles and utilities
+@import './base/_base.scss';
+@import './helpers/_flex.scss';

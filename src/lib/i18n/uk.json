@@ -1,0 +1,86 @@
+{
+  "common": {
+    "welcome": "Ласкаво просимо",
+    "search": "Пошук",
+    "library": "Бібліотека",
+    "home": "Головна",
+    "settings": "Налаштування",
+    "language": "Мова",
+    "darkMode": "Темна тема",
+    "lightMode": "Світла тема",
+    "popularArtists": "Популярні виконавці",
+    "email": "Електронна пошта",
+    "password": "Пароль",
+    "or": "або",
+    "showAll": "Показати все"
+  },
+  "auth": {
+    "login": "Увійти",
+    "signup": "Зареєструватися",
+    "logout": "Вийти",
+    "signupWithGoogle": "Зареєструватися через Google",
+    "signupWithFacebook": "Зареєструватися через Facebook",
+    "signupWithApple": "Зареєструватися через Apple",
+    "alreadyHaveAccount": "Вже маєте обліковий запис?",
+    "haveAccount": "У мене є обліковий запис Spotify",
+    "loginWithGoogle": "Продовжити через Google",
+    "loginWithFacebook": "Продовжити через Facebook",
+    "loginWithApple": "Продовжити через Apple",
+    "noAccount": "Немає облікового запису?",
+    "forgotPassword": "Забули пароль?"
+  },
+  "player": {
+    "play": "Відтворити",
+    "pause": "Пауза",
+    "next": "Наступний",
+    "previous": "Попередній",
+    "shuffle": "Перемішати",
+    "repeat": "Повторити",
+    "volume": "Гучність"
+  },
+  "playlist": {
+    "create": "Створити плейлист",
+    "addToPlaylist": "Додати до плейлиста",
+    "removeFromPlaylist": "Видалити з плейлиста"
+  },
+  "sidebar": {
+    "library": "Бібліотека",
+    "addPlaylist": "Додати плейлист",
+    "createPlaylist": {
+      "title": "Створіть свій перший плейлист",
+      "description": "Це просто, ми допоможемо вам",
+      "button": "Створити плейлист"
+    },
+    "podcasts": {
+      "title": "Знайдемо подкасти для підписки",
+      "description": "Ми повідомлятимемо вас про нові епізоди",
+      "button": "Переглянути подкасти"
+    }
+  },
+  "footer": {
+    "legal": "Правова інформація",
+    "privacyCenter": "Центр конфіденційності",
+    "privacy": "Політика конфіденційності",
+    "cookiesSettings": "Налаштування файлів cookie",
+    "about": "Про рекламу",
+    "accessibility": "Доступність",
+    "cookies": "Файли cookie"
+  },
+  "home": {
+    "topTracks": "Найкращі треки",
+    "popularArtists": "Популярні виконавці",
+    "recentAlbums": "Нові альбоми"
+  },
+  "album": {
+    "title": "Альбом",
+    "tracks": "Треки",
+    "releaseDate": "Дата випуску",
+    "duration": "Тривалість",
+    "track": {
+      "title": "Назва",
+      "duration": "Тривалість",
+      "artist": "Виконавець",
+      "album": "Альбом"
+    }
+  }
+}

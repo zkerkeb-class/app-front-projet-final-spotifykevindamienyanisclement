@@ -5,12 +5,29 @@
     "library": "Bibliothèque",
     "home": "Accueil",
     "settings": "Paramètres",
-    "language": "Langue"
+    "language": "Langue",
+    "darkMode": "Mode sombre",
+    "lightMode": "Mode clair",
+    "popularArtists": "Artistes populaires",
+    "email": "Adresse e-mail",
+    "password": "Mot de passe",
+    "or": "ou",
+    "showAll": "Tout afficher"
   },
   "auth": {
     "login": "Se connecter",
     "signup": "S'inscrire",
-    "logout": "Déconnexion"
+    "logout": "Déconnexion",
+    "signupWithGoogle": "S'inscrire avec Google",
+    "signupWithFacebook": "S'inscrire avec Facebook",
+    "signupWithApple": "S'inscrire avec Apple",
+    "alreadyHaveAccount": "Vous avez déjà un compte ?",
+    "haveAccount": "J'ai un compte Spotify",
+    "loginWithGoogle": "Continuer avec Google",
+    "loginWithFacebook": "Continuer avec Facebook",
+    "loginWithApple": "Continuer avec Apple",
+    "noAccount": "Vous n'avez pas de compte ?",
+    "forgotPassword": "Mot de passe oublié ?"
   },
   "player": {
     "play": "Lecture",
@@ -18,11 +35,52 @@
     "next": "Suivant",
     "previous": "Précédent",
     "shuffle": "Aléatoire",
-    "repeat": "Répéter"
+    "repeat": "Répéter",
+    "volume": "Volume"
   },
   "playlist": {
     "create": "Créer une playlist",
     "addToPlaylist": "Ajouter à la playlist",
     "removeFromPlaylist": "Retirer de la playlist"
+  },
+  "sidebar": {
+    "library": "Bibliothèque",
+    "addPlaylist": "Ajouter une playlist",
+    "createPlaylist": {
+      "title": "Créez votre première playlist",
+      "description": "C'est simple, nous allons vous aider",
+      "button": "Créer une playlist"
+    },
+    "podcasts": {
+      "title": "Cherchons quelques podcasts auxquels vous abonner",
+      "description": "Nous vous transmettrons des informations sur les nouveaux épisodes",
+      "button": "Parcourir les podcasts"
+    }
+  },
+  "footer": {
+    "legal": "Légal",
+    "privacyCenter": "Centre de sécurité et de confidentialité",
+    "privacy": "Protection des données",
+    "cookiesSettings": "Paramètres des cookies",
+    "about": "À propos des pubs",
+    "accessibility": "Accessibilité",
+    "cookies": "Cookies"
+  },
+  "home": {
+    "topTracks": "Top titres",
+    "popularArtists": "Artistes populaires",
+    "recentAlbums": "Albums récents"
+  },
+  "album": {
+    "title": "Album",
+    "tracks": "Titres",
+    "releaseDate": "Date de sortie",
+    "duration": "Durée",
+    "track": {
+      "title": "Titre",
+      "duration": "Durée",
+      "artist": "Artiste",
+      "album": "Album"
+    }
   }
 }

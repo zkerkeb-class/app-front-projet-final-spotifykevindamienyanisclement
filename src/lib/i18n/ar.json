@@ -5,12 +5,29 @@
     "library": "المكتبة",
     "home": "الرئيسية",
     "settings": "الإعدادات",
-    "language": "اللغة"
+    "language": "اللغة",
+    "darkMode": "الوضع الداكن",
+    "lightMode": "الوضع الفاتح",
+    "popularArtists": "الفنانون المشهورون",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "or": "أو",
+    "showAll": "عرض الكل"
   },
   "auth": {
     "login": "تسجيل الدخول",
     "signup": "إنشاء حساب",
-    "logout": "تسجيل الخروج"
+    "logout": "تسجيل الخروج",
+    "signupWithGoogle": "التسجيل باستخدام Google",
+    "signupWithFacebook": "التسجيل باستخدام Facebook",
+    "signupWithApple": "التسجيل باستخدام Apple",
+    "alreadyHaveAccount": "هل لديك حساب بالفعل؟",
+    "haveAccount": "لدي حساب على Spotify",
+    "loginWithGoogle": "المتابعة باستخدام Google",
+    "loginWithFacebook": "المتابعة باستخدام Facebook",
+    "loginWithApple": "المتابعة باستخدام Apple",
+    "noAccount": "ليس لديك حساب؟",
+    "forgotPassword": "نسيت كلمة المرور؟"
   },
   "player": {
     "play": "تشغيل",
@@ -18,11 +35,52 @@
     "next": "التالي",
     "previous": "السابق",
     "shuffle": "عشوائي",
-    "repeat": "تكرار"
+    "repeat": "تكرار",
+    "volume": "مستوى الصوت"
   },
   "playlist": {
     "create": "إنشاء قائمة تشغيل",
     "addToPlaylist": "إضافة إلى قائمة التشغيل",
     "removeFromPlaylist": "إزالة من قائمة التشغيل"
+  },
+  "sidebar": {
+    "library": "المكتبة",
+    "addPlaylist": "إضافة قائمة تشغيل",
+    "createPlaylist": {
+      "title": "أنشئ قائمة تشغيل أولى",
+      "description": "الأمر سهل، سنساعدك",
+      "button": "إنشاء قائمة تشغيل"
+    },
+    "podcasts": {
+      "title": "لنبحث عن بودكاست للمتابعة",
+      "description": "سنبقيك على اطلاع بالحلقات الجديدة",
+      "button": "تصفح البودكاست"
+    }
+  },
+  "footer": {
+    "legal": "قانوني",
+    "privacyCenter": "مركز الخصوصية",
+    "privacy": "سياسة الخصوصية",
+    "cookiesSettings": "إعدادات ملفات تعريف الارتباط",
+    "about": "حول الإعلانات",
+    "accessibility": "إمكانية الوصول",
+    "cookies": "ملفات تعريف الارتباط"
+  },
+  "home": {
+    "topTracks": "أفضل المسارات",
+    "popularArtists": "الفنانون المشهورون",
+    "recentAlbums": "الألبومات الحديثة"
+  },
+  "album": {
+    "title": "ألبوم",
+    "tracks": "المسارات",
+    "releaseDate": "تاريخ الإصدار",
+    "duration": "المدة",
+    "track": {
+      "title": "العنوان",
+      "duration": "المدة",
+      "artist": "الفنان",
+      "album": "الألبوم"
+    }
   }
 }

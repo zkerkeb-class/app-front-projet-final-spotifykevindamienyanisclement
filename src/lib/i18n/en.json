@@ -5,12 +5,29 @@
     "library": "Library",
     "home": "Home",
     "settings": "Settings",
-    "language": "Language"
+    "language": "Language",
+    "darkMode": "Dark Mode",
+    "lightMode": "Light Mode",
+    "popularArtists": "Popular Artists",
+    "email": "Email address",
+    "password": "Password",
+    "or": "or",
+    "showAll": "Show all"
   },
   "auth": {
-    "login": "Login",
+    "login": "Log in",
     "signup": "Sign up",
-    "logout": "Logout"
+    "logout": "Log out",
+    "signupWithGoogle": "Sign up with Google",
+    "signupWithFacebook": "Sign up with Facebook",
+    "signupWithApple": "Sign up with Apple",
+    "alreadyHaveAccount": "Already have an account?",
+    "haveAccount": "I have a Spotify account",
+    "loginWithGoogle": "Continue with Google",
+    "loginWithFacebook": "Continue with Facebook",
+    "loginWithApple": "Continue with Apple",
+    "noAccount": "Don't have an account?",
+    "forgotPassword": "Forgot your password?"
   },
   "player": {
     "play": "Play",
@@ -18,11 +35,52 @@
     "next": "Next",
     "previous": "Previous",
     "shuffle": "Shuffle",
-    "repeat": "Repeat"
+    "repeat": "Repeat",
+    "volume": "Volume"
   },
   "playlist": {
-    "create": "Create playlist",
-    "addToPlaylist": "Add to playlist",
-    "removeFromPlaylist": "Remove from playlist"
+    "create": "Create Playlist",
+    "addToPlaylist": "Add to Playlist",
+    "removeFromPlaylist": "Remove from Playlist"
+  },
+  "sidebar": {
+    "library": "Library",
+    "addPlaylist": "Add Playlist",
+    "createPlaylist": {
+      "title": "Create your first playlist",
+      "description": "It's easy, we'll help you",
+      "button": "Create playlist"
+    },
+    "podcasts": {
+      "title": "Let's find some podcasts to follow",
+      "description": "We'll keep you updated on new episodes",
+      "button": "Browse podcasts"
+    }
+  },
+  "footer": {
+    "legal": "Legal",
+    "privacyCenter": "Privacy Center",
+    "privacy": "Privacy Policy",
+    "cookiesSettings": "Cookie Settings",
+    "about": "About Ads",
+    "accessibility": "Accessibility",
+    "cookies": "Cookies"
+  },
+  "home": {
+    "topTracks": "Top tracks",
+    "popularArtists": "Popular artists",
+    "recentAlbums": "Recent albums"
+  },
+  "album": {
+    "title": "Album",
+    "tracks": "Tracks",
+    "releaseDate": "Release date",
+    "duration": "Duration",
+    "track": {
+      "title": "Title",
+      "duration": "Duration",
+      "artist": "Artist",
+      "album": "Album"
+    }
   }
 }

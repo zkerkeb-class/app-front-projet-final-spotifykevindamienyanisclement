@@ -1,0 +1,86 @@
+{
+  "common": {
+    "welcome": "Witamy",
+    "search": "Szukaj",
+    "library": "Biblioteka",
+    "home": "Strona główna",
+    "settings": "Ustawienia",
+    "language": "Język",
+    "darkMode": "Tryb ciemny",
+    "lightMode": "Tryb jasny",
+    "popularArtists": "Popularni artyści",
+    "email": "Adres e-mail",
+    "password": "Hasło",
+    "or": "lub",
+    "showAll": "Pokaż wszystko"
+  },
+  "auth": {
+    "login": "Zaloguj się",
+    "signup": "Zarejestruj się",
+    "logout": "Wyloguj się",
+    "signupWithGoogle": "Zarejestruj się przez Google",
+    "signupWithFacebook": "Zarejestruj się przez Facebook",
+    "signupWithApple": "Zarejestruj się przez Apple",
+    "alreadyHaveAccount": "Masz już konto?",
+    "haveAccount": "Mam konto Spotify",
+    "loginWithGoogle": "Kontynuuj przez Google",
+    "loginWithFacebook": "Kontynuuj przez Facebook",
+    "loginWithApple": "Kontynuuj przez Apple",
+    "noAccount": "Nie masz konta?",
+    "forgotPassword": "Zapomniałeś hasła?"
+  },
+  "player": {
+    "play": "Odtwórz",
+    "pause": "Pauza",
+    "next": "Następny",
+    "previous": "Poprzedni",
+    "shuffle": "Losowo",
+    "repeat": "Powtórz",
+    "volume": "Głośność"
+  },
+  "playlist": {
+    "create": "Utwórz playlistę",
+    "addToPlaylist": "Dodaj do playlisty",
+    "removeFromPlaylist": "Usuń z playlisty"
+  },
+  "sidebar": {
+    "library": "Biblioteka",
+    "addPlaylist": "Dodaj playlistę",
+    "createPlaylist": {
+      "title": "Utwórz swoją pierwszą playlistę",
+      "description": "To proste, pomożemy Ci",
+      "button": "Utwórz playlistę"
+    },
+    "podcasts": {
+      "title": "Znajdźmy podcasty do obserwowania",
+      "description": "Będziemy informować Cię o nowych odcinkach",
+      "button": "Przeglądaj podcasty"
+    }
+  },
+  "footer": {
+    "legal": "Informacje prawne",
+    "privacyCenter": "Centrum prywatności",
+    "privacy": "Polityka prywatności",
+    "cookiesSettings": "Ustawienia plików cookie",
+    "about": "O reklamach",
+    "accessibility": "Dostępność",
+    "cookies": "Pliki cookie"
+  },
+  "home": {
+    "topTracks": "Najpopularniejsze utwory",
+    "popularArtists": "Popularni artyści",
+    "recentAlbums": "Najnowsze albumy"
+  },
+  "album": {
+    "title": "Album",
+    "tracks": "Utwory",
+    "releaseDate": "Data wydania",
+    "duration": "Czas trwania",
+    "track": {
+      "title": "Tytuł",
+      "duration": "Czas trwania",
+      "artist": "Artysta",
+      "album": "Album"
+    }
+  }
+}

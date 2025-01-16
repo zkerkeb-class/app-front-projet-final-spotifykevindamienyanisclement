@@ -1,0 +1,86 @@
+{
+  "common": {
+    "welcome": "Добро пожаловать",
+    "search": "Поиск",
+    "library": "Библиотека",
+    "home": "Главная",
+    "settings": "Настройки",
+    "language": "Язык",
+    "darkMode": "Тёмная тема",
+    "lightMode": "Светлая тема",
+    "popularArtists": "Популярные исполнители",
+    "email": "Электронная почта",
+    "password": "Пароль",
+    "or": "или",
+    "showAll": "Показать все"
+  },
+  "auth": {
+    "login": "Войти",
+    "signup": "Регистрация",
+    "logout": "Выйти",
+    "signupWithGoogle": "Зарегистрироваться через Google",
+    "signupWithFacebook": "Зарегистрироваться через Facebook",
+    "signupWithApple": "Зарегистрироваться через Apple",
+    "alreadyHaveAccount": "Уже есть аккаунт?",
+    "haveAccount": "У меня есть аккаунт Spotify",
+    "loginWithGoogle": "Продолжить с Google",
+    "loginWithFacebook": "Продолжить с Facebook",
+    "loginWithApple": "Продолжить с Apple",
+    "noAccount": "Нет аккаунта?",
+    "forgotPassword": "Забыли пароль?"
+  },
+  "player": {
+    "play": "Воспроизвести",
+    "pause": "Пауза",
+    "next": "Следующий",
+    "previous": "Предыдущий",
+    "shuffle": "Перемешать",
+    "repeat": "Повторить",
+    "volume": "Громкость"
+  },
+  "playlist": {
+    "create": "Создать плейлист",
+    "addToPlaylist": "Добавить в плейлист",
+    "removeFromPlaylist": "Удалить из плейлиста"
+  },
+  "sidebar": {
+    "library": "Библиотека",
+    "addPlaylist": "Добавить плейлист",
+    "createPlaylist": {
+      "title": "Создайте свой первый плейлист",
+      "description": "Это просто, мы поможем вам",
+      "button": "Создать плейлист"
+    },
+    "podcasts": {
+      "title": "Найдём подкасты для подписки",
+      "description": "Мы будем сообщать вам о новых эпизодах",
+      "button": "Просмотреть подкасты"
+    }
+  },
+  "footer": {
+    "legal": "Правовая информация",
+    "privacyCenter": "Центр конфиденциальности",
+    "privacy": "Политика конфиденциальности",
+    "cookiesSettings": "Настройки файлов cookie",
+    "about": "О рекламе",
+    "accessibility": "Доступность",
+    "cookies": "Файлы cookie"
+  },
+  "home": {
+    "topTracks": "Лучшие треки",
+    "popularArtists": "Популярные исполнители",
+    "recentAlbums": "Новые альбомы"
+  },
+  "album": {
+    "title": "Альбом",
+    "tracks": "Треки",
+    "releaseDate": "Дата выхода",
+    "duration": "Длительность",
+    "track": {
+      "title": "Название",
+      "duration": "Длительность",
+      "artist": "Исполнитель",
+      "album": "Альбом"
+    }
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "common": {
+    "welcome": "ようこそ",
+    "search": "検索",
+    "library": "ライブラリ",
+    "home": "ホーム",
+    "settings": "設定",
+    "language": "言語",
+    "darkMode": "ダークモード",
+    "lightMode": "ライトモード",
+    "popularArtists": "人気のアーティスト",
+    "email": "メールアドレス",
+    "password": "パスワード",
+    "or": "または",
+    "showAll": "すべて表示"
+  },
+  "auth": {
+    "login": "ログイン",
+    "signup": "登録",
+    "logout": "ログアウト",
+    "signupWithGoogle": "Googleで登録",
+    "signupWithFacebook": "Facebookで登録",
+    "signupWithApple": "Appleで登録",
+    "alreadyHaveAccount": "すでにアカウントをお持ちですか？",
+    "haveAccount": "Spotifyアカウントを持っています",
+    "loginWithGoogle": "Googleで続ける",
+    "loginWithFacebook": "Facebookで続ける",
+    "loginWithApple": "Appleで続ける",
+    "noAccount": "アカウントをお持ちでないですか？",
+    "forgotPassword": "パスワードをお忘れですか？"
+  },
+  "player": {
+    "play": "再生",
+    "pause": "一時停止",
+    "next": "次へ",
+    "previous": "前へ",
+    "shuffle": "シャッフル",
+    "repeat": "リピート",
+    "volume": "音量"
+  },
+  "playlist": {
+    "create": "プレイリストを作成",
+    "addToPlaylist": "プレイリストに追加",
+    "removeFromPlaylist": "プレイリストから削除"
+  },
+  "sidebar": {
+    "library": "ライブラリ",
+    "addPlaylist": "プレイリストを追加",
+    "createPlaylist": {
+      "title": "最初のプレイリストを作成",
+      "description": "簡単です、お手伝いします",
+      "button": "プレイリストを作成"
+    },
+    "podcasts": {
+      "title": "フォローするポッドキャストを見つけましょう",
+      "description": "新しいエピソードについてお知らせします",
+      "button": "ポッドキャストを探す"
+    }
+  },
+  "footer": {
+    "legal": "法的情報",
+    "privacyCenter": "プライバシーセンター",
+    "privacy": "プライバシーポリシー",
+    "cookiesSettings": "Cookie設定",
+    "about": "広告について",
+    "accessibility": "アクセシビリティ",
+    "cookies": "Cookie"
+  },
+  "home": {
+    "topTracks": "トップトラック",
+    "popularArtists": "人気のアーティスト",
+    "recentAlbums": "最新アルバム"
+  },
+  "album": {
+    "title": "アルバム",
+    "tracks": "トラック",
+    "releaseDate": "リリース日",
+    "duration": "再生時間",
+    "track": {
+      "title": "タイトル",
+      "duration": "再生時間",
+      "artist": "アーティスト",
+      "album": "アルバム"
+    }
+  }
+}

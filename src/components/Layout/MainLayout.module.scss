@@ -1,0 +1,28 @@
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-background);
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  height: calc(100vh - 6.4rem);
+}
+
+.main {
+  flex: 1;
+  overflow-y: auto;
+  background-color: var(--color-background-base);
+  background: linear-gradient(
+    180deg,
+    var(--color-gradient-start) 0%,
+    var(--color-gradient-end) 100%
+  );
+}
+
+.mainContent {
+  padding: 2.4rem;
+}
