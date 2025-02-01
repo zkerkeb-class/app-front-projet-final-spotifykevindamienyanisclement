@@ -12,7 +12,21 @@
     "email": "Електронна пошта",
     "password": "Пароль",
     "or": "або",
-    "showAll": "Показати все"
+    "showAll": "Показати все",
+    "share": "Поділитися",
+    "loading": "Завантаження... ",
+    "error": "Виникла помилка"
+  },
+  "accessibility": {
+    "skipToMain": "Перейти до основного контенту",
+    "settings": "Налаштування доступності",
+    "menu": "Меню доступності",
+    "highContrast": "Високий контраст",
+    "screenReader": "Читатель экрана",
+    "keyboardNav": "Навигация по клавиатуре",
+    "voiceMessages": "Голосовые сообщения",
+    "enabled": "Включено",
+    "disabled": "Отключено"
   },
   "auth": {
     "login": "Увійти",
@@ -27,7 +41,22 @@
     "loginWithFacebook": "Продовжити через Facebook",
     "loginWithApple": "Продовжити через Apple",
     "noAccount": "Немає облікового запису?",
-    "forgotPassword": "Забули пароль?"
+    "forgotPassword": "Забули пароль?",
+    "invalidEmail": "Неправильний формат email",
+    "passwordTooShort": "Пароль повинен містити не менше 6 символів",
+    "genericError": "Виникла помилка",
+    "loginSuccess": "Вхід виконаний успішно",
+    "registerSuccess": "Реєстрація виконана успішно",
+    "logoutSuccess": "Вихід виконаний успішно",
+    "emailAlreadyUsed": "Цей адреса електронної пошти вже використовується",
+    "emailNotFound": "Цей адреса електронної пошти не існує",
+    "invalidPassword": "Неправильний пароль",
+    "emailRequired": "Адреса електронної пошти обов'язкова",
+    "passwordRequired": "Пароль обов'язковий",
+    "invalidCredentials": "Неправильні облікові дані",
+    "emailOrPasswordRequired": "Адреса електронної пошти і пароль обов'язкові",
+    "emailOrPasswordInvalid": "Адреса електронної пошти або пароль неправильні",
+    "loading": "Завантаження... "
   },
   "player": {
     "play": "Відтворити",
@@ -82,5 +111,42 @@
       "artist": "Виконавець",
       "album": "Альбом"
     }
+  },
+  "network": {
+    "offline": "Ви в автономному режимі",
+    "syncing": "Синхронізація в процесі...",
+    "pendingActions_1": "1 дія в очікуванні",
+    "pendingActions_other": "%d дій в очікуванні",
+    "update": "Доступна нова версія - Оновити"
+  },
+  "networkStatus": {
+    "title": "Ви в автономному режимі",
+    "description": "Ви не підключені до інтернету. Ви не можете отримати доступ до Spotify."
+  },
+  "group": {
+    "type": "ГРУПА",
+    "featured": "Рекомендовані групи",
+    "new": "Нові групи",
+    "recommended": "Рекомендовано для вас",
+    "members": "{{count}} учасників",
+    "memberCount": "{{count}} учасників",
+    "join": "Приєднатися",
+    "playlists": "Плейлисти групи",
+    "discussions": "Обговорення",
+    "replyCount": "{{count}} відповідей",
+    "role": {
+      "admin": "Адміністратор",
+      "member": "Учасник"
+    }
+  },
+  "artist": {
+    "verified": "Підтверджений виконавець",
+    "monthlyListeners": "щомісячних слухачів",
+    "worldRank": "Світовий рейтинг",
+    "popular": "Популярне",
+    "discography": "Дискографія",
+    "tours": "Тури",
+    "follow": "Підписатися",
+    "tickets": "Квитки"
   }
 }

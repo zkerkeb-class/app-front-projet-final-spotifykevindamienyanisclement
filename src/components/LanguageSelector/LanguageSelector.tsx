@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useTranslationContext } from '@/providers/TranslationProvider';
 import styles from './LanguageSelector.module.scss';
 
-function LanguageSelector() {
+const LanguageSelector = () => {
   const { locale, changeLanguage } = useTranslationContext();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -75,6 +75,6 @@ function LanguageSelector() {
       )}
     </div>
   );
-}
+};
 
 export default LanguageSelector;

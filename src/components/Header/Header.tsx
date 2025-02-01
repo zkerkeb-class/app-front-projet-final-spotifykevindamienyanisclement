@@ -1,34 +1,38 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import Cookies from 'js-cookie';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '@/context/userContext';
+import { useDirection } from '@/hooks/ui/useDirection';
 import { useTranslationContext } from '@/providers/TranslationProvider';
 import LanguageSelector from '@/components/LanguageSelector/LanguageSelector';
 import ThemeToggle from '@/components/ThemeToggle/ThemeToggle';
+import AccessibilityMenu from '@/components/AccessibilityMenu/AccessibilityMenu';
 import styles from './Header.module.scss';
 
 export default function Header() {
   const router = useRouter();
+  const { logout } = useAuth();
   const { t } = useTranslationContext();
   const [scrolled, setScrolled] = useState(false);
   const [currentTheme, setCurrentTheme] = useState('dark');
+  const { isRTL } = useDirection();
+
+  const token = Cookies.get('token');
+  const username = Cookies.get('username');
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 0);
-    };
-
+    const handleScroll = () => setScrolled(window.scrollY > 0);
     const handleThemeChange = () => {
-      const theme = document.documentElement.getAttribute('data-theme');
-      if (theme !== currentTheme) {
-        setCurrentTheme(theme || 'dark');
-      }
+      const theme =
+        document.documentElement.getAttribute('data-theme') || 'dark';
+      setCurrentTheme(theme);
     };
 
     handleThemeChange();
-
     window.addEventListener('scroll', handleScroll);
     window.addEventListener('themechange', handleThemeChange);
 
@@ -36,13 +40,24 @@ export default function Header() {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('themechange', handleThemeChange);
     };
+  }, []);
+
+  useEffect(() => {
+    Cookies.set('theme', currentTheme, { expires: 365, path: '/' });
   }, [currentTheme]);
+
+  const handleLogout = useCallback(() => {
+    logout();
+    router.replace('/');
+  }, [logout, router]);
 
   return (
     <header
       className={`${styles.header} ${scrolled ? styles.headerScrolled : ''}`}
     >
-      <div className={styles.leftSection}>
+      <div
+        className={`${styles.leftSection} ${isRTL ? styles.rtlSection : ''}`}
+      >
         <Link href="/" className={styles.logoLink}>
           <Image
             src={
@@ -84,20 +99,37 @@ export default function Header() {
       <div className={styles.rightSection}>
         <LanguageSelector />
         <ThemeToggle />
-        <button
-          type="button"
-          className={styles.signupButton}
-          onClick={() => router.push('/auth/register')}
-        >
-          {t('auth.signup')}
-        </button>
-        <button
-          type="button"
-          className={styles.loginButton}
-          onClick={() => router.push('/auth/login')}
-        >
-          {t('auth.login')}
-        </button>
+        <AccessibilityMenu />
+
+        {token && username ? (
+          <>
+            <span className={styles.username}>{username}</span>
+            <button
+              type="button"
+              className={styles.logoutButton}
+              onClick={handleLogout}
+            >
+              {t('auth.logout')}
+            </button>
+          </>
+        ) : (
+          <>
+            <button
+              type="button"
+              className={styles.signupButton}
+              onClick={() => router.push('/spotify/auth/register')}
+            >
+              {t('auth.signup')}
+            </button>
+            <button
+              type="button"
+              className={styles.loginButton}
+              onClick={() => router.push('/spotify/auth/login')}
+            >
+              {t('auth.login')}
+            </button>
+          </>
+        )}
       </div>
     </header>
   );

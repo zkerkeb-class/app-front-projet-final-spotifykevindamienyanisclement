@@ -120,3 +120,21 @@
     transform: scale(0.98);
   }
 }
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  color: var(--color-text-subdued);
+  font-size: 1.4rem;
+}
+
+.error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  color: var(--color-error);
+  font-size: 1.4rem;
+}

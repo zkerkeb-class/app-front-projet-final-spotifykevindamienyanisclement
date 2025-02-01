@@ -12,7 +12,20 @@
     "email": "البريد الإلكتروني",
     "password": "كلمة المرور",
     "or": "أو",
-    "showAll": "عرض الكل"
+    "showAll": "عرض الكل",
+    "share": "مشاركة",
+    "loading": "جاري التحميل..."
+  },
+  "accessibility": {
+    "skipToMain": "القفز إلى المحتوى الرئيسي",
+    "settings": "إعدادات الوصول",
+    "menu": "قائمة الوصول",
+    "highContrast": "التباين العالي",
+    "screenReader": "قارئ الشاشة",
+    "keyboardNav": "تصفح المفاتيح",
+    "voiceMessages": "رسائل الصوت",
+    "enabled": "مفعل",
+    "disabled": "معطل"
   },
   "auth": {
     "login": "تسجيل الدخول",
@@ -27,7 +40,22 @@
     "loginWithFacebook": "المتابعة باستخدام Facebook",
     "loginWithApple": "المتابعة باستخدام Apple",
     "noAccount": "ليس لديك حساب؟",
-    "forgotPassword": "نسيت كلمة المرور؟"
+    "forgotPassword": "نسيت كلمة المرور؟",
+    "invalidEmail": "صيغة البريد الإلكتروني غير صالحة",
+    "passwordTooShort": "كلمة المرور يجب أن تكون أكثر من 6 أحرف",
+    "genericError": "حدث خطأ",
+    "loginSuccess": "تسجيل الدخول بنجاح",
+    "registerSuccess": "التسجيل بنجاح",
+    "logoutSuccess": "تسجيل الخروج بنجاح",
+    "emailAlreadyUsed": "هذا البريد الإلكتروني مستخدم بالفعل",
+    "emailNotFound": "هذا البريد الإلكتروني غير موجود",
+    "invalidPassword": "كلمة المرور غير صالحة",
+    "emailRequired": "البريد الإلكتروني مطلوب",
+    "passwordRequired": "كلمة المرور مطلوبة",
+    "invalidCredentials": "البيانات غير صالحة",
+    "emailOrPasswordRequired": "البريد الإلكتروني وكلمة المرور مطلوبة",
+    "emailOrPasswordInvalid": "البريد الإلكتروني أو كلمة المرور غير صالحة",
+    "loading": "جاري التحميل... "
   },
   "player": {
     "play": "تشغيل",
@@ -82,5 +110,42 @@
       "artist": "الفنان",
       "album": "الألبوم"
     }
+  },
+  "network": {
+    "offline": "أنت خارج الإنترنت",
+    "syncing": "جاري التزامن...",
+    "pendingActions_1": "1 إجراء معلق",
+    "pendingActions_other": "%d إجراءات معلقة",
+    "update": "إصدار جديد متاح - تحديث"
+  },
+  "networkStatus": {
+    "title": "أنت خارج الإنترنت",
+    "description": "أنت غير متصل بالإنترنت. لا يمكنك الوصول إلى Spotify."
+  },
+  "group": {
+    "type": "مجموعة",
+    "featured": "المجموعات المميزة",
+    "new": "مجموعات جديدة",
+    "recommended": "موصى به لك",
+    "members": "{{count}} عضو",
+    "memberCount": "{{count}} عضو",
+    "join": "انضمام",
+    "playlists": "قوائم تشغيل المجموعة",
+    "discussions": "المناقشات",
+    "replyCount": "{{count}} رد",
+    "role": {
+      "admin": "مسؤول",
+      "member": "عضو"
+    }
+  },
+  "artist": {
+    "verified": "فنان موثق",
+    "monthlyListeners": "مستمع شهريا",
+    "worldRank": "التصنيف العالمي",
+    "popular": "شائع",
+    "discography": "الديسكوغرافيا",
+    "tours": "جولات",
+    "follow": "متابعة",
+    "tickets": "تذاكر"
   }
 }

@@ -1,0 +1,59 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-background-elevated);
+  border-radius: 0.8rem;
+  padding: 1.6rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--color-background-highlight);
+    transform: translateY(-4px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  .imageContainer {
+    position: relative;
+    width: 100%;
+    margin-bottom: 1.6rem;
+
+    .image {
+      width: 100%;
+      height: auto;
+      border-radius: 0.8rem;
+      object-fit: cover;
+    }
+  }
+
+  .content {
+    flex: 1;
+
+    .name {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--color-text-base);
+      margin-bottom: 0.4rem;
+    }
+
+    .memberCount {
+      font-size: 1.4rem;
+      color: var(--color-text-subdued);
+      margin-bottom: 0.8rem;
+    }
+
+    .description {
+      font-size: 1.4rem;
+      color: var(--color-text-subdued);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  }
+}

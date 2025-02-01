@@ -12,7 +12,22 @@
     "email": "Adresse e-mail",
     "password": "Mot de passe",
     "or": "ou",
-    "showAll": "Tout afficher"
+    "showAll": "Tout afficher",
+    "logoAlt": "Logo de l'application",
+    "share": "Partager",
+    "loading": "Chargement...",
+    "error": "Une erreur est survenue"
+  },
+  "accessibility": {
+    "skipToMain": "Aller au contenu principal",
+    "settings": "Paramètres d'accessibilité",
+    "menu": "Menu d'accessibilité",
+    "highContrast": "Contraste élevé",
+    "screenReader": "Lecteur d'écran",
+    "keyboardNav": "Navigation clavier",
+    "voiceMessages": "Messages vocaux",
+    "enabled": "Activé",
+    "disabled": "Désactivé"
   },
   "auth": {
     "login": "Se connecter",
@@ -27,7 +42,21 @@
     "loginWithFacebook": "Continuer avec Facebook",
     "loginWithApple": "Continuer avec Apple",
     "noAccount": "Vous n'avez pas de compte ?",
-    "forgotPassword": "Mot de passe oublié ?"
+    "forgotPassword": "Mot de passe oublié ?",
+    "invalidEmail": "Format d'email invalide",
+    "passwordTooShort": "Le mot de passe doit contenir au moins 6 caractères",
+    "genericError": "Une erreur est survenue",
+    "loginSuccess": "Connexion réussie",
+    "registerSuccess": "Inscription réussie",
+    "logoutSuccess": "Déconnexion réussie",
+    "emailAlreadyUsed": "Cette adresse e-mail est déjà utilisée",
+    "emailNotFound": "Cette adresse e-mail n'existe pas",
+    "invalidPassword": "Mot de passe incorrect",
+    "emailRequired": "L'adresse e-mail est requise",
+    "passwordRequired": "Le mot de passe est requis",
+    "invalidCredentials": "Identifiants incorrects",
+    "emailOrPasswordRequired": "L'adresse e-mail et le mot de passe sont requis",
+    "emailOrPasswordInvalid": "L'adresse e-mail ou le mot de passe est incorrect"
   },
   "player": {
     "play": "Lecture",
@@ -82,5 +111,42 @@
       "artist": "Artiste",
       "album": "Album"
     }
+  },
+  "network": {
+    "offline": "Vous êtes hors ligne",
+    "syncing": "Synchronisation en cours...",
+    "pendingActions_1": "1 action en attente",
+    "pendingActions_other": "%d actions en attente",
+    "update": "Nouvelle version disponible - Mettre à jour"
+  },
+  "networkStatus": {
+    "title": "Vous êtes hors ligne",
+    "description": "Vous n'êtes pas connecté à Internet. Vous ne pouvez pas accéder à Spotify."
+  },
+  "group": {
+    "type": "GROUPE",
+    "featured": "Groupes en vedette",
+    "new": "Nouveaux groupes",
+    "recommended": "Recommandés pour vous",
+    "members": "{{count}} membres",
+    "memberCount": "{{count}} membres",
+    "join": "Rejoindre",
+    "playlists": "Playlists du groupe",
+    "discussions": "Discussions",
+    "replyCount": "{{count}} réponses",
+    "role": {
+      "admin": "Administrateur",
+      "member": "Membre"
+    }
+  },
+  "artist": {
+    "verified": "Artiste vérifié",
+    "monthlyListeners": "auditeurs mensuels",
+    "worldRank": "Classement mondial",
+    "popular": "Populaire",
+    "discography": "Discographie",
+    "tours": "Tournées",
+    "follow": "Suivre",
+    "tickets": "Billets"
   }
 }

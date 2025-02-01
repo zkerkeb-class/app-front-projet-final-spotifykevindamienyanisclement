@@ -1,0 +1,236 @@
+.container {
+  min-height: 100vh;
+  background: var(--color-gradient-artist);
+
+  .header {
+    position: relative;
+    padding: 6rem 2.4rem 2.4rem;
+    display: flex;
+    gap: 2.4rem;
+    align-items: flex-end;
+
+    .artistImage {
+      position: relative;
+      width: 23.2rem;
+      height: 23.2rem;
+      flex-shrink: 0;
+
+      .image {
+        object-fit: cover;
+        border-radius: 50%;
+        box-shadow: 0 4px 60px var(--color-opacity);
+      }
+    }
+
+    .artistInfo {
+      flex: 1;
+
+      .verified {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        font-size: 1.4rem;
+        color: var(--color-primary);
+        margin-bottom: 0.8rem;
+
+        .verifiedIcon {
+          width: 2.4rem;
+          height: 2.4rem;
+        }
+      }
+
+      .name {
+        font-size: 6rem;
+        font-weight: 900;
+        color: var(--color-text-base);
+        margin-bottom: 1.6rem;
+        line-height: 1.1;
+      }
+
+      .stats {
+        display: flex;
+        align-items: center;
+        gap: 2.4rem;
+        color: var(--color-text-subdued);
+        font-size: 1.4rem;
+
+        .stat {
+          display: flex;
+          align-items: center;
+          gap: 0.4rem;
+        }
+      }
+    }
+  }
+
+  .content {
+    padding: 2.4rem;
+
+    .actions {
+      display: flex;
+      gap: 1.6rem;
+      margin-bottom: 3.2rem;
+
+      .playButton {
+        width: 5.6rem;
+        height: 5.6rem;
+        border-radius: 50%;
+        background-color: var(--color-primary);
+        color: var(--color-text-base);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.2s ease;
+
+        &:hover {
+          transform: scale(1.04);
+          background-color: var(--color-text-bright-accent);
+        }
+      }
+
+      .followButton {
+        padding: 0.8rem 2.4rem;
+        border-radius: 2.4rem;
+        border: 1px solid var(--color-border);
+        color: var(--color-text-base);
+        font-size: 1.6rem;
+        font-weight: 700;
+        transition: all 0.2s ease;
+
+        &:hover {
+          transform: scale(1.02);
+          border-color: var(--color-text-base);
+        }
+      }
+    }
+
+    .section {
+      margin-bottom: 4rem;
+
+      .sectionHeader {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+      }
+
+      .sectionTitle {
+        font-size: 2.4rem;
+        font-weight: 700;
+        color: var(--color-text-base);
+      }
+
+      .showAllButton {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--color-text-subdued);
+        text-transform: uppercase;
+        transition: color 0.2s ease;
+
+        &:hover {
+          color: var(--color-text-base);
+        }
+      }
+    }
+
+    .popularTracks {
+      .trackList {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+
+      .trackItem {
+        display: grid;
+        grid-template-columns: 4rem 1fr auto;
+        padding: 0.8rem;
+        border-radius: 0.4rem;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+
+        &:hover {
+          background-color: var(--color-opacity-hover);
+        }
+
+        .trackNumber {
+          color: var(--color-text-subdued);
+        }
+
+        .trackInfo {
+          display: flex;
+          flex-direction: column;
+          gap: 0.4rem;
+
+          .trackTitle {
+            font-size: 1.6rem;
+            font-weight: 500;
+            color: var(--color-text-base);
+          }
+
+          .trackStats {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1.4rem;
+            color: var(--color-text-subdued);
+          }
+        }
+
+        .trackDuration {
+          color: var(--color-text-subdued);
+        }
+      }
+    }
+
+    .tours {
+      .tourList {
+        display: flex;
+        flex-direction: column;
+        gap: 1.6rem;
+      }
+
+      .tourItem {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.6rem;
+        background-color: var(--color-background-elevated);
+        border-radius: 0.8rem;
+        transition: background-color 0.2s ease;
+
+        &:hover {
+          background-color: var(--color-background-highlight);
+        }
+
+        .tourInfo {
+          .date {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--color-text-base);
+            margin-bottom: 0.4rem;
+          }
+
+          .venue {
+            font-size: 1.4rem;
+            color: var(--color-text-subdued);
+          }
+        }
+
+        .ticketButton {
+          padding: 0.8rem 2.4rem;
+          border-radius: 2.4rem;
+          background-color: var(--color-background);
+          color: var(--color-text-base);
+          font-size: 1.4rem;
+          font-weight: 700;
+          transition: all 0.2s ease;
+
+          &:hover {
+            transform: scale(1.02);
+            background-color: var(--color-background-highlight);
+          }
+        }
+      }
+    }
+  }
+}

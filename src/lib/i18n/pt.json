@@ -12,7 +12,21 @@
     "email": "Endereço de e-mail",
     "password": "Senha",
     "or": "ou",
-    "showAll": "Mostrar tudo"
+    "showAll": "Mostrar tudo",
+    "share": "Compartilhar",
+    "loading": "Carregando... ",
+    "error": "Ocorreu um erro"
+  },
+  "accessibility": {
+    "skipToMain": "Pular para o conteúdo principal",
+    "settings": "Configurações de acessibilidade",
+    "menu": "Menu de acessibilidade",
+    "highContrast": "Contraste alto",
+    "screenReader": "Leitor de tela",
+    "keyboardNav": "Navegação por teclado",
+    "voiceMessages": "Mensagens de voz",
+    "enabled": "Ativado",
+    "disabled": "Desativado"
   },
   "auth": {
     "login": "Entrar",
@@ -27,7 +41,22 @@
     "loginWithFacebook": "Continuar com Facebook",
     "loginWithApple": "Continuar com Apple",
     "noAccount": "Não tem uma conta?",
-    "forgotPassword": "Esqueceu sua senha?"
+    "forgotPassword": "Esqueceu sua senha?",
+    "invalidEmail": "Formato de email inválido",
+    "passwordTooShort": "A senha deve ter pelo menos 6 caracteres",
+    "genericError": "Ocorreu um erro",
+    "loginSuccess": "Login bem-sucedido",
+    "registerSuccess": "Registro bem-sucedido",
+    "logoutSuccess": "Logout bem-sucedido",
+    "emailAlreadyUsed": "Este endereço de email já está em uso",
+    "emailNotFound": "Este endereço de email não existe",
+    "invalidPassword": "Senha inválida",
+    "emailRequired": "O endereço de email é obrigatório",
+    "passwordRequired": "A senha é obrigatória",
+    "invalidCredentials": "Credenciais inválidas",
+    "emailOrPasswordRequired": "O endereço de email e a senha são obrigatórios",
+    "emailOrPasswordInvalid": "O endereço de email ou a senha é inválido",
+    "loading": "Carregando... "
   },
   "player": {
     "play": "Reproduzir",
@@ -82,5 +111,42 @@
       "artist": "Artista",
       "album": "Álbum"
     }
+  },
+  "network": {
+    "offline": "Você está offline",
+    "syncing": "Sincronização em andamento...",
+    "pendingActions_1": "1 ação pendente",
+    "pendingActions_other": "%d ações pendentes",
+    "update": "Nova versão disponível - Atualizar"
+  },
+  "networkStatus": {
+    "title": "Você está offline",
+    "description": "Você não está conectado à internet. Você não pode acessar o Spotify."
+  },
+  "group": {
+    "type": "GRUPO",
+    "featured": "Grupos em destaque",
+    "new": "Novos grupos",
+    "recommended": "Recomendados para você",
+    "members": "{{count}} membros",
+    "memberCount": "{{count}} membros",
+    "join": "Participar",
+    "playlists": "Playlists do grupo",
+    "discussions": "Discussões",
+    "replyCount": "{{count}} respostas",
+    "role": {
+      "admin": "Administrador",
+      "member": "Membro"
+    }
+  },
+  "artist": {
+    "verified": "Artista verificado",
+    "monthlyListeners": "ouvintes mensais",
+    "worldRank": "Classificação mundial",
+    "popular": "Popular",
+    "discography": "Discografia",
+    "tours": "Turnês",
+    "follow": "Seguir",
+    "tickets": "Ingressos"
   }
 }

@@ -41,6 +41,9 @@
   "ignorePatterns": ["*.css", "*.scss", "*.less", "commitlint.config.js"],
   "rules": {
     "react/react-in-jsx-scope": "off",
+    "react/function-component-definition": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/require-default-props": "off",
     "@typescript-eslint/lines-between-class-members": "off",
     "@typescript-eslint/no-require-imports": "off",
     "@typescript-eslint/no-var-requires": "warn",
@@ -48,6 +51,7 @@
     "@typescript-eslint/no-unused-expressions": "warn",
     "@typescript-eslint/no-explicit-any": "warn",
     "@typescript-eslint/no-throw-literal": "off",
+    "import/prefer-default-export": "off",
     "prettier/prettier": [
       "error",
       {

@@ -1,15 +1,14 @@
 'use client';
 
-import { useLayoutEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useTranslationContext } from '@/providers/TranslationProvider';
 import styles from './ThemeToggle.module.scss';
 
 export default function ThemeToggle() {
   const { t } = useTranslationContext();
-  const [mounted, setMounted] = useState(false);
-  const [theme, setTheme] = useState('dark');
+  const [theme, setTheme] = useState<string>('dark');
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
     const prefersDark = window.matchMedia(
       '(prefers-color-scheme: dark)'
@@ -18,8 +17,7 @@ export default function ThemeToggle() {
 
     setTheme(initialTheme);
     document.documentElement.setAttribute('data-theme', initialTheme);
-    setMounted(true);
-  }, []);
+  }, []); // Empty dependency array, so it only runs once after mount
 
   const toggleTheme = useCallback(() => {
     setTheme(prevTheme => {
@@ -29,11 +27,7 @@ export default function ThemeToggle() {
       window.dispatchEvent(new Event('themechange'));
       return newTheme;
     });
-  }, []);
-
-  if (!mounted) {
-    return null;
-  }
+  }, []); // Only recreate toggleTheme when necessary
 
   return (
     <button

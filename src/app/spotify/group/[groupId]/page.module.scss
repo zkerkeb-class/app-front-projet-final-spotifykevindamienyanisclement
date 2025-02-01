@@ -1,0 +1,236 @@
+.container {
+  width: 100%;
+  min-height: 100vh;
+  background: var(--color-gradient-group);
+
+  .header {
+    position: relative;
+    padding: 6rem 2.4rem 2.4rem;
+    display: flex;
+    gap: 2.4rem;
+    align-items: flex-end;
+
+    .coverImage {
+      position: relative;
+      width: 23.2rem;
+      height: 23.2rem;
+      flex-shrink: 0;
+
+      .image {
+        object-fit: cover;
+        border-radius: 0.8rem;
+        box-shadow: 0 4px 60px var(--color-opacity);
+      }
+    }
+
+    .groupInfo {
+      flex: 1;
+
+      .type {
+        font-size: 1.4rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        color: var(--color-text-base);
+      }
+
+      .title {
+        font-size: 6rem;
+        font-weight: 900;
+        color: var(--color-text-base);
+        margin: 0.8rem 0;
+        line-height: 1.1;
+      }
+
+      .description {
+        font-size: 1.6rem;
+        color: var(--color-text-subdued);
+        margin-bottom: 1.6rem;
+      }
+
+      .meta {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+
+        .ownerImage {
+          border-radius: 50%;
+        }
+
+        .owner {
+          font-size: 1.4rem;
+          font-weight: 700;
+          color: var(--color-text-base);
+        }
+
+        .dot {
+          color: var(--color-text-subdued);
+        }
+
+        .memberCount {
+          font-size: 1.4rem;
+          color: var(--color-text-subdued);
+        }
+      }
+    }
+  }
+
+  .content {
+    padding: 2.4rem;
+
+    .actions {
+      display: flex;
+      gap: 1.6rem;
+      margin-bottom: 3.2rem;
+
+      .joinButton {
+        padding: 1.2rem 3.2rem;
+        border-radius: 2.4rem;
+        background-color: var(--color-primary);
+        color: var(--color-text-base);
+        font-size: 1.6rem;
+        font-weight: 700;
+        transition: all 0.2s ease;
+
+        &:hover {
+          transform: scale(1.04);
+          background-color: var(--color-text-bright-accent);
+        }
+      }
+
+      .shareButton {
+        padding: 1.2rem 3.2rem;
+        border-radius: 2.4rem;
+        border: 1px solid var(--color-border);
+        color: var(--color-text-base);
+        font-size: 1.6rem;
+        font-weight: 700;
+        transition: all 0.2s ease;
+
+        &:hover {
+          transform: scale(1.04);
+          border-color: var(--color-text-base);
+        }
+      }
+    }
+
+    .section {
+      margin-bottom: 4rem;
+
+      .sectionTitle {
+        font-size: 2.4rem;
+        font-weight: 700;
+        color: var(--color-text-base);
+        margin-bottom: 2rem;
+      }
+    }
+
+    .playlistCard {
+      padding: 1.6rem;
+      background-color: var(--color-background-elevated);
+      border-radius: 0.8rem;
+      transition: all 0.2s ease;
+      cursor: pointer;
+
+      &:hover {
+        background-color: var(--color-background-highlight);
+        transform: translateY(-4px);
+      }
+
+      .playlistImage {
+        border-radius: 0.8rem;
+        margin-bottom: 1.2rem;
+      }
+
+      .playlistName {
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: var(--color-text-base);
+        margin-bottom: 0.4rem;
+      }
+
+      .trackCount {
+        font-size: 1.4rem;
+        color: var(--color-text-subdued);
+      }
+    }
+
+    .discussionList {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .discussionCard {
+      padding: 1.6rem;
+      background-color: var(--color-background-elevated);
+      border-radius: 0.8rem;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+
+      &:hover {
+        background-color: var(--color-background-highlight);
+      }
+
+      .discussionTitle {
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: var(--color-text-base);
+        margin-bottom: 0.8rem;
+      }
+
+      .discussionMeta {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        font-size: 1.4rem;
+        color: var(--color-text-subdued);
+
+        .author {
+          font-weight: 500;
+        }
+      }
+    }
+
+    .memberList {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(24rem, 1fr));
+      gap: 1.6rem;
+    }
+
+    .memberCard {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      padding: 1.2rem;
+      background-color: var(--color-background-elevated);
+      border-radius: 0.8rem;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+
+      &:hover {
+        background-color: var(--color-background-highlight);
+      }
+
+      .memberImage {
+        border-radius: 50%;
+      }
+
+      .memberInfo {
+        display: flex;
+        flex-direction: column;
+
+        .memberName {
+          font-size: 1.4rem;
+          font-weight: 700;
+          color: var(--color-text-base);
+        }
+
+        .memberRole {
+          font-size: 1.2rem;
+          color: var(--color-text-subdued);
+          text-transform: capitalize;
+        }
+      }
+    }
+  }
+}

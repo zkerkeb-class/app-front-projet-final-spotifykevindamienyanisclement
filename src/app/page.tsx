@@ -4,60 +4,100 @@ import { useRef } from 'react';
 import MainLayout from '@/components/Layout/MainLayout';
 import { useTranslationContext } from '@/providers/TranslationProvider';
 import HorizontalScroll from '@/components/HorizontalScroll/HorizontalScroll';
-// import ArtistCard from '@/components/Cards/ArtistCard';
-// import TrackCard from '@/components/Cards/TrackCard';
-// import AlbumCard from '@/components/Cards/AlbumCard';
 import { useRouter } from 'next/navigation';
+import Card from '@/components/Cards/Card/Card';
+import { useAlbums } from '@/hooks/api/useAlbums';
+import { useArtists } from '@/hooks/api/useArtists';
+import { useTracks } from '@/hooks/api/useTracks';
 import styles from './page.module.scss';
-
-// Données mockées (à remplacer par des appels API)
-const topTracks = [
-  { id: 1, title: 'TOKI', albumId: 1 },
-  { id: 2, title: 'ENCORE PLUS FORT ELLE AIME ÇA', albumId: 1 },
-  { id: 3, title: 'LA BELLE ET LA BÊTE', albumId: 1 },
-];
-
-const popularArtists = [
-  { id: 1, name: 'GIMS', type: 'Artiste', image: '/artists/gims.jpg' },
-  { id: 2, name: 'Gazo', type: 'Artiste', image: '/artists/gazo.jpg' },
-  { id: 3, name: 'Gazo', type: 'Artiste', image: '/artists/gazo.jpg' },
-  { id: 4, name: 'Gazo', type: 'Artiste', image: '/artists/gazo.jpg' },
-  { id: 5, name: 'Gazo', type: 'Artiste', image: '/artists/gazo.jpg' },
-];
-
-const recentAlbums = [
-  {
-    id: 1,
-    title: 'Les Derniers Survivants',
-    artist: 'GIMS',
-    cover: '/albums/gims-lds.jpg',
-  },
-  { id: 2, title: 'KMT', artist: 'Gazo', cover: '/albums/gazo-kmt.jpg' },
-  { id: 3, title: 'KMT', artist: 'Gazo', cover: '/albums/gazo-kmt.jpg' },
-  { id: 4, title: 'KMT', artist: 'Gazo', cover: '/albums/gazo-kmt.jpg' },
-  { id: 5, title: 'KMT', artist: 'Gazo', cover: '/albums/gazo-kmt.jpg' },
-  { id: 6, title: 'KMT', artist: 'Gazo', cover: '/albums/gazo-kmt.jpg' },
-  { id: 7, title: 'KMT', artist: 'Gazo', cover: '/albums/gazo-kmt.jpg' },
-  { id: 8, title: 'KMT', artist: 'Gazo', cover: '/albums/gazo-kmt.jpg' },
-  { id: 9, title: 'KMT', artist: 'Gazo', cover: '/albums/gazo-kmt.jpg' },
-  { id: 10, title: 'KMT', artist: 'Gazo', cover: '/albums/gazo-kmt.jpg' },
-];
 
 export default function Home() {
   const router = useRouter();
   const { t } = useTranslationContext();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const { albums, loading: albumsLoading, error: albumsError } = useAlbums(10);
+  const {
+    artists,
+    loading: artistsLoading,
+    error: artistsError,
+  } = useArtists(10);
+  const { tracks, loading: tracksLoading, error: tracksError } = useTracks(10);
 
   const handleTrackClick = (albumId: number, trackId: number) => {
-    router.push(`/album/${albumId}/track/${trackId}`);
+    router.push(`/spotify/album/${albumId}/track/${trackId}`);
   };
 
   const handleArtistClick = (artistName: string) => {
-    router.push(`/artist/${artistName}`);
+    router.push(`/spotify/artist/${artistName}`);
   };
 
   const handleAlbumClick = (albumId: number) => {
-    router.push(`/album/${albumId}`);
+    router.push(`/spotify/album/${albumId}`);
+  };
+
+  const renderTracks = () => {
+    if (tracksLoading) {
+      return <div className={styles.loading}>{t('common.loading')}</div>;
+    }
+    if (tracksError) {
+      return <div className={styles.error}>{tracksError.message}</div>;
+    }
+    return tracks.map(track => (
+      <Card
+        key={track.id}
+        type="track"
+        title={track.title}
+        description={track.artistId?.toString()}
+        // TODO: fix this
+        // imageUrl={track.album?.image?.url || '/assets/images/default-album.jpg'}
+        imageUrl="/assets/images/default-album.jpg"
+        href={`/spotify/album/${track.albumId}/track/${track.id}`}
+        onPlay={() => handleTrackClick(track.albumId, track.id)}
+      />
+    ));
+  };
+
+  const renderArtists = () => {
+    if (artistsLoading) {
+      return <div className={styles.loading}>{t('common.loading')}</div>;
+    }
+    if (artistsError) {
+      return <div className={styles.error}>{artistsError.message}</div>;
+    }
+    return artists.map(artist => (
+      <Card
+        key={artist.id}
+        type="artist"
+        title={artist.name}
+        // TODO: fix this
+        // imageUrl={artist.image?.url || '/assets/images/default-artist.jpg'}
+        imageUrl="/assets/images/default-artist.jpg"
+        href={`/spotify/artist/${artist.name}`}
+        onPlay={() => handleArtistClick(artist.name)}
+      />
+    ));
+  };
+
+  const renderAlbums = () => {
+    if (albumsLoading) {
+      return <div className={styles.loading}>{t('common.loading')}</div>;
+    }
+    if (albumsError) {
+      return <div className={styles.error}>{albumsError.message}</div>;
+    }
+    return albums.map(album => (
+      <Card
+        key={album.id}
+        type="album"
+        title={album.title}
+        description={album.artistId?.toString()}
+        // TODO: fix this
+        // imageUrl={album.image?.url || '/assets/images/default-album.jpg'}
+        imageUrl="/assets/images/default-album.jpg"
+        href={`/spotify/album/${album.id}`}
+        onPlay={() => handleAlbumClick(album.id)}
+      />
+    ));
   };
 
   return (
@@ -70,25 +110,7 @@ export default function Home() {
               {t('common.showAll')}
             </button>
           </div>
-          <HorizontalScroll>
-            {/* TODO: Transform in component */}
-            {topTracks.map(track => (
-              <div
-                key={track.id}
-                onClick={() => handleTrackClick(track.albumId, track.id)}
-                className={styles.trackItem}
-                role="button"
-                tabIndex={0}
-                onKeyDown={e => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    handleTrackClick(track.albumId, track.id);
-                  }
-                }}
-              >
-                {track.title}
-              </div>
-            ))}
-          </HorizontalScroll>
+          <HorizontalScroll>{renderTracks()}</HorizontalScroll>
         </section>
 
         <section className={styles.section}>
@@ -98,25 +120,7 @@ export default function Home() {
               {t('common.showAll')}
             </button>
           </div>
-          <HorizontalScroll>
-            {/* TODO: Transform in component */}
-            {popularArtists.map(artist => (
-              <div
-                key={artist.id}
-                onClick={() => handleArtistClick(artist.name)}
-                className={styles.artistItem}
-                role="button"
-                tabIndex={0}
-                onKeyDown={e => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    handleArtistClick(artist.name);
-                  }
-                }}
-              >
-                {artist.name}
-              </div>
-            ))}
-          </HorizontalScroll>
+          <HorizontalScroll>{renderArtists()}</HorizontalScroll>
         </section>
 
         <section className={styles.section}>
@@ -126,25 +130,7 @@ export default function Home() {
               {t('common.showAll')}
             </button>
           </div>
-          <HorizontalScroll>
-            {/* TODO: Transform in component */}
-            {recentAlbums.map(album => (
-              <div
-                key={album.id}
-                onClick={() => handleAlbumClick(album.id)}
-                className={styles.albumItem}
-                role="button"
-                tabIndex={0}
-                onKeyDown={e => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    handleAlbumClick(album.id);
-                  }
-                }}
-              >
-                {album.title}
-              </div>
-            ))}
-          </HorizontalScroll>
+          <HorizontalScroll>{renderAlbums()}</HorizontalScroll>
         </section>
       </div>
     </MainLayout>

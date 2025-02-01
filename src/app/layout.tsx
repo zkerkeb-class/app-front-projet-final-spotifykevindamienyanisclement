@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from 'next';
 import { TranslationProvider } from '@/providers/TranslationProvider';
 import '@/styles/globals.scss';
+import { AuthProvider } from '@/context/userContext';
+import NetworkStatus from '@/components/NetworkStatus/NetworkStatus';
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -18,7 +20,8 @@ export const metadata: Metadata = {
   authors: [{ name: 'Your Name' }],
   icons: {
     icon: '/favicon/favicon.ico',
-    apple: '/favicon/icons/favicon-32x32.png',
+    shortcut: '/favicon/favicon.ico',
+    apple: '/favicon/apple-touch-icon.png',
   },
   manifest: '/manifest.json',
 };
@@ -31,7 +34,12 @@ export default function RootLayout({
   return (
     <html lang="fr" suppressHydrationWarning>
       <body suppressHydrationWarning>
-        <TranslationProvider>{children}</TranslationProvider>
+        <TranslationProvider>
+          <AuthProvider>
+            {children}
+            <NetworkStatus />
+          </AuthProvider>
+        </TranslationProvider>
       </body>
     </html>
   );

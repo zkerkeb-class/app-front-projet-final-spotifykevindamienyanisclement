@@ -12,7 +12,21 @@
     "email": "Email address",
     "password": "Password",
     "or": "or",
-    "showAll": "Show all"
+    "showAll": "Show all",
+    "share": "Share",
+    "loading": "Loading...",
+    "error": "An error occurred"
+  },
+  "accessibility": {
+    "skipToMain": "Skip to main content",
+    "settings": "Accessibility settings",
+    "menu": "Accessibility menu",
+    "highContrast": "High contrast",
+    "screenReader": "Screen reader",
+    "keyboardNav": "Keyboard navigation",
+    "voiceMessages": "Voice messages",
+    "enabled": "Enabled",
+    "disabled": "Disabled"
   },
   "auth": {
     "login": "Log in",
@@ -27,7 +41,22 @@
     "loginWithFacebook": "Continue with Facebook",
     "loginWithApple": "Continue with Apple",
     "noAccount": "Don't have an account?",
-    "forgotPassword": "Forgot your password?"
+    "forgotPassword": "Forgot your password?",
+    "invalidEmail": "Invalid email format",
+    "passwordTooShort": "Password must be at least 6 characters",
+    "genericError": "An error occurred",
+    "loginSuccess": "Login successful",
+    "registerSuccess": "Register successful",
+    "logoutSuccess": "Logout successful",
+    "emailAlreadyUsed": "This email address is already in use",
+    "emailNotFound": "This email address does not exist",
+    "invalidPassword": "Invalid password",
+    "emailRequired": "Email is required",
+    "passwordRequired": "Password is required",
+    "invalidCredentials": "Invalid credentials",
+    "emailOrPasswordRequired": "Email and password are required",
+    "emailOrPasswordInvalid": "Email or password is incorrect",
+    "loading": "Loading... "
   },
   "player": {
     "play": "Play",
@@ -82,5 +111,42 @@
       "artist": "Artist",
       "album": "Album"
     }
+  },
+  "network": {
+    "offline": "You are offline",
+    "syncing": "Syncing in progress...",
+    "pendingActions_1": "1 action pending",
+    "pendingActions_other": "%d actions pending",
+    "update": "New version available - Update"
+  },
+  "networkStatus": {
+    "title": "You are offline",
+    "description": "You are not connected to the internet. You cannot access Spotify."
+  },
+  "group": {
+    "type": "GROUP",
+    "featured": "Featured Groups",
+    "new": "New Groups",
+    "recommended": "Recommended for You",
+    "members": "{{count}} members",
+    "memberCount": "{{count}} members",
+    "join": "Join",
+    "playlists": "Group Playlists",
+    "discussions": "Discussions",
+    "replyCount": "{{count}} replies",
+    "role": {
+      "admin": "Administrator",
+      "member": "Member"
+    }
+  },
+  "artist": {
+    "verified": "Verified Artist",
+    "monthlyListeners": "monthly listeners",
+    "worldRank": "World Rank",
+    "popular": "Popular",
+    "discography": "Discography",
+    "tours": "Tours",
+    "follow": "Follow",
+    "tickets": "Tickets"
   }
 }

@@ -1,10 +1,73 @@
 // 1. Load variables first
-@import './helpers/_variables.scss';
+@use 'helpers/variables' as *;
 
 // 2. Load reset and fonts
-@import './base/_reset.scss';
-@import './base/_font.scss';
+@use 'base/reset' as *;
+@use 'base/font' as *;
 
 // 3. Load base styles and utilities
-@import './base/_base.scss';
-@import './helpers/_flex.scss';
+@use 'base/base' as *;
+@use 'helpers/flex' as *;
+@use 'helpers/rtl' as *;
+
+:root {
+  --color-error: #eb5757;
+  --color-error-bg: rgba(235, 87, 87, 0.1);
+  --color-warning: #f2994a;
+  --color-warning-bg: rgba(242, 153, 74, 0.1);
+}
+
+html {
+  &[dir='rtl'] {
+    text-align: right;
+  }
+}
+
+html[data-high-contrast='true'] {
+  --color-background: #000000;
+  --color-background-base: #000000;
+  --color-background-elevated: #1a1a1a;
+  --color-background-highlight: #333333;
+  --color-text-base: #ffffff;
+  --color-text-subdued: #ffffff;
+  --color-border: #ffffff;
+  --color-primary: #ffff00;
+  --color-primary-hover: #ffff40;
+
+  * {
+    border-color: var(--color-border) !important;
+  }
+
+  button,
+  a {
+    outline: 2px solid var(--color-border);
+    outline-offset: 2px;
+  }
+
+  input,
+  textarea,
+  select {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    border: 2px solid #ffffff !important;
+  }
+}
+
+[data-keyboard-nav='true'] {
+  *:focus {
+    outline: 3px solid var(--color-primary) !important;
+    outline-offset: 2px !important;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

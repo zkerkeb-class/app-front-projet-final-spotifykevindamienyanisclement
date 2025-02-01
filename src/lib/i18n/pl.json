@@ -12,7 +12,21 @@
     "email": "Adres e-mail",
     "password": "Hasło",
     "or": "lub",
-    "showAll": "Pokaż wszystko"
+    "showAll": "Pokaż wszystko",
+    "share": "Udostępnić",
+    "loading": "Ładowanie... ",
+    "error": "Wystąpił błąd"
+  },
+  "accessibility": {
+    "skipToMain": "Przejdź do głównego treningu",
+    "settings": "Ustawienia dostępności",
+    "menu": "Menu dostępności",
+    "highContrast": "Wysoki kontrast",
+    "screenReader": "Czytnik ekranu",
+    "keyboardNav": "Nawigacja za pomocą klawiatury",
+    "voiceMessages": "Wiadomości głosowe",
+    "enabled": "Włączony",
+    "disabled": "Wyłączony"
   },
   "auth": {
     "login": "Zaloguj się",
@@ -27,7 +41,22 @@
     "loginWithFacebook": "Kontynuuj przez Facebook",
     "loginWithApple": "Kontynuuj przez Apple",
     "noAccount": "Nie masz konta?",
-    "forgotPassword": "Zapomniałeś hasła?"
+    "forgotPassword": "Zapomniałeś hasła?",
+    "invalidEmail": "Nieprawidłowy format email",
+    "passwordTooShort": "Hasło musi mieć co najmniej 6 znaków",
+    "genericError": "Wystąpił błąd",
+    "loginSuccess": "Logowanie zakończone sukcesem",
+    "registerSuccess": "Rejestracja zakończona sukcesem",
+    "logoutSuccess": "Wylogowanie zakończone sukcesem",
+    "emailAlreadyUsed": "Ten adres email jest już używany",
+    "emailNotFound": "Ten adres email nie istnieje",
+    "invalidPassword": "Nieprawidłowe hasło",
+    "emailRequired": "Adres email jest wymagany",
+    "passwordRequired": "Hasło jest wymagane",
+    "invalidCredentials": "Nieprawidłowe dane logowania",
+    "emailOrPasswordRequired": "Adres email i hasło są wymagane",
+    "emailOrPasswordInvalid": "Adres email lub hasło jest nieprawidłowe",
+    "loading": "Ładowanie... "
   },
   "player": {
     "play": "Odtwórz",
@@ -82,5 +111,42 @@
       "artist": "Artysta",
       "album": "Album"
     }
+  },
+  "network": {
+    "offline": "Jesteś offline",
+    "syncing": "Synchronizacja w toku...",
+    "pendingActions_1": "1 akcja w toku",
+    "pendingActions_other": "%d akcji w toku",
+    "update": "Nowa wersja dostępna - Aktualizuj"
+  },
+  "networkStatus": {
+    "title": "Jesteś offline",
+    "description": "Nie jesteś połączony z internetem. Nie możesz uzyskać dostępu do Spotify."
+  },
+  "group": {
+    "type": "GRUPA",
+    "featured": "Polecane grupy",
+    "new": "Nowe grupy",
+    "recommended": "Polecane dla Ciebie",
+    "members": "{{count}} członków",
+    "memberCount": "{{count}} członków",
+    "join": "Dołącz",
+    "playlists": "Playlisty grupy",
+    "discussions": "Dyskusje",
+    "replyCount": "{{count}} odpowiedzi",
+    "role": {
+      "admin": "Administrator",
+      "member": "Członek"
+    }
+  },
+  "artist": {
+    "verified": "Zweryfikowany artysta",
+    "monthlyListeners": "słuchaczy miesięcznie",
+    "worldRank": "Ranking światowy",
+    "popular": "Popularne",
+    "discography": "Dyskografia",
+    "tours": "Trasy",
+    "follow": "Obserwuj",
+    "tickets": "Bilety"
   }
 }

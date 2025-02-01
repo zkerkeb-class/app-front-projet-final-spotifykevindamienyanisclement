@@ -12,7 +12,21 @@
     "email": "Электронная почта",
     "password": "Пароль",
     "or": "или",
-    "showAll": "Показать все"
+    "showAll": "Показать все",
+    "share": "Поделиться",
+    "loading": "Загрузка... ",
+    "error": "Произошла ошибка"
+  },
+  "accessibility": {
+    "skipToMain": "Перейти к основному контенту",
+    "settings": "Настройки доступности",
+    "menu": "Меню доступности",
+    "highContrast": "Высокий контраст",
+    "screenReader": "Читатель экрана",
+    "keyboardNav": "Навигация по клавиатуре",
+    "voiceMessages": "Голосовые сообщения",
+    "enabled": "Включено",
+    "disabled": "Отключено"
   },
   "auth": {
     "login": "Войти",
@@ -27,7 +41,22 @@
     "loginWithFacebook": "Продолжить с Facebook",
     "loginWithApple": "Продолжить с Apple",
     "noAccount": "Нет аккаунта?",
-    "forgotPassword": "Забыли пароль?"
+    "forgotPassword": "Забыли пароль?",
+    "invalidEmail": "Неверный формат email",
+    "passwordTooShort": "Пароль должен содержать не менее 6 символов",
+    "genericError": "Произошла ошибка",
+    "loginSuccess": "Вход выполнен успешно",
+    "registerSuccess": "Регистрация выполнена успешно",
+    "logoutSuccess": "Выход выполнен успешно",
+    "emailAlreadyUsed": "Этот адрес электронной почты уже используется",
+    "emailNotFound": "Этот адрес электронной почты не существует",
+    "invalidPassword": "Неверный пароль",
+    "emailRequired": "Адрес электронной почты обязателен",
+    "passwordRequired": "Пароль обязателен",
+    "invalidCredentials": "Неверные учетные данные",
+    "emailOrPasswordRequired": "Адрес электронной почты и пароль обязательны",
+    "emailOrPasswordInvalid": "Адрес электронной почты или пароль неверны",
+    "loading": "Загрузка... "
   },
   "player": {
     "play": "Воспроизвести",
@@ -82,5 +111,42 @@
       "artist": "Исполнитель",
       "album": "Альбом"
     }
+  },
+  "network": {
+    "offline": "Вы в автономном режиме",
+    "syncing": "Синхронизация в процессе...",
+    "pendingActions_1": "1 действие в ожидании",
+    "pendingActions_other": "%d действия в ожидании",
+    "update": "Доступна новая версия - Обновить"
+  },
+  "networkStatus": {
+    "title": "Вы в автономном режиме",
+    "description": "Вы не подключены к интернету. Вы не можете получить доступ к Spotify."
+  },
+  "group": {
+    "type": "ГРУППА",
+    "featured": "Рекомендуемые группы",
+    "new": "Новые группы",
+    "recommended": "Рекомендовано для вас",
+    "members": "{{count}} участников",
+    "memberCount": "{{count}} участников",
+    "join": "Присоединиться",
+    "playlists": "Плейлисты группы",
+    "discussions": "Обсуждения",
+    "replyCount": "{{count}} ответов",
+    "role": {
+      "admin": "Администратор",
+      "member": "Участник"
+    }
+  },
+  "artist": {
+    "verified": "Подтвержденный исполнитель",
+    "monthlyListeners": "ежемесячных слушателей",
+    "worldRank": "Мировой рейтинг",
+    "popular": "Популярное",
+    "discography": "Дискография",
+    "tours": "Туры",
+    "follow": "Подписаться",
+    "tickets": "Билеты"
   }
 }

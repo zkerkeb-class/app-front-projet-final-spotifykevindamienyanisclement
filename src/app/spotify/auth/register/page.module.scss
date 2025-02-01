@@ -1,0 +1,199 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-background);
+  padding: 2.4rem;
+
+  .content {
+    width: 100%;
+    max-width: 48rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.4rem;
+
+    .logo {
+      margin: 2.4rem 0 3.2rem;
+      cursor: pointer;
+
+      &:hover {
+        transform: scale(1.04);
+      }
+    }
+  }
+
+  .title {
+    font-size: 3.2rem;
+    font-weight: 700;
+    color: var(--color-text-base);
+    text-align: center;
+  }
+
+  .form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+  }
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+
+  label {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--color-text-base);
+  }
+
+  input {
+    width: 100%;
+    padding: 1.4rem;
+    border-radius: 0.4rem;
+    background-color: var(--color-background-elevated);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-base);
+    font-size: 1.6rem;
+    transition: border-color 0.2s ease;
+
+    &:focus {
+      border-color: var(--color-primary);
+      outline: none;
+    }
+
+    &::placeholder {
+      color: var(--color-text-subdued);
+    }
+  }
+}
+
+.submitButton {
+  width: 100%;
+  padding: 1.4rem;
+  border-radius: 2.4rem;
+  background-color: var(--color-primary);
+  color: var(--color-text-base);
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-align: center;
+  transition: all 0.2s ease;
+
+  &:hover {
+    transform: scale(1.02);
+    background-color: var(--color-text-bright-accent);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+.divider {
+  position: relative;
+  text-align: center;
+  margin: 1.6rem 0;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: calc(50% - 2.4rem);
+    height: 1px;
+    background-color: var(--color-border);
+  }
+
+  &::before {
+    left: 0;
+  }
+
+  &::after {
+    right: 0;
+  }
+
+  span {
+    padding: 0 1.6rem;
+    color: var(--color-text-subdued);
+    font-size: 1.4rem;
+    background-color: var(--color-background);
+  }
+}
+
+.socialButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  width: 100%;
+
+  button {
+    width: 100%;
+    padding: 1.2rem;
+    border-radius: 2.4rem;
+    border: 1px solid var(--color-border);
+    background-color: transparent;
+    color: var(--color-text-base);
+    font-size: 1.4rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+    transition: all 0.2s ease;
+
+    &:hover {
+      border-color: var(--color-text-base);
+      transform: scale(1.02);
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+}
+
+.loginLink {
+  font-size: 1.6rem;
+  color: var(--color-text-subdued);
+  text-align: center;
+
+  a {
+    color: var(--color-text-base);
+    text-decoration: underline;
+    font-weight: 500;
+
+    &:hover {
+      color: var(--color-primary);
+    }
+  }
+}
+
+.errorBanner {
+  width: 100%;
+  max-width: 32.4rem;
+  padding: 1.6rem;
+  border-radius: 0.4rem;
+  background-color: var(--color-error-bg);
+  color: var(--color-error);
+  font-size: 1.4rem;
+  margin-bottom: 2.4rem;
+  text-align: center;
+}
+
+.inputError {
+  border-color: var(--color-error) !important;
+
+  &:focus {
+    border-color: var(--color-error) !important;
+  }
+}
+
+.fieldError {
+  color: var(--color-error);
+  font-size: 1.2rem;
+  margin-top: 0.4rem;
+}
