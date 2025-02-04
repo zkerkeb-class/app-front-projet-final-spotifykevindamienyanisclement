@@ -3,7 +3,7 @@ const config = {
   i18n: {
     locales: ['en', 'fr', 'ar', 'pt', 'ru', 'pl', 'ja', 'uk', 'es'],
     defaultLocale: 'fr',
-    localeDetection: true,
+    localeDetection: false,
   },
   experimental: {
     serverActions: {
@@ -13,7 +13,36 @@ const config = {
   },
   reactStrictMode: true,
   images: {
-    domains: ['spotify-api-0gmj.onrender.com', 'localhost', '127.0.0.1'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'spotify-api-0gmj.onrender.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+      },
+      {
+        protocol: 'http',
+        hostname: '127.0.0.1',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.pixabay.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'loremflickr.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'picsum.photos',
+        pathname: '/**',
+      },
+    ],
   },
   headers: async () => {
     return [

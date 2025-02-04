@@ -1,6 +1,7 @@
 {
   "common": {
     "welcome": "ようこそ",
+    "close": "閉じる",
     "search": "検索",
     "library": "ライブラリ",
     "home": "ホーム",
@@ -15,7 +16,47 @@
     "showAll": "すべて表示",
     "share": "共有",
     "loading": "読み込み中... ",
-    "error": "エラーが発生しました"
+    "error": "エラーが発生しました",
+    "pageUnderConstruction": "ページ作成中",
+    "comingSoon": "近日中に公開予定",
+    "backToHome": "ホームに戻る",
+    "modal": {
+      "close": "モーダルウィンドウを閉じる",
+      "overlay": "クリックして閉じる"
+    }
+  },
+  "other": {
+    "about": {
+      "title": "アバウト",
+      "description": "アバウト"
+    },
+    "accessibility": {
+      "title": "アクセシビリティ",
+      "description": "アクセシビリティ"
+    },
+    "legal": {
+      "title": "法令",
+      "description": "法令"
+    },
+    "privacy": {
+      "title": "プライバシー",
+      "description": "プライバシー"
+    },
+    "privacyPolicy": {
+      "title": "プライバシーポリシー",
+      "description": "プライバシーポリシー"
+    },
+    "cookies": {
+      "title": "クッキー",
+      "description": "クッキー"
+    }
+  },
+  "error": {
+    "404": {
+      "code": "404",
+      "title": "ページが見つかりません",
+      "description": "お探しのページは存在しません"
+    }
   },
   "accessibility": {
     "skipToMain": "メインコンテンツにジャンプ",
@@ -30,7 +71,11 @@
   },
   "auth": {
     "login": "ログイン",
-    "signup": "登録",
+    "signup": "サインアップ",
+    "modal": {
+      "title": "Spotifyアカウントで無料体験",
+      "description": "登録して、無制限の音楽やポッドキャストを楽しもう。"
+    },
     "logout": "ログアウト",
     "signupWithGoogle": "Googleで登録",
     "signupWithFacebook": "Facebookで登録",
@@ -65,7 +110,11 @@
     "previous": "前へ",
     "shuffle": "シャッフル",
     "repeat": "リピート",
-    "volume": "音量"
+    "volume": "音量",
+    "unknownArtist": "不明なアーティスト",
+    "noTrack": "トラックがありません",
+    "noAlbum": "アルバムがありません",
+    "noArtist": "アーティストがありません"
   },
   "playlist": {
     "create": "プレイリストを作成",
@@ -84,33 +133,17 @@
       "title": "フォローするポッドキャストを見つけましょう",
       "description": "新しいエピソードについてお知らせします",
       "button": "ポッドキャストを探す"
+    },
+    "playlists": {
+      "title": "最初のプレイリストを作成",
+      "description": "簡単です、お手伝いします",
+      "button": "プレイリストを作成"
     }
-  },
-  "footer": {
-    "legal": "法的情報",
-    "privacyCenter": "プライバシーセンター",
-    "privacy": "プライバシーポリシー",
-    "cookiesSettings": "Cookie設定",
-    "about": "広告について",
-    "accessibility": "アクセシビリティ",
-    "cookies": "Cookie"
   },
   "home": {
     "topTracks": "トップトラック",
     "popularArtists": "人気のアーティスト",
     "recentAlbums": "最新アルバム"
-  },
-  "album": {
-    "title": "アルバム",
-    "tracks": "トラック",
-    "releaseDate": "リリース日",
-    "duration": "再生時間",
-    "track": {
-      "title": "タイトル",
-      "duration": "再生時間",
-      "artist": "アーティスト",
-      "album": "アルバム"
-    }
   },
   "network": {
     "offline": "オフラインです",
@@ -123,8 +156,23 @@
     "title": "オフラインです",
     "description": "インターネットに接続されていません。Spotifyにアクセスできません。"
   },
+  "album": {
+    "title": "アルバム",
+    "all": "アルバム",
+    "tracks": "トラック",
+    "releaseDate": "リリース日",
+    "duration": "再生時間",
+    "track": {
+      "title": "タイトル",
+      "all": "すべてのトラック",
+      "duration": "再生時間",
+      "artist": "アーティスト",
+      "album": "アルバム"
+    }
+  },
   "group": {
     "type": "グループ",
+    "all": "グループ",
     "featured": "注目のグループ",
     "new": "新しいグループ",
     "recommended": "おすすめグループ",
@@ -137,9 +185,13 @@
     "role": {
       "admin": "管理者",
       "member": "メンバー"
-    }
+    },
+    "artists": "アーティスト",
+    "albums": "アルバム"
   },
   "artist": {
+    "title": "アーティスト",
+    "all": "アーティスト",
     "verified": "認証済みアーティスト",
     "monthlyListeners": "月間リスナー",
     "worldRank": "世界ランク",
@@ -147,6 +199,10 @@
     "discography": "ディスコグラフィー",
     "tours": "ツアー",
     "follow": "フォロー",
-    "tickets": "チケット"
+    "tickets": "チケット",
+    "topTracks": "人気の曲",
+    "relatedArtists": "関連アーティスト",
+    "biography": "バイオグラフィー",
+    "about": "概要"
   }
 }

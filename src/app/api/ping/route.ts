@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import logger from '@/utils/logger';
 
 export async function GET() {
   try {
@@ -12,6 +13,7 @@ export async function GET() {
     });
     return NextResponse.json({ online: true });
   } catch (error) {
+    logger.error('Error fetching ping:', error);
     return NextResponse.json({ online: false }, { status: 503 });
   }
 }

@@ -3,6 +3,7 @@ import { TranslationProvider } from '@/providers/TranslationProvider';
 import '@/styles/globals.scss';
 import { AuthProvider } from '@/context/userContext';
 import NetworkStatus from '@/components/NetworkStatus/NetworkStatus';
+import { PlayerProvider } from '@/context/playerContext';
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -36,8 +37,10 @@ export default function RootLayout({
       <body suppressHydrationWarning>
         <TranslationProvider>
           <AuthProvider>
-            {children}
-            <NetworkStatus />
+            <PlayerProvider>
+              {children}
+              <NetworkStatus />
+            </PlayerProvider>
           </AuthProvider>
         </TranslationProvider>
       </body>

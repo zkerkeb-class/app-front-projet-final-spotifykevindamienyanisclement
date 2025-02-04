@@ -1,6 +1,7 @@
 {
   "common": {
     "welcome": "Welcome",
+    "close": "Close",
     "search": "Search",
     "library": "Library",
     "home": "Home",
@@ -15,7 +16,47 @@
     "showAll": "Show all",
     "share": "Share",
     "loading": "Loading...",
-    "error": "An error occurred"
+    "error": "An error occurred",
+    "pageUnderConstruction": "Page under construction",
+    "comingSoon": "Coming soon",
+    "backToHome": "Back to home",
+    "modal": {
+      "close": "Close modal window",
+      "overlay": "Click to close"
+    }
+  },
+  "other": {
+    "about": {
+      "title": "About",
+      "description": "About the application"
+    },
+    "accessibility": {
+      "title": "Accessibility",
+      "description": "Accessibility of the application"
+    },
+    "legal": {
+      "title": "Legal",
+      "description": "Legal of the application"
+    },
+    "privacy": {
+      "title": "Privacy",
+      "description": "Privacy of the application"
+    },
+    "privacyPolicy": {
+      "title": "Privacy Policy",
+      "description": "Privacy Policy of the application"
+    },
+    "cookies": {
+      "title": "Cookies",
+      "description": "Cookies of the application"
+    }
+  },
+  "error": {
+    "404": {
+      "code": "404",
+      "title": "Page not found",
+      "description": "The page you are looking for does not exist"
+    }
   },
   "accessibility": {
     "skipToMain": "Skip to main content",
@@ -31,6 +72,10 @@
   "auth": {
     "login": "Log in",
     "signup": "Sign up",
+    "modal": {
+      "title": "Try our service with a Spotify account",
+      "description": "Sign up to listen to unlimited songs and podcasts."
+    },
     "logout": "Log out",
     "signupWithGoogle": "Sign up with Google",
     "signupWithFacebook": "Sign up with Facebook",
@@ -65,7 +110,11 @@
     "previous": "Previous",
     "shuffle": "Shuffle",
     "repeat": "Repeat",
-    "volume": "Volume"
+    "volume": "Volume",
+    "unknownArtist": "Unknown artist",
+    "noTrack": "No track",
+    "noAlbum": "No album",
+    "noArtist": "No artist"
   },
   "playlist": {
     "create": "Create Playlist",
@@ -84,33 +133,17 @@
       "title": "Let's find some podcasts to follow",
       "description": "We'll keep you updated on new episodes",
       "button": "Browse podcasts"
+    },
+    "playlists": {
+      "title": "Create your first playlist",
+      "description": "It's easy, we'll help you",
+      "button": "Create playlist"
     }
-  },
-  "footer": {
-    "legal": "Legal",
-    "privacyCenter": "Privacy Center",
-    "privacy": "Privacy Policy",
-    "cookiesSettings": "Cookie Settings",
-    "about": "About Ads",
-    "accessibility": "Accessibility",
-    "cookies": "Cookies"
   },
   "home": {
     "topTracks": "Top tracks",
     "popularArtists": "Popular artists",
     "recentAlbums": "Recent albums"
-  },
-  "album": {
-    "title": "Album",
-    "tracks": "Tracks",
-    "releaseDate": "Release date",
-    "duration": "Duration",
-    "track": {
-      "title": "Title",
-      "duration": "Duration",
-      "artist": "Artist",
-      "album": "Album"
-    }
   },
   "network": {
     "offline": "You are offline",
@@ -123,8 +156,23 @@
     "title": "You are offline",
     "description": "You are not connected to the internet. You cannot access Spotify."
   },
+  "album": {
+    "title": "Album",
+    "all": "Albums",
+    "tracks": "Tracks",
+    "releaseDate": "Release date",
+    "duration": "Duration",
+    "track": {
+      "title": "Title",
+      "all": "All tracks",
+      "duration": "Duration",
+      "artist": "Artist",
+      "album": "Album"
+    }
+  },
   "group": {
-    "type": "GROUP",
+    "type": "Group",
+    "all": "Groups",
     "featured": "Featured Groups",
     "new": "New Groups",
     "recommended": "Recommended for You",
@@ -137,9 +185,13 @@
     "role": {
       "admin": "Administrator",
       "member": "Member"
-    }
+    },
+    "artists": "Artists",
+    "albums": "Albums"
   },
   "artist": {
+    "title": "Artist",
+    "all": "Artists",
     "verified": "Verified Artist",
     "monthlyListeners": "monthly listeners",
     "worldRank": "World Rank",
@@ -147,6 +199,10 @@
     "discography": "Discography",
     "tours": "Tours",
     "follow": "Follow",
-    "tickets": "Tickets"
+    "tickets": "Tickets",
+    "topTracks": "Top Tracks",
+    "relatedArtists": "Related Artists",
+    "biography": "Biography",
+    "about": "About"
   }
 }

@@ -1,6 +1,7 @@
 {
   "common": {
     "welcome": "Bem-vindo",
+    "close": "Fechar",
     "search": "Pesquisar",
     "library": "Biblioteca",
     "home": "Início",
@@ -15,7 +16,47 @@
     "showAll": "Mostrar tudo",
     "share": "Compartilhar",
     "loading": "Carregando... ",
-    "error": "Ocorreu um erro"
+    "error": "Ocorreu um erro",
+    "pageUnderConstruction": "Página em construção",
+    "comingSoon": "Em breve",
+    "backToHome": "Voltar para a página inicial",
+    "modal": {
+      "close": "Fechar janela modal",
+      "overlay": "Clique para fechar"
+    }
+  },
+  "other": {
+    "about": {
+      "title": "Sobre o aplicativo",
+      "description": "Sobre o aplicativo"
+    },
+    "accessibility": {
+      "title": "Acessibilidade",
+      "description": "Acessibilidade do aplicativo"
+    },
+    "legal": {
+      "title": "Legal",
+      "description": "Legal do aplicativo"
+    },
+    "privacy": {
+      "title": "Privacidade",
+      "description": "Privacidade do aplicativo"
+    },
+    "privacyPolicy": {
+      "title": "Política de privacidade",
+      "description": "Política de privacidade do aplicativo"
+    },
+    "cookies": {
+      "title": "Cookies",
+      "description": "Cookies do aplicativo"
+    }
+  },
+  "error": {
+    "404": {
+      "code": "404",
+      "title": "Página não encontrada",
+      "description": "A página que você está procurando não existe"
+    }
   },
   "accessibility": {
     "skipToMain": "Pular para o conteúdo principal",
@@ -30,7 +71,11 @@
   },
   "auth": {
     "login": "Entrar",
-    "signup": "Cadastrar",
+    "signup": "Cadastrar-se",
+    "modal": {
+      "title": "Experimente nosso serviço com uma conta Spotify",
+      "description": "Cadastre-se para ouvir músicas e podcasts ilimitados."
+    },
     "logout": "Sair",
     "signupWithGoogle": "Inscrever-se com o Google",
     "signupWithFacebook": "Inscrever-se com o Facebook",
@@ -65,7 +110,11 @@
     "previous": "Anterior",
     "shuffle": "Aleatório",
     "repeat": "Repetir",
-    "volume": "Volume"
+    "volume": "Volume",
+    "unknownArtist": "Artista desconhecido",
+    "noTrack": "Nenhuma faixa",
+    "noAlbum": "Nenhum álbum",
+    "noArtist": "Nenhum artista"
   },
   "playlist": {
     "create": "Criar playlist",
@@ -84,33 +133,17 @@
       "title": "Vamos encontrar podcasts para seguir",
       "description": "Manteremos você atualizado sobre novos episódios",
       "button": "Explorar podcasts"
+    },
+    "playlists": {
+      "title": "Crie sua primeira playlist",
+      "description": "É fácil, vamos ajudar você",
+      "button": "Criar playlist"
     }
-  },
-  "footer": {
-    "legal": "Legal",
-    "privacyCenter": "Central de Privacidade",
-    "privacy": "Política de Privacidade",
-    "cookiesSettings": "Configurações de cookies",
-    "about": "Sobre anúncios",
-    "accessibility": "Acessibilidade",
-    "cookies": "Cookies"
   },
   "home": {
     "topTracks": "Top faixas",
     "popularArtists": "Artistas populares",
     "recentAlbums": "Álbuns recentes"
-  },
-  "album": {
-    "title": "Álbum",
-    "tracks": "Faixas",
-    "releaseDate": "Data de lançamento",
-    "duration": "Duração",
-    "track": {
-      "title": "Título",
-      "duration": "Duração",
-      "artist": "Artista",
-      "album": "Álbum"
-    }
   },
   "network": {
     "offline": "Você está offline",
@@ -123,8 +156,23 @@
     "title": "Você está offline",
     "description": "Você não está conectado à internet. Você não pode acessar o Spotify."
   },
+  "album": {
+    "title": "Álbum",
+    "all": "Álbuns",
+    "tracks": "Faixas",
+    "releaseDate": "Data de lançamento",
+    "duration": "Duração",
+    "track": {
+      "title": "Título",
+      "duration": "Duração",
+      "all": "Todas as faixas",
+      "artist": "Artista",
+      "album": "Álbum"
+    }
+  },
   "group": {
-    "type": "GRUPO",
+    "type": "Grupo",
+    "all": "Grupos",
     "featured": "Grupos em destaque",
     "new": "Novos grupos",
     "recommended": "Recomendados para você",
@@ -137,9 +185,13 @@
     "role": {
       "admin": "Administrador",
       "member": "Membro"
-    }
+    },
+    "artists": "Artistas",
+    "albums": "Álbuns"
   },
   "artist": {
+    "title": "Artista",
+    "all": "Artistas",
     "verified": "Artista verificado",
     "monthlyListeners": "ouvintes mensais",
     "worldRank": "Classificação mundial",
@@ -147,6 +199,10 @@
     "discography": "Discografia",
     "tours": "Turnês",
     "follow": "Seguir",
-    "tickets": "Ingressos"
+    "tickets": "Ingressos",
+    "topTracks": "Faixas principais",
+    "relatedArtists": "Artistas relacionados",
+    "biography": "Biografia",
+    "about": "Sobre"
   }
 }

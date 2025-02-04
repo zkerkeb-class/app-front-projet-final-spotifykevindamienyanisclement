@@ -1,12 +1,13 @@
 import { NextResponse } from 'next/server';
-import { Artist, ArtistFull, ArtistResponse } from '@/types/api/artist';
+import { Artist, ArtistFull } from '@/types/api/artist';
+import logger from '@/utils/logger';
 
 async function getArtists(): Promise<Artist[]> {
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/artist`);
     return (await response.json()) as Artist[];
   } catch (error) {
-    console.error('Error fetching artists:', error);
+    logger.error('Error fetching artists:', error);
     return [];
   }
 }
@@ -18,7 +19,7 @@ async function getArtistById(id: number): Promise<Artist> {
     );
     return (await response.json()) as ArtistFull;
   } catch (error) {
-    console.error('Error fetching artist:', error);
+    logger.error('Error fetching artist:', error);
     return {} as ArtistFull;
   }
 }

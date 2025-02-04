@@ -1,6 +1,7 @@
 {
   "common": {
     "welcome": "Bienvenue",
+    "close": "Fermer",
     "search": "Rechercher",
     "library": "Bibliothèque",
     "home": "Accueil",
@@ -16,7 +17,47 @@
     "logoAlt": "Logo de l'application",
     "share": "Partager",
     "loading": "Chargement...",
-    "error": "Une erreur est survenue"
+    "error": "Une erreur est survenue",
+    "pageUnderConstruction": "Page en construction",
+    "comingSoon": "En construction",
+    "backToHome": "Retour à l'accueil",
+    "modal": {
+      "close": "Fermer la fenêtre modale",
+      "overlay": "Cliquer pour fermer"
+    }
+  },
+  "other": {
+    "about": {
+      "title": "À propos",
+      "description": "À propos de l'application"
+    },
+    "accessibility": {
+      "title": "Accessibilité",
+      "description": "Accessibilité de l'application"
+    },
+    "privacy": {
+      "title": "Politique de confidentialité",
+      "description": "Politique de confidentialité de l'application"
+    },
+    "privacyPolicy": {
+      "title": "Politique de protection des données",
+      "description": "Politique de protection des données de l'application"
+    },
+    "legal": {
+      "title": "Mentions légales",
+      "description": "Mentions légales de l'application"
+    },
+    "cookies": {
+      "title": "Cookies",
+      "description": "Cookies de l'application"
+    }
+  },
+  "error": {
+    "404": {
+      "code": "404",
+      "title": "Page non trouvée",
+      "description": "La page que vous cherchez n'existe pas"
+    }
   },
   "accessibility": {
     "skipToMain": "Aller au contenu principal",
@@ -32,7 +73,11 @@
   "auth": {
     "login": "Se connecter",
     "signup": "S'inscrire",
-    "logout": "Déconnexion",
+    "modal": {
+      "title": "Testez notre service avec un compte Spotify",
+      "description": "Inscrivez-vous pour écouter des titres et des podcasts en illimité."
+    },
+    "logout": "Se déconnecter",
     "signupWithGoogle": "S'inscrire avec Google",
     "signupWithFacebook": "S'inscrire avec Facebook",
     "signupWithApple": "S'inscrire avec Apple",
@@ -56,7 +101,9 @@
     "passwordRequired": "Le mot de passe est requis",
     "invalidCredentials": "Identifiants incorrects",
     "emailOrPasswordRequired": "L'adresse e-mail et le mot de passe sont requis",
-    "emailOrPasswordInvalid": "L'adresse e-mail ou le mot de passe est incorrect"
+    "emailOrPasswordInvalid": "L'adresse e-mail ou le mot de passe est incorrect",
+    "loginRedirect": "Redirection vers la page de connexion",
+    "signupSuccess": "Redirection vers la page d'inscription"
   },
   "player": {
     "play": "Lecture",
@@ -65,7 +112,11 @@
     "previous": "Précédent",
     "shuffle": "Aléatoire",
     "repeat": "Répéter",
-    "volume": "Volume"
+    "volume": "Volume",
+    "unknownArtist": "Artiste inconnu",
+    "noTrack": "Aucun titre",
+    "noAlbum": "Aucun album",
+    "noArtist": "Aucun artiste"
   },
   "playlist": {
     "create": "Créer une playlist",
@@ -84,33 +135,17 @@
       "title": "Cherchons quelques podcasts auxquels vous abonner",
       "description": "Nous vous transmettrons des informations sur les nouveaux épisodes",
       "button": "Parcourir les podcasts"
+    },
+    "playlists": {
+      "title": "Créez votre première playlist",
+      "description": "C'est simple, nous allons vous aider",
+      "button": "Créer une playlist"
     }
-  },
-  "footer": {
-    "legal": "Légal",
-    "privacyCenter": "Centre de sécurité et de confidentialité",
-    "privacy": "Protection des données",
-    "cookiesSettings": "Paramètres des cookies",
-    "about": "À propos des pubs",
-    "accessibility": "Accessibilité",
-    "cookies": "Cookies"
   },
   "home": {
     "topTracks": "Top titres",
     "popularArtists": "Artistes populaires",
     "recentAlbums": "Albums récents"
-  },
-  "album": {
-    "title": "Album",
-    "tracks": "Titres",
-    "releaseDate": "Date de sortie",
-    "duration": "Durée",
-    "track": {
-      "title": "Titre",
-      "duration": "Durée",
-      "artist": "Artiste",
-      "album": "Album"
-    }
   },
   "network": {
     "offline": "Vous êtes hors ligne",
@@ -123,8 +158,23 @@
     "title": "Vous êtes hors ligne",
     "description": "Vous n'êtes pas connecté à Internet. Vous ne pouvez pas accéder à Spotify."
   },
+  "album": {
+    "title": "Album",
+    "all": "Albums",
+    "tracks": "Titres",
+    "track": {
+      "title": "Titre",
+      "all": "Tous les titres",
+      "duration": "Durée",
+      "artist": "Artiste",
+      "album": "Album"
+    },
+    "releaseDate": "Date de sortie",
+    "duration": "Durée"
+  },
   "group": {
-    "type": "GROUPE",
+    "type": "Groupe",
+    "all": "Groupes",
     "featured": "Groupes en vedette",
     "new": "Nouveaux groupes",
     "recommended": "Recommandés pour vous",
@@ -134,12 +184,16 @@
     "playlists": "Playlists du groupe",
     "discussions": "Discussions",
     "replyCount": "{{count}} réponses",
+    "artists": "Artistes",
+    "albums": "Albums",
     "role": {
       "admin": "Administrateur",
       "member": "Membre"
     }
   },
   "artist": {
+    "title": "Artiste",
+    "all": "Artistes",
     "verified": "Artiste vérifié",
     "monthlyListeners": "auditeurs mensuels",
     "worldRank": "Classement mondial",
@@ -147,6 +201,10 @@
     "discography": "Discographie",
     "tours": "Tournées",
     "follow": "Suivre",
-    "tickets": "Billets"
+    "tickets": "Billets",
+    "topTracks": "Meilleurs titres",
+    "relatedArtists": "Artistes similaires",
+    "biography": "Biographie",
+    "about": "À propos"
   }
 }

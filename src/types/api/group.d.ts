@@ -10,6 +10,8 @@ export declare interface GroupFull {
 
   createdAt: Date;
   updatedAt: Date;
+
+  memberCount: number;
 }
 
 export declare interface Group {

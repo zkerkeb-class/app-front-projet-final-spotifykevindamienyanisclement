@@ -38,9 +38,9 @@ export default function Sidebar() {
           <p className={styles.sectionDescription}>
             {t('sidebar.createPlaylist.description')}
           </p>
-          <button type="button" className={styles.createButton}>
+          <Link href="not-found" className={styles.createButton}>
             {t('sidebar.createPlaylist.button')}
-          </button>
+          </Link>
         </div>
 
         <div className={styles.podcastSection}>
@@ -48,34 +48,31 @@ export default function Sidebar() {
           <p className={styles.sectionDescription}>
             {t('sidebar.podcasts.description')}
           </p>
-          <button type="button" className={styles.browseButton}>
+          <Link href="/spotify/podcast" className={styles.createButton}>
             {t('sidebar.podcasts.button')}
-          </button>
+          </Link>
         </div>
       </div>
 
       <footer className={styles.footer}>
         <nav className={styles.footerNav}>
-          <Link href="/legal" className={styles.footerLink}>
-            {t('footer.legal')}
+          <Link href="/other/about" className={styles.footerLink}>
+            {t('other.about.title')}
           </Link>
-          <Link href="/privacy" className={styles.footerLink}>
-            {t('footer.privacyCenter')}
+          <Link href="/other/accessibility" className={styles.footerLink}>
+            {t('other.accessibility.title')}
           </Link>
-          <Link href="/privacy-policy" className={styles.footerLink}>
-            {t('footer.privacy')}
+          <Link href="/other/legal" className={styles.footerLink}>
+            {t('other.legal.title')}
           </Link>
-          <Link href="/cookies" className={styles.footerLink}>
-            {t('footer.cookiesSettings')}
+          <Link href="/other/privacy" className={styles.footerLink}>
+            {t('other.privacy.title')}
           </Link>
-          <Link href="/about" className={styles.footerLink}>
-            {t('footer.about')}
+          <Link href="/other/privacy-policy" className={styles.footerLink}>
+            {t('other.privacyPolicy.title')}
           </Link>
-          <Link href="/accessibility" className={styles.footerLink}>
-            {t('footer.accessibility')}
-          </Link>
-          <Link href="/cookies-page" className={styles.footerLink}>
-            {t('footer.cookies')}
+          <Link href="/other/cookies" className={styles.footerLink}>
+            {t('other.cookies.title')}
           </Link>
         </nav>
       </footer>

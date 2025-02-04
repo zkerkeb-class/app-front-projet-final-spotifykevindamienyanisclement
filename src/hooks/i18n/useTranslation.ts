@@ -2,6 +2,7 @@
 
 import { Translations } from '@/types/translations';
 import { useEffect, useState, useCallback } from 'react';
+import logger from '@/utils/logger';
 
 export const useTranslation = (defaultLocale = 'fr') => {
   const [locale, setLocale] = useState(() => {
@@ -14,19 +15,20 @@ export const useTranslation = (defaultLocale = 'fr') => {
     {} as Translations
   );
 
-  useEffect(() => {
-    const loadTranslations = async () => {
-      try {
-        const translationModule = await import(`@/lib/i18n/${locale}.json`);
-        setTranslations(translationModule.default);
-        localStorage.setItem('locale', locale);
-      } catch (error) {
-        console.error(`Failed to load translations for ${locale}:`, error);
-      }
-    };
+  const loadTranslations = useCallback(async () => {
+    try {
+      const translationModule = await import(`@/lib/i18n/${locale}.json`);
+      setTranslations(translationModule.default);
+      localStorage.setItem('locale', locale);
+    } catch (error) {
+      logger.error('Failed to load translations for', error);
+      setTranslations(translations);
+    }
+  }, [locale, translations]);
 
+  useEffect(() => {
     loadTranslations();
-  }, [locale]);
+  }, [loadTranslations]);
 
   const changeLanguage = useCallback(
     (newLocale: string) => {

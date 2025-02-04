@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useCallback, useMemo } from 'react';
 import MainLayout from '@/components/Layout/MainLayout';
 import { useTranslationContext } from '@/providers/TranslationProvider';
 import HorizontalScroll from '@/components/HorizontalScroll/HorizontalScroll';
@@ -9,6 +9,9 @@ import Card from '@/components/Cards/Card/Card';
 import { useAlbums } from '@/hooks/api/useAlbums';
 import { useArtists } from '@/hooks/api/useArtists';
 import { useTracks } from '@/hooks/api/useTracks';
+import { useGroups } from '@/hooks/api/useGroups';
+import { usePlayerControls } from '@/hooks/ui/usePlayer';
+import Link from 'next/link';
 import styles from './page.module.scss';
 
 export default function Home() {
@@ -21,21 +24,43 @@ export default function Home() {
     loading: artistsLoading,
     error: artistsError,
   } = useArtists(10);
-  const { tracks, loading: tracksLoading, error: tracksError } = useTracks(10);
+  const {
+    tracks,
+    loading: tracksLoading,
+    error: tracksError,
+  } = useTracks(undefined, 10);
+  const { groups, loading: groupsLoading, error: groupsError } = useGroups(10);
+  const { loadTrackFull } = usePlayerControls();
 
-  const handleTrackClick = (albumId: number, trackId: number) => {
-    router.push(`/spotify/album/${albumId}/track/${trackId}`);
-  };
+  const handleTrackClick = useCallback(
+    (albumId: number, trackId: number) => {
+      router.push(`/spotify/album/${albumId}/track/${trackId}`);
+    },
+    [router]
+  );
 
-  const handleArtistClick = (artistName: string) => {
-    router.push(`/spotify/artist/${artistName}`);
-  };
+  const handleArtistClick = useCallback(
+    (artistId: number) => {
+      router.push(`/spotify/artist/${artistId}`);
+    },
+    [router]
+  );
 
-  const handleAlbumClick = (albumId: number) => {
-    router.push(`/spotify/album/${albumId}`);
-  };
+  const handleGroupClick = useCallback(
+    (groupId: number) => {
+      router.push(`/spotify/group/${groupId}`);
+    },
+    [router]
+  );
 
-  const renderTracks = () => {
+  const handleAlbumClick = useCallback(
+    (albumId: number) => {
+      router.push(`/spotify/album/${albumId}`);
+    },
+    [router]
+  );
+
+  const renderTracks = useMemo(() => {
     if (tracksLoading) {
       return <div className={styles.loading}>{t('common.loading')}</div>;
     }
@@ -48,37 +73,73 @@ export default function Home() {
         type="track"
         title={track.title}
         description={track.artistId?.toString()}
-        // TODO: fix this
-        // imageUrl={track.album?.image?.url || '/assets/images/default-album.jpg'}
-        imageUrl="/assets/images/default-album.jpg"
+        imageUrl={`${track.album.image.formattedImageURL}`}
         href={`/spotify/album/${track.albumId}/track/${track.id}`}
-        onPlay={() => handleTrackClick(track.albumId, track.id)}
+        onPlay={() => {
+          if (track.sound) {
+            loadTrackFull({
+              ...track,
+              soundId: track.soundId || 0,
+              playlistId: track.playlistId || 0,
+              album: null,
+              playlist: null,
+              artist: null,
+              artistId: track.artistId || 0,
+              sound: {
+                m4aSoundURL: track.sound.m4aSoundURL,
+                originalSoundURL: track.sound.originalSoundURL,
+              },
+            });
+          }
+        }}
       />
     ));
-  };
+  }, [tracks, tracksLoading, tracksError, t, loadTrackFull]);
 
-  const renderArtists = () => {
-    if (artistsLoading) {
+  const renderArtistsAndGroups = useMemo(() => {
+    if (artistsLoading || groupsLoading) {
       return <div className={styles.loading}>{t('common.loading')}</div>;
     }
-    if (artistsError) {
-      return <div className={styles.error}>{artistsError.message}</div>;
+    if (artistsError || groupsError) {
+      return <div className={styles.error}>{t('common.error')}</div>;
     }
-    return artists.map(artist => (
-      <Card
-        key={artist.id}
-        type="artist"
-        title={artist.name}
-        // TODO: fix this
-        // imageUrl={artist.image?.url || '/assets/images/default-artist.jpg'}
-        imageUrl="/assets/images/default-artist.jpg"
-        href={`/spotify/artist/${artist.name}`}
-        onPlay={() => handleArtistClick(artist.name)}
-      />
-    ));
-  };
+    return (
+      <>
+        {artists.slice(0, 5).map(artist => (
+          <Card
+            key={`artist-${artist.id}`}
+            type="artist"
+            title={artist.name}
+            imageUrl={`${artist.image.formattedImageURL}`}
+            href={`/spotify/artist/${artist.id}`}
+            onPlay={() => handleArtistClick(artist.id)}
+          />
+        ))}
+        {groups.slice(0, 5).map(group => (
+          <Card
+            key={`group-${group.id}`}
+            type="group"
+            title={group.name}
+            imageUrl={`${group.image.formattedImageURL}`}
+            href={`/spotify/group/${group.id}`}
+            onPlay={() => handleGroupClick(group.id)}
+          />
+        ))}
+      </>
+    );
+  }, [
+    artists,
+    groups,
+    artistsLoading,
+    groupsLoading,
+    artistsError,
+    groupsError,
+    t,
+    handleArtistClick,
+    handleGroupClick,
+  ]);
 
-  const renderAlbums = () => {
+  const renderAlbums = useMemo(() => {
     if (albumsLoading) {
       return <div className={styles.loading}>{t('common.loading')}</div>;
     }
@@ -91,14 +152,12 @@ export default function Home() {
         type="album"
         title={album.title}
         description={album.artistId?.toString()}
-        // TODO: fix this
-        // imageUrl={album.image?.url || '/assets/images/default-album.jpg'}
-        imageUrl="/assets/images/default-album.jpg"
+        imageUrl={`${album.image.formattedImageURL}`}
         href={`/spotify/album/${album.id}`}
         onPlay={() => handleAlbumClick(album.id)}
       />
     ));
-  };
+  }, [albums, albumsLoading, albumsError, t, handleAlbumClick]);
 
   return (
     <MainLayout>
@@ -106,31 +165,31 @@ export default function Home() {
         <section className={styles.section}>
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>{t('home.topTracks')}</h2>
-            <button type="button" className={styles.showAllButton}>
+            <Link href="/spotify/track/all" className={styles.showAllButton}>
               {t('common.showAll')}
-            </button>
+            </Link>
           </div>
-          <HorizontalScroll>{renderTracks()}</HorizontalScroll>
+          <HorizontalScroll>{renderTracks}</HorizontalScroll>
         </section>
 
         <section className={styles.section}>
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>{t('home.popularArtists')}</h2>
-            <button type="button" className={styles.showAllButton}>
+            <Link href="/spotify/artist/all" className={styles.showAllButton}>
               {t('common.showAll')}
-            </button>
+            </Link>
           </div>
-          <HorizontalScroll>{renderArtists()}</HorizontalScroll>
+          <HorizontalScroll>{renderArtistsAndGroups}</HorizontalScroll>
         </section>
 
         <section className={styles.section}>
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>{t('home.recentAlbums')}</h2>
-            <button type="button" className={styles.showAllButton}>
+            <Link href="/spotify/album/all" className={styles.showAllButton}>
               {t('common.showAll')}
-            </button>
+            </Link>
           </div>
-          <HorizontalScroll>{renderAlbums()}</HorizontalScroll>
+          <HorizontalScroll>{renderAlbums}</HorizontalScroll>
         </section>
       </div>
     </MainLayout>

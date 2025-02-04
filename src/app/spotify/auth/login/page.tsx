@@ -202,7 +202,7 @@ export default function Login() {
             className={styles.submitButton}
             disabled={loading}
           >
-            {loading ? t('auth.loading') : t('auth.login')}
+            {loading ? t('common.loading') : t('auth.login')}
           </button>
         </form>
 

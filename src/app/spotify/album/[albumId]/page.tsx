@@ -1,94 +1,197 @@
 'use client';
 
+import { useCallback, useMemo, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { useTranslationContext } from '@/providers/TranslationProvider';
 import MainLayout from '@/components/Layout/MainLayout';
-import { AlbumFull } from '@/types/api/album';
+import { useAlbumById } from '@/hooks/api/useAlbums';
+import { usePlayerControls } from '@/hooks/ui/usePlayer';
+import { useTheme } from '@/hooks/settings/useTheme';
+import { Track } from '@/types/api/track';
 import styles from './page.module.scss';
-
-// Données mockées (à remplacer par un appel API)
-const albumData = {
-  id: 1,
-  title: 'APOCALYPSE',
-  artist: 'Gazo',
-  releaseYear: '2024',
-  trackCount: '15 titres',
-  duration: '49 min 6s',
-  cover: '/albums/apocalypse.jpg',
-  tracks: [
-    { id: 1, title: 'TOKI', duration: '3:26', explicit: true },
-    {
-      id: 2,
-      title: 'ENCORE PLUS FORT ELLE AIME ÇA',
-      duration: '3:02',
-      explicit: true,
-    },
-    { id: 3, title: 'LA BELLE ET LA BÊTE', duration: '3:14', explicit: true },
-    { id: 4, title: 'LA BELLE ET LA BÊTE', duration: '3:14', explicit: true },
-    { id: 5, title: 'LA BELLE ET LA BÊTE', duration: '3:14', explicit: true },
-    { id: 6, title: 'LA BELLE ET LA BÊTE', duration: '3:14', explicit: true },
-  ],
-};
 
 export default function AlbumPage() {
   const router = useRouter();
   const { t } = useTranslationContext();
   const { albumId } = useParams();
+  const { album, loading, error } = useAlbumById(Number(albumId || 0));
+  const { loadTrackFull, isPlaying, play, pause } = usePlayerControls();
+  const { theme } = useTheme();
+  const [albumImageError, setAlbumImageError] = useState(false);
+  const [artistImageError, setArtistImageError] = useState(false);
 
-  const handleTrackClick = (trackId: number) => {
-    router.push(`/spotify/album/${albumId}/track/${trackId}`);
-  };
+  const handleTrackPlay = useCallback(
+    (track: Track) => {
+      if (track.sound) {
+        loadTrackFull({
+          id: track.id,
+          title: track.title,
+          soundId: track.soundId || 0,
+          playlistId: track.playlistId || 0,
+          albumId: album?.id || 0,
+          album: album || null,
+          playlist: null,
+          artist: album?.artist || null,
+          artistId: album?.artistId || 0,
+          sound: {
+            m4aSoundURL: track.sound.m4aSoundURL,
+            originalSoundURL: track.sound.originalSoundURL,
+            duration: track.sound.duration || 0,
+            id: track.sound.id || 0,
+            createdAt: track.sound.createdAt || new Date(),
+            updatedAt: track.sound.updatedAt || new Date(),
+          },
+          createdAt: track.createdAt || new Date(),
+          updatedAt: track.updatedAt || new Date(),
+        });
+
+        setTimeout(() => {
+          play();
+        }, 100);
+      }
+    },
+    [album, loadTrackFull, play]
+  );
+
+  const handleAlbumPlay = useCallback(() => {
+    if (album?.tracks?.[0]) {
+      handleTrackPlay(album.tracks[0]);
+    }
+  }, [album, handleTrackPlay]);
+
+  const handleTrackClick = useCallback(
+    (trackId: number) => {
+      router.push(`/spotify/album/${albumId}/track/${trackId}`);
+    },
+    [router, albumId]
+  );
+
+  const renderTracks = useMemo(() => {
+    return album?.tracks?.map((track: Track, index: number) => (
+      <div
+        key={track.id}
+        className={styles.trackItem}
+        onClick={() => handleTrackClick(track.id)}
+        role="button"
+        tabIndex={0}
+        onKeyDown={e => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            handleTrackClick(track.id);
+          }
+        }}
+      >
+        <div className={styles.trackNumber}>{index + 1}</div>
+        <button
+          type="button"
+          className={styles.playButton}
+          onClick={e => {
+            e.stopPropagation();
+            handleTrackPlay(track);
+          }}
+          aria-label={t('player.play')}
+        >
+          <Image
+            src={`/assets/icons/play${theme === 'dark' ? '-white' : ''}.svg`}
+            alt="Play"
+            width={16}
+            height={16}
+          />
+        </button>
+        <div className={styles.trackInfo}>
+          <span className={styles.trackTitle}>{track.title}</span>
+        </div>
+        <div className={styles.trackDuration}>
+          {track.sound?.duration
+            ? `${Math.floor(track.sound.duration / 60)}:${(
+                track.sound.duration % 60
+              )
+                .toString()
+                .padStart(2, '0')}`
+            : ''}
+        </div>
+      </div>
+    ));
+  }, [album?.tracks, handleTrackClick, handleTrackPlay, t, theme]);
+
+  if (loading) {
+    return (
+      <MainLayout>
+        <div className={styles.loading}>{t('common.loading')}</div>
+      </MainLayout>
+    );
+  }
+
+  if (error || !album) {
+    return (
+      <MainLayout>
+        <div className={styles.error}>
+          {error?.message || t('common.error')}
+        </div>
+      </MainLayout>
+    );
+  }
 
   return (
     <MainLayout>
       <div className={styles.container}>
         <div className={styles.header}>
           <Image
-            src={albumData.cover}
-            alt={albumData.title}
+            src={
+              album.image?.formattedImageURL ||
+              '/assets/images/default-album.jpg'
+            }
+            alt={album.title}
             width={232}
             height={232}
             className={styles.albumCover}
+            onError={() => setAlbumImageError(true)}
           />
           <div className={styles.albumInfo}>
             <span className={styles.type}>{t('album.title')}</span>
-            <h1 className={styles.title}>{albumData.title}</h1>
+            <h1 className={styles.title}>{album.title}</h1>
             <div className={styles.meta}>
               <Image
-                src="/artists/gazo.jpg"
-                alt={albumData.artist}
+                src={
+                  album.artist?.image?.formattedImageURL ||
+                  '/assets/images/default-artist.jpg'
+                }
+                alt={album.artist?.name || ''}
                 width={28}
                 height={28}
                 className={styles.artistImage}
+                onError={() => setArtistImageError(true)}
               />
-              <button
-                type="button"
-                onClick={() => router.push(`/artist/${albumData.artist}`)}
-                className={styles.artist}
-              >
-                {albumData.artist}
-              </button>
+              <span className={styles.artist}>{album.artist?.name}</span>
               <span className={styles.dot}>•</span>
-              <span className={styles.year}>{albumData.releaseYear}</span>
+              <span className={styles.year}>
+                {new Date(album.createdAt).getFullYear()}
+              </span>
               <span className={styles.dot}>•</span>
-              <span className={styles.trackCount}>{albumData.trackCount}</span>
-              <span className={styles.dot}>•</span>
-              <span className={styles.duration}>{albumData.duration}</span>
+              <span className={styles.trackCount}>
+                {album.tracks?.length} {t('album.tracks')}
+              </span>
             </div>
           </div>
         </div>
 
         <div className={styles.content}>
-          <div className={styles.controls} aria-label="Controls">
+          <div className={styles.controls}>
             <button
               type="button"
               className={styles.playButton}
-              aria-label="Play"
+              onClick={isPlaying ? pause : handleAlbumPlay}
+              aria-label={isPlaying ? t('player.pause') : t('player.play')}
             >
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M8 5.14v14l11-7-11-7z" />
-              </svg>
+              <Image
+                src={`/assets/icons/${isPlaying ? 'pause' : 'play'}${
+                  theme === 'dark' ? '-white' : ''
+                }.svg`}
+                className={styles.playIcon}
+                alt={isPlaying ? 'Pause' : 'Play'}
+                width={24}
+                height={24}
+              />
             </button>
           </div>
 
@@ -103,28 +206,7 @@ export default function AlbumPage() {
                 </svg>
               </div>
             </div>
-
-            {albumData.tracks.map((track, index) => (
-              <div
-                key={track.id}
-                className={styles.trackItem}
-                onClick={() => handleTrackClick(track.id)}
-                role="button"
-                tabIndex={0}
-                onKeyDown={e => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    handleTrackClick(track.id);
-                  }
-                }}
-              >
-                <div className={styles.trackNumber}>{index + 1}</div>
-                <div className={styles.trackInfo}>
-                  <span className={styles.trackTitle}>{track.title}</span>
-                  {track.explicit && <span className={styles.explicit}>E</span>}
-                </div>
-                <div className={styles.trackDuration}>{track.duration}</div>
-              </div>
-            ))}
+            {renderTracks}
           </div>
         </div>
       </div>

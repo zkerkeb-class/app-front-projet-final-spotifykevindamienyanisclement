@@ -1,6 +1,7 @@
 {
   "common": {
     "welcome": "مرحباً",
+    "close": "إغلاق",
     "search": "بحث",
     "library": "المكتبة",
     "home": "الرئيسية",
@@ -14,7 +15,47 @@
     "or": "أو",
     "showAll": "عرض الكل",
     "share": "مشاركة",
-    "loading": "جاري التحميل..."
+    "loading": "جاري التحميل...",
+    "pageUnderConstruction": "الصفحة تحت الإنشاء",
+    "comingSoon": "قريباً",
+    "backToHome": "العودة إلى الصفحة الرئيسية",
+    "modal": {
+      "close": "إغلاق النافذة المنبثقة",
+      "overlay": "انقر للإغلاق"
+    }
+  },
+  "other": {
+    "about": {
+      "title": "عن التطبيق",
+      "description": "عن التطبيق"
+    },
+    "accessibility": {
+      "title": "الوصول",
+      "description": "الوصول إلى التطبيق"
+    },
+    "legal": {
+      "title": "قانوني",
+      "description": "قانوني التطبيق"
+    },
+    "privacy": {
+      "title": "الخصوصية",
+      "description": "الخصوصية التطبيق"
+    },
+    "privacyPolicy": {
+      "title": "سياسة الخصوصية",
+      "description": "سياسة الخصوصية التطبيق"
+    },
+    "cookies": {
+      "title": "ملفات تعريف الارتباط",
+      "description": "ملفات تعريف الارتباط التطبيق"
+    }
+  },
+  "error": {
+    "404": {
+      "code": "404",
+      "title": "الصفحة غير موجودة",
+      "description": "الصفحة التي تبحث عنها غير موجودة"
+    }
   },
   "accessibility": {
     "skipToMain": "القفز إلى المحتوى الرئيسي",
@@ -29,7 +70,11 @@
   },
   "auth": {
     "login": "تسجيل الدخول",
-    "signup": "إنشاء حساب",
+    "signup": "التسجيل",
+    "modal": {
+      "title": "جرب خدمتنا مع حساب Spotify",
+      "description": "سجل للاستماع إلى الأغاني والبودكاست بشكل غير محدود."
+    },
     "logout": "تسجيل الخروج",
     "signupWithGoogle": "التسجيل باستخدام Google",
     "signupWithFacebook": "التسجيل باستخدام Facebook",
@@ -64,7 +109,11 @@
     "previous": "السابق",
     "shuffle": "عشوائي",
     "repeat": "تكرار",
-    "volume": "مستوى الصوت"
+    "volume": "مستوى الصوت",
+    "unknownArtist": "فنان غير معروف",
+    "noTrack": "لا يوجد مسار",
+    "noAlbum": "لا يوجد ألبوم",
+    "noArtist": "لا يوجد فنان"
   },
   "playlist": {
     "create": "إنشاء قائمة تشغيل",
@@ -83,33 +132,17 @@
       "title": "لنبحث عن بودكاست للمتابعة",
       "description": "سنبقيك على اطلاع بالحلقات الجديدة",
       "button": "تصفح البودكاست"
+    },
+    "playlists": {
+      "title": "إنشاء قائمة تشغيل أولى",
+      "description": "سهل، سنساعدك",
+      "button": "إنشاء قائمة تشغيل"
     }
-  },
-  "footer": {
-    "legal": "قانوني",
-    "privacyCenter": "مركز الخصوصية",
-    "privacy": "سياسة الخصوصية",
-    "cookiesSettings": "إعدادات ملفات تعريف الارتباط",
-    "about": "حول الإعلانات",
-    "accessibility": "إمكانية الوصول",
-    "cookies": "ملفات تعريف الارتباط"
   },
   "home": {
     "topTracks": "أفضل المسارات",
     "popularArtists": "الفنانون المشهورون",
     "recentAlbums": "الألبومات الحديثة"
-  },
-  "album": {
-    "title": "ألبوم",
-    "tracks": "المسارات",
-    "releaseDate": "تاريخ الإصدار",
-    "duration": "المدة",
-    "track": {
-      "title": "العنوان",
-      "duration": "المدة",
-      "artist": "الفنان",
-      "album": "الألبوم"
-    }
   },
   "network": {
     "offline": "أنت خارج الإنترنت",
@@ -122,8 +155,23 @@
     "title": "أنت خارج الإنترنت",
     "description": "أنت غير متصل بالإنترنت. لا يمكنك الوصول إلى Spotify."
   },
+  "album": {
+    "title": "ألبوم",
+    "all": "ألبومات",
+    "tracks": "المسارات",
+    "releaseDate": "تاريخ الإصدار",
+    "duration": "المدة",
+    "track": {
+      "title": "العنوان",
+      "all": "كل المسارات",
+      "duration": "المدة",
+      "artist": "الفنان",
+      "album": "الألبوم"
+    }
+  },
   "group": {
     "type": "مجموعة",
+    "all": "مجموعات",
     "featured": "المجموعات المميزة",
     "new": "مجموعات جديدة",
     "recommended": "موصى به لك",
@@ -136,9 +184,13 @@
     "role": {
       "admin": "مسؤول",
       "member": "عضو"
-    }
+    },
+    "artists": "الفنانون",
+    "albums": "الألبومات"
   },
   "artist": {
+    "title": "فنان",
+    "all": "فنانون",
     "verified": "فنان موثق",
     "monthlyListeners": "مستمع شهريا",
     "worldRank": "التصنيف العالمي",
@@ -146,6 +198,10 @@
     "discography": "الديسكوغرافيا",
     "tours": "جولات",
     "follow": "متابعة",
-    "tickets": "تذاكر"
+    "tickets": "تذاكر",
+    "topTracks": "أفضل المسارات",
+    "relatedArtists": "فنانون متشابهون",
+    "biography": "السيرة الذاتية",
+    "about": "حول"
   }
 }

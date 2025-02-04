@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/userContext';
 import { useDirection } from '@/hooks/ui/useDirection';
 import { useTranslationContext } from '@/providers/TranslationProvider';
+import { useTheme } from '@/hooks/settings/useTheme';
 import LanguageSelector from '@/components/LanguageSelector/LanguageSelector';
 import ThemeToggle from '@/components/ThemeToggle/ThemeToggle';
 import AccessibilityMenu from '@/components/AccessibilityMenu/AccessibilityMenu';
@@ -18,7 +19,7 @@ export default function Header() {
   const { logout } = useAuth();
   const { t } = useTranslationContext();
   const [scrolled, setScrolled] = useState(false);
-  const [currentTheme, setCurrentTheme] = useState('dark');
+  const { theme } = useTheme();
   const { isRTL } = useDirection();
 
   const token = Cookies.get('token');
@@ -26,30 +27,20 @@ export default function Header() {
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 0);
-    const handleThemeChange = () => {
-      const theme =
-        document.documentElement.getAttribute('data-theme') || 'dark';
-      setCurrentTheme(theme);
-    };
-
-    handleThemeChange();
     window.addEventListener('scroll', handleScroll);
-    window.addEventListener('themechange', handleThemeChange);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('themechange', handleThemeChange);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  useEffect(() => {
-    Cookies.set('theme', currentTheme, { expires: 365, path: '/' });
-  }, [currentTheme]);
 
   const handleLogout = useCallback(() => {
     logout();
     router.replace('/');
   }, [logout, router]);
+
+  const getLogoPath = () => {
+    return theme === 'dark'
+      ? '/logo/Spotify_Primary_Logo_RGB_White.png'
+      : '/logo/Spotify_Primary_Logo_RGB_Green.png';
+  };
 
   return (
     <header
@@ -60,11 +51,7 @@ export default function Header() {
       >
         <Link href="/" className={styles.logoLink}>
           <Image
-            src={
-              currentTheme === 'dark'
-                ? '/logo/Spotify_Primary_Logo_RGB_White.png'
-                : '/logo/Spotify_Primary_Logo_RGB_Green.png'
-            }
+            src={getLogoPath()}
             alt="Spotify"
             className={styles.logo}
             width={96}

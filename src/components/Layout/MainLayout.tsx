@@ -2,6 +2,7 @@
 
 import Sidebar from '@/components/Sidebar/Sidebar';
 import Header from '@/components/Header/Header';
+import Player from '../Player/Player';
 import styles from './MainLayout.module.scss';
 
 interface MainLayoutProps {
@@ -18,8 +19,7 @@ export default function MainLayout({ children }: Readonly<MainLayoutProps>) {
           <div className={styles.mainContent}>{children}</div>
         </main>
       </div>
-      {/* TODO: Add player */}
-      {/* <div className={styles.playerPlaceholder} /> */}
+      <Player />
     </div>
   );
 }

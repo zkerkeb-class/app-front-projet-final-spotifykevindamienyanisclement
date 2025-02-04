@@ -1,24 +1,37 @@
 import { NextResponse } from 'next/server';
 import { Track, TrackFull, TrackResponse } from '@/types/api/track';
+import logger from '@/utils/logger';
 
-async function getTracks(): Promise<Track[]> {
+async function getTracks(albumId: number): Promise<Track[]> {
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/track`);
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/album/${albumId}/track`
+    );
     return (await response.json()) as Track[];
   } catch (error) {
-    console.error('Error fetching tracks:', error);
+    logger.error('Error fetching tracks:', error);
     return [];
   }
 }
 
-async function getTrackById(id: number): Promise<TrackFull> {
+async function getAllTracks(): Promise<Track[]> {
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tracks`);
+    return (await response.json()) as Track[];
+  } catch (error) {
+    logger.error('Error fetching tracks:', error);
+    return [];
+  }
+}
+
+async function getTrackById(albumId: number, id: number): Promise<TrackFull> {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/track/${id}`
+      `${process.env.NEXT_PUBLIC_API_URL}/album/${albumId}/track/${id}`
     );
     return (await response.json()) as TrackFull;
   } catch (error) {
-    console.error('Error fetching track:', error);
+    logger.error('Error fetching track:', error);
     return {} as TrackFull;
   }
 }
@@ -26,12 +39,18 @@ async function getTrackById(id: number): Promise<TrackFull> {
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const id = searchParams.get('id');
+  const albumId = searchParams.get('albumId');
 
-  if (id) {
-    const track = await getTrackById(Number(id));
+  if (id && albumId) {
+    const track = await getTrackById(Number(albumId), Number(id));
     return NextResponse.json(track);
   }
 
-  const tracks = await getTracks();
-  return NextResponse.json(tracks);
+  if (albumId) {
+    const tracks = await getTracks(Number(albumId));
+    return NextResponse.json(tracks);
+  }
+
+  const allTracks = await getAllTracks();
+  return NextResponse.json(allTracks);
 }

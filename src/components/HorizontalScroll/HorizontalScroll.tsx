@@ -12,19 +12,10 @@ export default function HorizontalScroll({ children }: Props) {
 
   useEffect(() => {
     const el = scrollRef.current;
-    if (!el) return;
+    if (!el) return undefined;
 
     const handleWheel = (e: WheelEvent) => {
       if (e.deltaY === 0) return;
-
-      // Empêcher le scroll vertical de la page si on est en train de scroller horizontalement
-      if (
-        (el.scrollLeft === 0 && e.deltaY < 0) ||
-        (el.scrollLeft === el.scrollWidth - el.clientWidth && e.deltaY > 0)
-      ) {
-        return;
-      }
-
       e.preventDefault();
       el.scrollLeft += e.deltaY;
     };
@@ -32,12 +23,14 @@ export default function HorizontalScroll({ children }: Props) {
     // Support du scroll horizontal avec la molette
     el.addEventListener('wheel', handleWheel, { passive: false });
 
-    el.removeEventListener('wheel', handleWheel);
+    return () => {
+      el.removeEventListener('wheel', handleWheel);
+    };
   }, []);
 
   return (
     <div className={styles.scrollContainer} ref={scrollRef}>
-      {children}
+      <div className={styles.scrollContent}>{children}</div>
     </div>
   );
 }

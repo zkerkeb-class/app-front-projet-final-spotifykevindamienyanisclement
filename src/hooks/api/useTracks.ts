@@ -1,15 +1,18 @@
 import { useState, useEffect } from 'react';
 import type { Track, TrackFull } from '@/types/api/track';
 
-export function useTracks(limit: number = 10) {
+export function useTracks(albumId?: number, limit: number = 10) {
   const [tracks, setTracks] = useState<Track[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    const fetchAlbums = async () => {
+    const fetchTracks = async () => {
       try {
-        const response = await fetch(`/api/track?limit=${limit}`);
+        const url = albumId
+          ? `/api/track?albumId=${albumId}&limit=${limit}`
+          : '/api/track';
+        const response = await fetch(url);
         const data = await response.json();
 
         const sortedTracks = [...data].sort((a, b) => {
@@ -26,8 +29,8 @@ export function useTracks(limit: number = 10) {
       }
     };
 
-    fetchAlbums();
-  }, [limit]);
+    fetchTracks();
+  }, [albumId, limit]);
 
   return { tracks, loading, error };
 }

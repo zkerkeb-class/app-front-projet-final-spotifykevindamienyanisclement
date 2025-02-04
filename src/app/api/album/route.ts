@@ -1,12 +1,13 @@
 import { NextResponse } from 'next/server';
 import { Album, AlbumFull, AlbumResponse } from '@/types/api/album';
+import logger from '@/utils/logger';
 
 async function getAlbums(): Promise<Album[]> {
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/album`);
     return (await response.json()) as Album[];
   } catch (error) {
-    console.error('Error fetching albums:', error);
+    logger.error('Error fetching albums:', error);
     return [];
   }
 }
@@ -18,7 +19,7 @@ async function getAlbumById(id: number): Promise<AlbumFull> {
     );
     return (await response.json()) as AlbumFull;
   } catch (error) {
-    console.error('Error fetching album:', error);
+    logger.error('Error fetching album:', error);
     return {} as AlbumFull;
   }
 }

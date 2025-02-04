@@ -1,76 +1,102 @@
 'use client';
 
-import { useState } from 'react';
+import { usePlayerControls } from '@/hooks/ui/usePlayer';
 import { useTranslationContext } from '@/providers/TranslationProvider';
+import { useTheme } from '@/hooks/settings/useTheme';
 import Image from 'next/image';
+import { convertDuration } from '@/utils/tools';
 import styles from './Player.module.scss';
 
 export default function Player() {
   const { t } = useTranslationContext();
-  const [isPlaying, setIsPlaying] = useState(false);
+  const { theme } = useTheme();
+  const {
+    isPlaying,
+    isMuted,
+    progress,
+    duration,
+    currentTime,
+    currentTrackFull,
+    volume,
+    play,
+    pause,
+    stop,
+    toggleMute,
+    handleVolumeChange,
+  } = usePlayerControls();
+
+  const renderPlayButton = () => {
+    const iconName = isPlaying ? 'pause' : 'play';
+    const iconPath = `/assets/icons/${iconName}${
+      theme === 'dark' ? '-white' : ''
+    }.svg`;
+
+    return (
+      <Image
+        src={iconPath}
+        alt={isPlaying ? t('player.pause') : t('player.play')}
+        width={24}
+        height={24}
+      />
+    );
+  };
+
+  if (!currentTrackFull) {
+    return null;
+  }
 
   return (
     <div className={styles.player}>
       <div className={styles.songInfo}>
         <Image
-          src="/placeholder-album.jpg"
-          alt="Album cover"
+          src={
+            currentTrackFull?.album?.image?.formattedImageURL ||
+            '/assets/images/default-album.jpg'
+          }
+          alt={t('player.albumCover')}
           className={styles.albumCover}
           width={56}
           height={56}
         />
         <div className={styles.songDetails}>
-          <h4 className={styles.songTitle}>Song Title</h4>
-          <p className={styles.artistName}>Artist Name</p>
+          <h4 className={styles.songTitle}>
+            {currentTrackFull.title || t('player.noTrack')}
+          </h4>
+          <p className={styles.artistName}>
+            {currentTrackFull.artist?.name || t('player.unknownArtist')}
+          </p>
         </div>
       </div>
 
       <div className={styles.controls}>
         <div className={styles.mainControls}>
-          <button
-            type="button"
-            className={styles.shuffleButton}
-            aria-label={t('player.shuffle')}
-          >
-            <svg
-              className={styles.icon}
-              viewBox="0 0 24 24"
-              fill="currentColor"
-            >
-              <path d="M6 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0 7.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-1.5 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
-            </svg>
+          <button type="button" onClick={stop} className={styles.controlButton}>
+            <Image
+              src={`/assets/icons/stop${theme === 'dark' ? '-white' : ''}.svg`}
+              alt={t('player.stop')}
+              width={24}
+              height={24}
+            />
           </button>
           <button
             type="button"
             className={styles.playButton}
-            onClick={() => setIsPlaying(!isPlaying)}
+            onClick={isPlaying ? pause : play}
             aria-label={isPlaying ? t('player.pause') : t('player.play')}
           >
-            {isPlaying ? (
-              <svg
-                className={styles.icon}
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path d="M5.7 3a1 1 0 0 1 1 1v16a1 1 0 1 1-2 0V4a1 1 0 0 1 1-1zm12.6 0a1 1 0 0 1 1 1v16a1 1 0 1 1-2 0V4a1 1 0 0 1 1-1z" />
-              </svg>
-            ) : (
-              <svg
-                className={styles.icon}
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path d="M7.05 3.606l13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606z" />
-              </svg>
-            )}
+            {renderPlayButton()}
           </button>
         </div>
+
         <div className={styles.progressBar}>
-          <span className={styles.time}>0:00</span>
+          <span className={styles.time}>{convertDuration(currentTime)}</span>
           <div className={styles.progress}>
-            <div className={styles.progressFill} />
+            <div
+              className={styles.progressFill}
+              style={{ width: `${progress}%` }}
+            />
           </div>
-          <span className={styles.time}>3:45</span>
+          <span className={styles.time}>{convertDuration(duration)}</span>
         </div>
       </div>
 
@@ -78,15 +104,26 @@ export default function Player() {
         <button
           type="button"
           className={styles.volumeButton}
-          aria-label={t('player.volume')}
+          onClick={toggleMute}
         >
-          <svg className={styles.icon} viewBox="0 0 24 24" fill="currentColor">
-            <path d="M11.99 2.838v18.324L7.543 16.716a1.2 1.2 0 0 0-1.697 0l-.111.111a1.2 1.2 0 0 0 0 1.697l7.172 7.172a1.2 1.2 0 0 0 1.697 0l7.172-7.172a1.2 1.2 0 0 0 0-1.697l-.111-.111a1.2 1.2 0 0 0-1.697 0l-4.447 4.446V2.838a1.2 1.2 0 0 0-1.2-1.2h-.157a1.2 1.2 0 0 0-1.2 1.2z" />
-          </svg>
+          <Image
+            src={`/assets/icons/${isMuted ? 'volume-off' : 'volume'}${
+              theme === 'dark' ? '-white' : ''
+            }.svg`}
+            alt={t('player.volume')}
+            width={24}
+            height={24}
+          />
         </button>
-        <div className={styles.volumeSlider}>
-          <div className={styles.volumeFill} />
-        </div>
+        <input
+          type="range"
+          min="0"
+          max="1"
+          step="0.1"
+          value={volume}
+          onChange={e => handleVolumeChange(parseFloat(e.target.value))}
+          className={styles.volumeSlider}
+        />
       </div>
     </div>
   );

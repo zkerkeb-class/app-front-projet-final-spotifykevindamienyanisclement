@@ -22,12 +22,17 @@ export declare interface Track {
   id: number;
   title: string;
 
+  album: Album;
+  albumId: number;
+
   soundId: number | null;
   sound: Sound | null;
 
-  albumId: number;
   playlistId: number | null;
+  playlist: Playlist | null;
+
   artistId: number | null;
+  artist: Artist | null;
 
   createdAt: Date;
   updatedAt: Date;

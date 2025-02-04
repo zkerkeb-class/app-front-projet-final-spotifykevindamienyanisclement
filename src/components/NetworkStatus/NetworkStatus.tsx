@@ -3,6 +3,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useNetworkStatus } from '@/hooks/settings/useNetworkStatus';
 import { useTranslationContext } from '@/providers/TranslationProvider';
+import logger from '@/utils/logger';
 import styles from './NetworkStatus.module.scss';
 
 export default function NetworkStatus() {
@@ -28,6 +29,7 @@ export default function NetworkStatus() {
       const data = await response.json();
       setOnline(data.online);
     } catch (error) {
+      logger.error('Error checking network status', error);
       setOnline(false);
     }
   }, [setOnline]);

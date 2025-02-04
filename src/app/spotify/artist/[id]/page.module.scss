@@ -142,18 +142,53 @@
 
       .trackItem {
         display: grid;
-        grid-template-columns: 4rem 1fr auto;
+        grid-template-columns: 4rem 1fr 4.8rem 4.8rem;
+        align-items: center;
         padding: 0.8rem;
+        gap: 1.6rem;
         border-radius: 0.4rem;
         cursor: pointer;
         transition: background-color 0.2s ease;
 
         &:hover {
           background-color: var(--color-opacity-hover);
+
+          .trackNumber {
+            display: none;
+          }
+
+          .playButtonContainer {
+            display: flex;
+          }
         }
 
         .trackNumber {
           color: var(--color-text-subdued);
+          font-size: 1.6rem;
+          text-align: center;
+        }
+
+        .playButtonContainer {
+          display: none;
+          justify-content: center;
+          align-items: center;
+          grid-column: 1;
+          grid-row: 1;
+
+          .playButton {
+            background: transparent;
+            border: none;
+            padding: 0;
+            color: var(--color-text-base);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &:hover {
+              transform: scale(1.1);
+            }
+          }
         }
 
         .trackInfo {
@@ -163,21 +198,20 @@
 
           .trackTitle {
             font-size: 1.6rem;
-            font-weight: 500;
+            font-weight: 400;
             color: var(--color-text-base);
           }
 
           .trackStats {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
             font-size: 1.4rem;
             color: var(--color-text-subdued);
           }
         }
 
         .trackDuration {
+          font-size: 1.4rem;
           color: var(--color-text-subdued);
+          text-align: right;
         }
       }
     }

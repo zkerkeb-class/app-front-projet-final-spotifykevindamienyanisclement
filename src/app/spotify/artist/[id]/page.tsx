@@ -1,89 +1,88 @@
 'use client';
 
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { Icon } from '@iconify/react';
 import { useTranslationContext } from '@/providers/TranslationProvider';
 import MainLayout from '@/components/Layout/MainLayout';
 import HorizontalScroll from '@/components/HorizontalScroll/HorizontalScroll';
 import Card from '@/components/Cards/Card/Card';
+import { useArtistById } from '@/hooks/api/useArtists';
+import { usePlayerControls } from '@/hooks/ui/usePlayer';
+import { useCallback } from 'react';
+import logger from '@/utils/logger';
 import styles from './page.module.scss';
 
-// Données mockées (à remplacer par des appels API)
-const artistData = {
-  id: 1,
-  name: 'GIMS',
-  verified: true,
-  monthlyListeners: '15,265,677',
-  rank: '#48',
-  imageUrl: '/artists/gims.jpg',
-  popularTracks: [
-    {
-      id: 1,
-      title: 'SOIS PAS TIMIDE',
-      plays: '124,515,777',
-      duration: '2:45',
-    },
-    {
-      id: 2,
-      title: 'SPIDER',
-      plays: '172,477,426',
-      duration: '3:08',
-    },
-    {
-      id: 3,
-      title: 'CIEL',
-      plays: '27,721,930',
-      duration: '3:06',
-    },
-    {
-      id: 4,
-      title: "Est-ce que tu m'aimes ? - Pilule bleue",
-      plays: '364,783,609',
-      duration: '3:57',
-    },
-    {
-      id: 5,
-      title: 'Seya',
-      plays: '241,566,898',
-      duration: '3:08',
-    },
-  ],
-  albums: [
-    {
-      id: 1,
-      title: 'Les Derniers Survivants',
-      type: 'Album',
-      imageUrl: '/albums/gims-lds.jpg',
-      year: '2023',
-    },
-    {
-      id: 2,
-      title: 'Le Fléau',
-      type: 'Album',
-      imageUrl: '/albums/le-fleau.jpg',
-      year: '2020',
-    },
-  ],
-  tours: [
-    {
-      id: 1,
-      date: '15 juin 2024',
-      venue: 'Stade de France, Paris',
-      city: 'Paris, France',
-    },
-    {
-      id: 2,
-      date: '22 juin 2024',
-      venue: 'Orange Vélodrome, Marseille',
-      city: 'Marseille, France',
-    },
-  ],
-};
-
 export default function ArtistPage() {
+  const router = useRouter();
   const { id } = useParams();
   const { t } = useTranslationContext();
+  const { artist, loading, error } = useArtistById(Number(id));
+  const { loadTrackFull, isPlaying, play, pause, currentTrackFull } =
+    usePlayerControls();
+
+  const handleTrackPlay = useCallback(
+    (track: any) => {
+      if (track.sound) {
+        logger.info('Track to play:', {
+          url: track.sound.m4aSoundURL || track.sound.originalSoundURL,
+          track,
+        });
+
+        loadTrackFull({
+          id: track.id,
+          title: track.title,
+          soundId: track.soundId || 0,
+          playlistId: track.playlistId || 0,
+          albumId: track.albumId || 0,
+          album: track.album || null,
+          playlist: null,
+          artist: artist || null,
+          artistId: artist?.id || 0,
+          sound: {
+            m4aSoundURL: track.sound.m4aSoundURL,
+            originalSoundURL: track.sound.originalSoundURL,
+            duration: track.sound.duration || 0,
+            id: track.sound.id || 0,
+            createdAt: track.sound.createdAt || new Date(),
+            updatedAt: track.sound.updatedAt || new Date(),
+          },
+          createdAt: track.createdAt || new Date(),
+          updatedAt: track.updatedAt || new Date(),
+        });
+
+        setTimeout(() => {
+          play();
+        }, 100);
+      } else {
+        logger.error('No sound data available for track:', track);
+      }
+    },
+    [artist, loadTrackFull, play]
+  );
+
+  const handleArtistPlay = useCallback(() => {
+    if (artist?.tracks?.[0]) {
+      handleTrackPlay(artist.tracks[0]);
+    }
+  }, [artist, handleTrackPlay]);
+
+  if (loading) {
+    return (
+      <MainLayout>
+        <div className={styles.loading}>{t('common.loading')}</div>
+      </MainLayout>
+    );
+  }
+
+  if (error || !artist) {
+    return (
+      <MainLayout>
+        <div className={styles.error}>
+          {error?.message || t('common.error')}
+        </div>
+      </MainLayout>
+    );
+  }
 
   return (
     <MainLayout>
@@ -91,48 +90,31 @@ export default function ArtistPage() {
         <div className={styles.header}>
           <div className={styles.artistImage}>
             <Image
-              src={artistData.imageUrl}
-              alt={artistData.name}
+              src={`${artist.image?.formattedImageURL}`}
+              alt={artist.name}
               fill
               className={styles.image}
               priority
             />
           </div>
           <div className={styles.artistInfo}>
-            {artistData.verified && (
-              <div className={styles.verified}>
-                <Icon
-                  icon="material-symbols:verified"
-                  width={24}
-                  height={24}
-                  className={styles.verifiedIcon}
-                />
-                {t('artist.verified')}
-              </div>
-            )}
-            <h1 className={styles.name}>{artistData.name}</h1>
-            <div className={styles.stats}>
-              <div className={styles.stat}>
-                <Icon icon="material-symbols:group" width={20} height={20} />
-                {artistData.monthlyListeners} {t('artist.monthlyListeners')}
-              </div>
-              <div className={styles.stat}>
-                <Icon
-                  icon="material-symbols:trending-up"
-                  width={20}
-                  height={20}
-                />
-                {t('artist.worldRank')} {artistData.rank}
-              </div>
-            </div>
+            <h1 className={styles.name}>
+              {artist.name || t('player.unknownArtist')}
+            </h1>
           </div>
         </div>
 
         <div className={styles.content}>
           <div className={styles.actions}>
-            <button type="button" className={styles.playButton}>
-              <Icon
-                icon="material-symbols:play-arrow-rounded"
+            <button
+              type="button"
+              className={styles.playButton}
+              onClick={handleArtistPlay}
+              aria-label={isPlaying ? t('player.pause') : t('player.play')}
+            >
+              <Image
+                src={`/assets/icons/${isPlaying ? 'pause' : 'play'}.svg`}
+                alt={isPlaying ? 'Pause' : 'Play'}
                 width={32}
                 height={32}
               />
@@ -148,15 +130,59 @@ export default function ArtistPage() {
             </div>
             <div className={styles.popularTracks}>
               <div className={styles.trackList}>
-                {artistData.popularTracks.map((track, index) => (
-                  <div key={track.id} className={styles.trackItem}>
+                {artist.tracks?.map((track, index) => (
+                  <div
+                    key={track.id}
+                    className={styles.trackItem}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={e => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        handleTrackPlay(track);
+                      }
+                    }}
+                  >
                     <span className={styles.trackNumber}>{index + 1}</span>
+                    <div className={styles.playButtonContainer}>
+                      <button
+                        type="button"
+                        className={styles.playButton}
+                        onClick={e => {
+                          e.stopPropagation();
+                          handleTrackPlay(track);
+                        }}
+                        aria-label={t('player.play')}
+                      >
+                        <Image
+                          src={`/assets/icons/${
+                            isPlaying && currentTrackFull?.id === track.id
+                              ? 'pause'
+                              : 'play'
+                          }-white.svg`}
+                          alt={
+                            isPlaying && currentTrackFull?.id === track.id
+                              ? t('player.pause')
+                              : t('player.play')
+                          }
+                          width={16}
+                          height={16}
+                        />
+                      </button>
+                    </div>
                     <div className={styles.trackInfo}>
                       <span className={styles.trackTitle}>{track.title}</span>
-                      <span className={styles.trackStats}>{track.plays}</span>
+                      <span className={styles.trackStats}>
+                        {track.playCount?.toLocaleString()}
+                      </span>
                     </div>
                     <span className={styles.trackDuration}>
-                      {track.duration}
+                      {track.sound?.duration
+                        ? `${Math.floor(track.sound.duration / 60)}:${(
+                            track.sound.duration % 60
+                          )
+                            .toString()
+                            .padStart(2, '0')}`
+                        : ''}
                     </span>
                   </div>
                 ))}
@@ -167,48 +193,26 @@ export default function ArtistPage() {
           <section className={styles.section}>
             <div className={styles.sectionHeader}>
               <h2 className={styles.sectionTitle}>{t('artist.discography')}</h2>
-              <button type="button" className={styles.showAllButton}>
+              <button
+                type="button"
+                className={styles.showAllButton}
+                onClick={() => router.push(`/spotify/artist/${id}/albums`)}
+              >
                 {t('common.showAll')}
               </button>
             </div>
             <HorizontalScroll>
-              {artistData.albums.map(album => (
+              {artist.albums?.map(album => (
                 <Card
                   key={album.id}
                   type="album"
                   title={album.title}
-                  description={`${album.type} • ${album.year}`}
-                  imageUrl={album.imageUrl}
+                  description={`${album.type} • ${new Date(album.createdAt).getFullYear()}`}
+                  imageUrl={`${album.image?.formattedImageURL}`}
                   href={`/spotify/album/${album.id}`}
                 />
               ))}
             </HorizontalScroll>
-          </section>
-
-          <section className={styles.section}>
-            <div className={styles.sectionHeader}>
-              <h2 className={styles.sectionTitle}>{t('artist.tours')}</h2>
-              <button type="button" className={styles.showAllButton}>
-                {t('common.showAll')}
-              </button>
-            </div>
-            <div className={styles.tours}>
-              <div className={styles.tourList}>
-                {artistData.tours.map(tour => (
-                  <div key={tour.id} className={styles.tourItem}>
-                    <div className={styles.tourInfo}>
-                      <div className={styles.date}>{tour.date}</div>
-                      <div className={styles.venue}>
-                        {tour.venue} • {tour.city}
-                      </div>
-                    </div>
-                    <button type="button" className={styles.ticketButton}>
-                      {t('artist.tickets')}
-                    </button>
-                  </div>
-                ))}
-              </div>
-            </div>
           </section>
         </div>
       </div>

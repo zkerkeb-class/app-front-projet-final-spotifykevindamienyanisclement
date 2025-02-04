@@ -1,235 +1,228 @@
 .container {
   width: 100%;
-  min-height: 100vh;
+  padding: 2.4rem;
   background: var(--color-gradient-group);
+}
 
-  .header {
-    position: relative;
-    padding: 6rem 2.4rem 2.4rem;
+.header {
+  display: flex;
+  gap: 2.4rem;
+  margin-bottom: 2.4rem;
+  align-items: flex-end;
+}
+
+.cover {
+  width: 23.2rem;
+  height: 23.2rem;
+  border-radius: 0.4rem;
+  box-shadow: 0 4px 60px rgba(0, 0, 0, 0.5);
+}
+
+.info {
+  flex: 1;
+}
+
+.type {
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  color: var(--color-text-base);
+  margin-bottom: 0.8rem;
+}
+
+.title {
+  font-size: 6rem;
+  font-weight: 700;
+  color: var(--color-text-base);
+  margin-bottom: 1.6rem;
+  line-height: 1.1;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: var(--color-text-subdued);
+  font-size: 1.4rem;
+}
+
+.dot {
+  margin: 0 0.4rem;
+}
+
+.section {
+  margin-bottom: 3.2rem;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.6rem;
+}
+
+.sectionTitle {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--color-text-base);
+}
+
+.loading,
+.error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 1.6rem;
+  color: var(--color-text-base);
+}
+
+.content {
+  padding: 2.4rem;
+
+  .controls {
     display: flex;
-    gap: 2.4rem;
-    align-items: flex-end;
+    gap: 1.6rem;
+    margin-bottom: 3.2rem;
 
-    .coverImage {
-      position: relative;
-      width: 23.2rem;
-      height: 23.2rem;
-      flex-shrink: 0;
+    .joinButton {
+      width: 5.6rem;
+      height: 5.6rem;
+      border-radius: 50%;
+      background-color: var(--color-primary);
+      color: var(--color-text-base);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s ease;
 
-      .image {
-        object-fit: cover;
-        border-radius: 0.8rem;
-        box-shadow: 0 4px 60px var(--color-opacity);
+      &:hover {
+        transform: scale(1.04);
+        background-color: var(--color-text-bright-accent);
       }
     }
 
-    .groupInfo {
-      flex: 1;
+    .shareButton {
+      padding: 0.8rem 1.6rem;
+      border-radius: 2rem;
+      border: 1px solid var(--color-border);
+      background-color: transparent;
+      color: var(--color-text-base);
+      font-size: 1.4rem;
+      font-weight: 700;
+      transition: all 0.2s ease;
 
-      .type {
-        font-size: 1.4rem;
-        font-weight: 500;
-        text-transform: uppercase;
-        color: var(--color-text-base);
-      }
-
-      .title {
-        font-size: 6rem;
-        font-weight: 900;
-        color: var(--color-text-base);
-        margin: 0.8rem 0;
-        line-height: 1.1;
-      }
-
-      .description {
-        font-size: 1.6rem;
-        color: var(--color-text-subdued);
-        margin-bottom: 1.6rem;
-      }
-
-      .meta {
-        display: flex;
-        align-items: center;
-        gap: 0.8rem;
-
-        .ownerImage {
-          border-radius: 50%;
-        }
-
-        .owner {
-          font-size: 1.4rem;
-          font-weight: 700;
-          color: var(--color-text-base);
-        }
-
-        .dot {
-          color: var(--color-text-subdued);
-        }
-
-        .memberCount {
-          font-size: 1.4rem;
-          color: var(--color-text-subdued);
-        }
+      &:hover {
+        border-color: var(--color-text-base);
+        transform: scale(1.02);
       }
     }
   }
 
-  .content {
-    padding: 2.4rem;
+  .playlistCard {
+    padding: 1.6rem;
+    background-color: var(--color-background-elevated);
+    border-radius: 0.8rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
 
-    .actions {
-      display: flex;
-      gap: 1.6rem;
-      margin-bottom: 3.2rem;
-
-      .joinButton {
-        padding: 1.2rem 3.2rem;
-        border-radius: 2.4rem;
-        background-color: var(--color-primary);
-        color: var(--color-text-base);
-        font-size: 1.6rem;
-        font-weight: 700;
-        transition: all 0.2s ease;
-
-        &:hover {
-          transform: scale(1.04);
-          background-color: var(--color-text-bright-accent);
-        }
-      }
-
-      .shareButton {
-        padding: 1.2rem 3.2rem;
-        border-radius: 2.4rem;
-        border: 1px solid var(--color-border);
-        color: var(--color-text-base);
-        font-size: 1.6rem;
-        font-weight: 700;
-        transition: all 0.2s ease;
-
-        &:hover {
-          transform: scale(1.04);
-          border-color: var(--color-text-base);
-        }
-      }
+    &:hover {
+      background-color: var(--color-background-highlight);
+      transform: translateY(-4px);
     }
 
-    .section {
-      margin-bottom: 4rem;
-
-      .sectionTitle {
-        font-size: 2.4rem;
-        font-weight: 700;
-        color: var(--color-text-base);
-        margin-bottom: 2rem;
-      }
-    }
-
-    .playlistCard {
-      padding: 1.6rem;
-      background-color: var(--color-background-elevated);
+    .playlistImage {
       border-radius: 0.8rem;
-      transition: all 0.2s ease;
-      cursor: pointer;
-
-      &:hover {
-        background-color: var(--color-background-highlight);
-        transform: translateY(-4px);
-      }
-
-      .playlistImage {
-        border-radius: 0.8rem;
-        margin-bottom: 1.2rem;
-      }
-
-      .playlistName {
-        font-size: 1.6rem;
-        font-weight: 700;
-        color: var(--color-text-base);
-        margin-bottom: 0.4rem;
-      }
-
-      .trackCount {
-        font-size: 1.4rem;
-        color: var(--color-text-subdued);
-      }
+      margin-bottom: 1.2rem;
     }
 
-    .discussionList {
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
+    .playlistName {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--color-text-base);
+      margin-bottom: 0.4rem;
     }
 
-    .discussionCard {
-      padding: 1.6rem;
-      background-color: var(--color-background-elevated);
-      border-radius: 0.8rem;
-      cursor: pointer;
-      transition: background-color 0.2s ease;
+    .trackCount {
+      font-size: 1.4rem;
+      color: var(--color-text-subdued);
+    }
+  }
 
-      &:hover {
-        background-color: var(--color-background-highlight);
-      }
+  .discussionList {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
 
-      .discussionTitle {
-        font-size: 1.6rem;
-        font-weight: 700;
-        color: var(--color-text-base);
-        margin-bottom: 0.8rem;
-      }
+  .discussionCard {
+    padding: 1.6rem;
+    background-color: var(--color-background-elevated);
+    border-radius: 0.8rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
 
-      .discussionMeta {
-        display: flex;
-        align-items: center;
-        gap: 0.8rem;
-        font-size: 1.4rem;
-        color: var(--color-text-subdued);
-
-        .author {
-          font-weight: 500;
-        }
-      }
+    &:hover {
+      background-color: var(--color-background-highlight);
     }
 
-    .memberList {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(24rem, 1fr));
-      gap: 1.6rem;
+    .discussionTitle {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--color-text-base);
+      margin-bottom: 0.8rem;
     }
 
-    .memberCard {
+    .discussionMeta {
       display: flex;
       align-items: center;
-      gap: 1.2rem;
-      padding: 1.2rem;
-      background-color: var(--color-background-elevated);
-      border-radius: 0.8rem;
-      cursor: pointer;
-      transition: background-color 0.2s ease;
+      gap: 0.8rem;
+      font-size: 1.4rem;
+      color: var(--color-text-subdued);
 
-      &:hover {
-        background-color: var(--color-background-highlight);
+      .author {
+        font-weight: 500;
+      }
+    }
+  }
+
+  .memberList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(24rem, 1fr));
+    gap: 1.6rem;
+  }
+
+  .memberCard {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    padding: 1.2rem;
+    background-color: var(--color-background-elevated);
+    border-radius: 0.8rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: var(--color-background-highlight);
+    }
+
+    .memberImage {
+      border-radius: 50%;
+    }
+
+    .memberInfo {
+      display: flex;
+      flex-direction: column;
+
+      .memberName {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--color-text-base);
       }
 
-      .memberImage {
-        border-radius: 50%;
-      }
-
-      .memberInfo {
-        display: flex;
-        flex-direction: column;
-
-        .memberName {
-          font-size: 1.4rem;
-          font-weight: 700;
-          color: var(--color-text-base);
-        }
-
-        .memberRole {
-          font-size: 1.2rem;
-          color: var(--color-text-subdued);
-          text-transform: capitalize;
-        }
+      .memberRole {
+        font-size: 1.2rem;
+        color: var(--color-text-subdued);
+        text-transform: capitalize;
       }
     }
   }

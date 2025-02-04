@@ -10,7 +10,7 @@ interface GroupCardProps {
   name: string;
   memberCount: number;
   imageUrl: string;
-  description: string;
+  onClick: () => void;
 }
 
 export default function GroupCard({
@@ -18,7 +18,7 @@ export default function GroupCard({
   name,
   memberCount,
   imageUrl,
-  description,
+  onClick,
 }: GroupCardProps) {
   const router = useRouter();
   const { t } = useTranslationContext();
@@ -26,17 +26,13 @@ export default function GroupCard({
   const memberCountText = (count: number) =>
     t('group.members').replace('{{count}}', count.toString());
 
-  const handleClick = () => {
-    router.push(`/spotify/group/${id}`);
-  };
-
   return (
     <div
       className={styles.card}
-      onClick={handleClick}
+      onClick={onClick}
       onKeyDown={e => {
         if (e.key === 'Enter' || e.key === ' ') {
-          handleClick();
+          onClick();
         }
       }}
       role="button"
@@ -45,7 +41,11 @@ export default function GroupCard({
     >
       <div className={styles.imageContainer}>
         <Image
-          src={imageUrl}
+          src={
+            imageUrl
+              ? `${process.env.NEXT_PUBLIC_API_URL}/${imageUrl}`
+              : '/assets/images/default-artist.jpg'
+          }
           alt={name}
           width={160}
           height={160}
@@ -55,7 +55,6 @@ export default function GroupCard({
       <div className={styles.content}>
         <h3 className={styles.name}>{name}</h3>
         <p className={styles.memberCount}>{memberCountText(memberCount)}</p>
-        <p className={styles.description}>{description}</p>
       </div>
     </div>
   );
