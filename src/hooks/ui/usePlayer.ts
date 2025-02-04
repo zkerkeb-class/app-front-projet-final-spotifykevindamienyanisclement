@@ -1,4 +1,7 @@
+import { useCallback } from 'react';
 import { usePlayer } from '@/context/playerContext';
+import { TrackFull } from '@/types/api/track';
+import logger from '@/utils/logger';
 
 export const usePlayerControls = () => {
   const context = usePlayer();
@@ -19,7 +22,6 @@ export const usePlayerControls = () => {
     pause,
     stop,
     toggleMute,
-    loadTrackFull,
     handleVolumeChange,
     nextTrack,
     previousTrack,
@@ -28,6 +30,24 @@ export const usePlayerControls = () => {
     setPlaylist,
     loadPlaylist,
   } = context;
+
+  const loadTrackFull = useCallback(
+    async (track: TrackFull) => {
+      try {
+        await context.loadTrackFull(track);
+        await fetch('/api/user', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ trackId: track.id }),
+        });
+      } catch (error) {
+        logger.error('Error loading track:', error);
+      }
+    },
+    [context]
+  );
 
   return {
     isPlaying,
@@ -41,7 +61,6 @@ export const usePlayerControls = () => {
     pause,
     stop,
     toggleMute,
-    loadTrackFull,
     handleVolumeChange,
     nextTrack,
     previousTrack,
@@ -49,5 +68,6 @@ export const usePlayerControls = () => {
     currentTrackIndex,
     setPlaylist,
     loadPlaylist,
+    loadTrackFull,
   };
 };

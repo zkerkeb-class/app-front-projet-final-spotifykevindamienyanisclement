@@ -49,10 +49,12 @@ export default function PlaylistPage() {
         <div className={styles.playlistContent}>
           <div className={styles.playlistHeader}>
             <div className={styles.playlistCover}>
-              {playlist[0]?.album?.image?.formattedImageURL ? (
+              {playlist[0]?.album?.image?.formattedImageURL ||
+              playlist[0]?.artist?.image?.formattedImageURL ? (
                 <Image
                   src={normalizeImageUrl(
-                    playlist[0].album.image.formattedImageURL
+                    playlist[0]?.album?.image?.formattedImageURL ||
+                      playlist[0]?.artist?.image?.formattedImageURL
                   )}
                   alt="Playlist cover"
                   width={232}
@@ -128,7 +130,7 @@ export default function PlaylistPage() {
                     ) : (
                       <div className={styles.defaultCover}>
                         <Image
-                          src="/assets/images/default-album.png"
+                          src="/assets/images/default-album.jpg"
                           alt="Default album"
                           width={40}
                           height={40}

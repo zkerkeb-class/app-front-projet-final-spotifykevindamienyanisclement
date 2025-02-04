@@ -90,7 +90,7 @@ export default function Sidebar() {
                   ) : (
                     <div className={styles.defaultCover}>
                       <Image
-                        src="/assets/images/default-album.png"
+                        src="/assets/images/default-album.jpg"
                         alt="Default album"
                         width={48}
                         height={48}

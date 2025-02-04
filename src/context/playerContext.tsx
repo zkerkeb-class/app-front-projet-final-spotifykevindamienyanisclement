@@ -99,14 +99,22 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({
         if (playPromise !== undefined) {
           await playPromise;
           setIsPlaying(true);
-          logger.info('Audio playing successfully');
+
+          if (currentTrackFull) {
+            await fetch('/api/user', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ trackId: currentTrackFull.id }),
+            });
+          }
         }
       }
     } catch (error) {
-      logger.error('Play failed:', error);
-      setIsPlaying(false);
+      logger.error('Error playing audio:', error);
     }
-  }, []);
+  }, [currentTrackFull]);
 
   const pause = useCallback(() => {
     if (audioRef.current) {

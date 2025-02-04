@@ -1,18 +1,31 @@
 import { NextResponse } from 'next/server';
 import logger from '@/utils/logger';
+import { cookies } from 'next/headers';
 
-async function updateReadingPlaylist(userId: number, trackId: number) {
+async function updateReadingPlaylist(trackId: number) {
   try {
+    const cookieStore = await cookies();
+    const token = cookieStore.get('token')?.value;
+
+    if (!token) {
+      return { error: 'No token found' };
+    }
+
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/user/track/${trackId}/read`,
       {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ userId }),
       }
     );
+
+    if (!response.ok) {
+      throw new Error('Failed to update reading playlist');
+    }
+
     return await response.json();
   } catch (error) {
     logger.error('Error updating reading playlist:', error);
@@ -21,7 +34,7 @@ async function updateReadingPlaylist(userId: number, trackId: number) {
 }
 
 export async function POST(request: Request) {
-  const { userId, trackId } = await request.json();
-  const result = await updateReadingPlaylist(userId, trackId);
+  const { trackId } = await request.json();
+  const result = await updateReadingPlaylist(trackId);
   return NextResponse.json(result);
 }
