@@ -119,7 +119,18 @@
   "playlist": {
     "create": "Create Playlist",
     "addToPlaylist": "Add to Playlist",
-    "removeFromPlaylist": "Remove from Playlist"
+    "removeFromPlaylist": "Remove from Playlist",
+    "empty": "Your playlist is empty",
+    "add_tracks": "Add tracks",
+    "my_playlists": "My playlists",
+    "tracks_count": "{{count}} tracks",
+    "see_more": "See more",
+    "clear": "Clear playlist",
+    "removeTrack": "Remove track",
+    "type": "Playlist",
+    "trash": "Trash",
+    "tracks": "tracks",
+    "duration": "Duration"
   },
   "sidebar": {
     "library": "Library",

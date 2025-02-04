@@ -119,7 +119,18 @@
   "playlist": {
     "create": "Створити плейлист",
     "addToPlaylist": "Додати до плейлиста",
-    "removeFromPlaylist": "Видалити з плейлиста"
+    "removeFromPlaylist": "Видалити з плейлиста",
+    "empty": "Плейлист порожній",
+    "add_tracks": "Додати треки",
+    "my_playlists": "Мої плейлисти",
+    "tracks_count": "{{count}} треків",
+    "see_more": "Показати більше",
+    "clear": "Очистити плейлист",
+    "removeTrack": "Видалити трек",
+    "type": "Плейлист",
+    "trash": "Видалити",
+    "tracks": "треки",
+    "duration": "Тривалість"
   },
   "sidebar": {
     "library": "Бібліотека",

@@ -9,6 +9,8 @@ import { useAlbumById } from '@/hooks/api/useAlbums';
 import { usePlayerControls } from '@/hooks/ui/usePlayer';
 import { useTheme } from '@/hooks/settings/useTheme';
 import { Track } from '@/types/api/track';
+import { normalizeImageUrl } from '@/utils/tools';
+import logger from '@/utils/logger';
 import styles from './page.module.scss';
 
 export default function AlbumPage() {
@@ -72,12 +74,16 @@ export default function AlbumPage() {
       <div
         key={track.id}
         className={styles.trackItem}
-        onClick={() => handleTrackClick(track.id)}
+        // onClick={() => handleTrackClick(track.id)}
+        onClick={() => {
+          logger.info('track.id', track.id);
+        }}
         role="button"
         tabIndex={0}
         onKeyDown={e => {
           if (e.key === 'Enter' || e.key === ' ') {
-            handleTrackClick(track.id);
+            // handleTrackClick(track.id);
+            logger.info('track.id', track.id);
           }
         }}
       >
@@ -137,10 +143,7 @@ export default function AlbumPage() {
       <div className={styles.container}>
         <div className={styles.header}>
           <Image
-            src={
-              album.image?.formattedImageURL ||
-              '/assets/images/default-album.jpg'
-            }
+            src={normalizeImageUrl(album?.image?.formattedImageURL)}
             alt={album.title}
             width={232}
             height={232}
@@ -152,10 +155,7 @@ export default function AlbumPage() {
             <h1 className={styles.title}>{album.title}</h1>
             <div className={styles.meta}>
               <Image
-                src={
-                  album.artist?.image?.formattedImageURL ||
-                  '/assets/images/default-artist.jpg'
-                }
+                src={normalizeImageUrl(album?.artist?.image?.formattedImageURL)}
                 alt={album.artist?.name || ''}
                 width={28}
                 height={28}

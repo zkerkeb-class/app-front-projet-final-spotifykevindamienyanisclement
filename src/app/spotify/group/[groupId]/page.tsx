@@ -9,6 +9,7 @@ import { useGroupById } from '@/hooks/api/useGroups';
 import { useTheme } from '@/hooks/settings/useTheme';
 import Card from '@/components/Cards/Card/Card';
 import HorizontalScroll from '@/components/HorizontalScroll/HorizontalScroll';
+import { normalizeImageUrl } from '@/utils/tools';
 import styles from './page.module.scss';
 
 export default function GroupDetailPage() {
@@ -38,7 +39,7 @@ export default function GroupDetailPage() {
         key={artist.id}
         type="artist"
         title={artist.name}
-        imageUrl={artist.image?.formattedImageURL}
+        imageUrl={normalizeImageUrl(artist?.image?.formattedImageURL)}
         href={`/spotify/artist/${artist.id}`}
         onPlay={() => handleArtistClick(artist.id)}
       />
@@ -52,7 +53,7 @@ export default function GroupDetailPage() {
         type="album"
         title={album.title}
         description={album.artist?.name}
-        imageUrl={album.image?.formattedImageURL}
+        imageUrl={normalizeImageUrl(album?.image?.formattedImageURL)}
         href={`/spotify/album/${album.id}`}
         onPlay={() => handleAlbumClick(album.id)}
       />
@@ -82,7 +83,7 @@ export default function GroupDetailPage() {
       <div className={styles.container}>
         <div className={styles.header}>
           <Image
-            src={group.image?.formattedImageURL}
+            src={normalizeImageUrl(group?.image?.formattedImageURL)}
             alt={group.name}
             width={232}
             height={232}

@@ -7,6 +7,7 @@ import MainLayout from '@/components/Layout/MainLayout';
 import GroupCard from '@/components/Cards/GroupCard/GroupCard';
 import HorizontalScroll from '@/components/HorizontalScroll/HorizontalScroll';
 import { useGroups } from '@/hooks/api/useGroups';
+import { normalizeImageUrl } from '@/utils/tools';
 import styles from './page.module.scss';
 
 export default function GroupPage() {
@@ -66,7 +67,7 @@ export default function GroupPage() {
               id={group.id}
               name={group.name}
               memberCount={group.memberCount}
-              imageUrl={`${group.image?.formattedImageURL}`}
+              imageUrl={normalizeImageUrl(group?.image?.formattedImageURL)}
               onClick={() => handleGroupClick(group.id)}
             />
           ))}

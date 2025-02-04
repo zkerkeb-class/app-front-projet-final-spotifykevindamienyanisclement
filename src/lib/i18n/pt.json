@@ -119,7 +119,18 @@
   "playlist": {
     "create": "Criar playlist",
     "addToPlaylist": "Adicionar à playlist",
-    "removeFromPlaylist": "Remover da playlist"
+    "removeFromPlaylist": "Remover da playlist",
+    "empty": "Sua playlist está vazia",
+    "add_tracks": "Adicionar faixas",
+    "my_playlists": "Minhas playlists",
+    "tracks_count": "{{count}} faixas",
+    "see_more": "Ver mais",
+    "clear": "Limpar playlist",
+    "removeTrack": "Remover faixa",
+    "type": "Playlist",
+    "trash": "Lixeira",
+    "tracks": "faixas",
+    "duration": "Duração"
   },
   "sidebar": {
     "library": "Biblioteca",

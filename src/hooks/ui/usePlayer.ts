@@ -21,6 +21,12 @@ export const usePlayerControls = () => {
     toggleMute,
     loadTrackFull,
     handleVolumeChange,
+    nextTrack,
+    previousTrack,
+    playlist,
+    currentTrackIndex,
+    setPlaylist,
+    loadPlaylist,
   } = context;
 
   return {
@@ -37,5 +43,11 @@ export const usePlayerControls = () => {
     toggleMute,
     loadTrackFull,
     handleVolumeChange,
+    nextTrack,
+    previousTrack,
+    playlist,
+    currentTrackIndex,
+    setPlaylist,
+    loadPlaylist,
   };
 };

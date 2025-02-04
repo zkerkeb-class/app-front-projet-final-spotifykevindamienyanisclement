@@ -12,6 +12,7 @@ import { useTracks } from '@/hooks/api/useTracks';
 import { useGroups } from '@/hooks/api/useGroups';
 import { usePlayerControls } from '@/hooks/ui/usePlayer';
 import Link from 'next/link';
+import { normalizeImageUrl } from '@/utils/tools';
 import styles from './page.module.scss';
 
 export default function Home() {
@@ -24,11 +25,7 @@ export default function Home() {
     loading: artistsLoading,
     error: artistsError,
   } = useArtists(10);
-  const {
-    tracks,
-    loading: tracksLoading,
-    error: tracksError,
-  } = useTracks(undefined, 10);
+  const { tracks, loading: tracksLoading, error: tracksError } = useTracks(10);
   const { groups, loading: groupsLoading, error: groupsError } = useGroups(10);
   const { loadTrackFull } = usePlayerControls();
 
@@ -73,7 +70,7 @@ export default function Home() {
         type="track"
         title={track.title}
         description={track.artistId?.toString()}
-        imageUrl={`${track.album.image.formattedImageURL}`}
+        imageUrl={normalizeImageUrl(track?.album?.image?.formattedImageURL)}
         href={`/spotify/album/${track.albumId}/track/${track.id}`}
         onPlay={() => {
           if (track.sound) {
@@ -110,7 +107,7 @@ export default function Home() {
             key={`artist-${artist.id}`}
             type="artist"
             title={artist.name}
-            imageUrl={`${artist.image.formattedImageURL}`}
+            imageUrl={normalizeImageUrl(artist?.image?.formattedImageURL)}
             href={`/spotify/artist/${artist.id}`}
             onPlay={() => handleArtistClick(artist.id)}
           />
@@ -120,7 +117,7 @@ export default function Home() {
             key={`group-${group.id}`}
             type="group"
             title={group.name}
-            imageUrl={`${group.image.formattedImageURL}`}
+            imageUrl={normalizeImageUrl(group?.image?.formattedImageURL)}
             href={`/spotify/group/${group.id}`}
             onPlay={() => handleGroupClick(group.id)}
           />
@@ -152,7 +149,7 @@ export default function Home() {
         type="album"
         title={album.title}
         description={album.artistId?.toString()}
-        imageUrl={`${album.image.formattedImageURL}`}
+        imageUrl={normalizeImageUrl(album?.image?.formattedImageURL)}
         href={`/spotify/album/${album.id}`}
         onPlay={() => handleAlbumClick(album.id)}
       />

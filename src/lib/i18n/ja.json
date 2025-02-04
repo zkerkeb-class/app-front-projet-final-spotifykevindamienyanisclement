@@ -119,7 +119,18 @@
   "playlist": {
     "create": "プレイリストを作成",
     "addToPlaylist": "プレイリストに追加",
-    "removeFromPlaylist": "プレイリストから削除"
+    "removeFromPlaylist": "プレイリストから削除",
+    "empty": "プレイリストが空です",
+    "add_tracks": "トラックを追加",
+    "my_playlists": "私のプレイリスト",
+    "tracks_count": "{{count}}トラック",
+    "see_more": "もっと見る",
+    "clear": "プレイリストをクリア",
+    "removeTrack": "トラックを削除",
+    "type": "プレイリスト",
+    "trash": "削除",
+    "tracks": "トラック",
+    "duration": "再生時間"
   },
   "sidebar": {
     "library": "ライブラリ",

@@ -10,6 +10,7 @@ import { useArtistById } from '@/hooks/api/useArtists';
 import { usePlayerControls } from '@/hooks/ui/usePlayer';
 import { useCallback } from 'react';
 import logger from '@/utils/logger';
+import { normalizeImageUrl } from '@/utils/tools';
 import styles from './page.module.scss';
 
 export default function ArtistPage() {
@@ -90,7 +91,7 @@ export default function ArtistPage() {
         <div className={styles.header}>
           <div className={styles.artistImage}>
             <Image
-              src={`${artist.image?.formattedImageURL}`}
+              src={normalizeImageUrl(artist?.image?.formattedImageURL)}
               alt={artist.name}
               fill
               className={styles.image}
@@ -208,7 +209,7 @@ export default function ArtistPage() {
                   type="album"
                   title={album.title}
                   description={`${album.type} • ${new Date(album.createdAt).getFullYear()}`}
-                  imageUrl={`${album.image?.formattedImageURL}`}
+                  imageUrl={normalizeImageUrl(album?.image?.formattedImageURL)}
                   href={`/spotify/album/${album.id}`}
                 />
               ))}

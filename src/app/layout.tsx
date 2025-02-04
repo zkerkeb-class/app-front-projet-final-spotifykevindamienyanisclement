@@ -1,8 +1,8 @@
 import type { Metadata, Viewport } from 'next';
 import { TranslationProvider } from '@/providers/TranslationProvider';
 import '@/styles/globals.scss';
-import { AuthProvider } from '@/context/userContext';
 import NetworkStatus from '@/components/NetworkStatus/NetworkStatus';
+import { AuthProvider } from '@/context/userContext';
 import { PlayerProvider } from '@/context/playerContext';
 
 export const viewport: Viewport = {

@@ -1,0 +1,252 @@
+.container {
+  padding: 24px;
+  color: var(--text-base);
+}
+
+.playlistContent {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.playlistHeader {
+  display: flex;
+  gap: 24px;
+  padding: 24px;
+}
+
+.playlistCover {
+  width: 232px;
+  height: 232px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 60px var(--color-gradient-end);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.emptyPlaylistCover {
+  width: 100%;
+  height: 100%;
+  background-color: var(--background-elevated);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.playlistInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.playlistType {
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.playlistName {
+  font-size: 96px;
+  font-weight: 900;
+  line-height: 96px;
+  padding: 8px 0;
+}
+
+.playlistCount {
+  font-size: 16px;
+  color: var(--text-subdued);
+}
+
+.trackList {
+  display: flex;
+  flex-direction: column;
+  padding: 0 24px;
+}
+
+.trackListHeader {
+  display: grid;
+  grid-template-columns: 48px 1fr 1fr 120px;
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--color-opacity);
+  color: var(--text-subdued);
+  font-size: 14px;
+  font-weight: 500;
+  position: sticky;
+  top: 0;
+  background-color: var(--background-base);
+  z-index: 1;
+}
+
+.trackItem {
+  display: grid;
+  grid-template-columns: 48px 1fr 1fr 120px;
+  padding: 8px 16px;
+  border-radius: 4px;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+
+    .deleteButton {
+      opacity: 1;
+    }
+
+    .trackNumber {
+      span {
+        opacity: 0;
+      }
+
+      img {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.trackNumber {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-subdued);
+  font-size: 16px;
+  cursor: pointer;
+  width: 32px;
+
+  span {
+    opacity: 1;
+    transition: opacity 0.2s;
+  }
+
+  img {
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.2s;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &:hover {
+    color: var(--text-base);
+  }
+}
+
+.trackTitleSection {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+
+.trackCover {
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.trackInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.trackTitle {
+  font-size: 16px;
+  font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.artistName {
+  font-size: 14px;
+  color: var(--text-subdued);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.albumName {
+  font-size: 14px;
+  color: var(--text-subdued);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.trackActions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+}
+
+.trackDuration {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-subdued);
+  font-size: 14px;
+
+  img {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.playlistDuration {
+  margin-left: 8px;
+  color: var(--text-subdued);
+  font-size: 14px;
+}
+
+.deleteButton {
+  opacity: 0;
+  padding: 8px;
+  color: var(--text-subdued);
+  transition: all 0.2s;
+  border-radius: 50%;
+
+  &:hover {
+    color: var(--text-base);
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: scale(1.1);
+  }
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 48px;
+  text-align: center;
+
+  p {
+    font-size: 16px;
+    color: var(--text-subdued);
+  }
+}
+
+.addTracksButton {
+  padding: 12px 32px;
+  border-radius: 24px;
+  background-color: var(--color-primary);
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}

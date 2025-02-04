@@ -118,7 +118,18 @@
   "playlist": {
     "create": "إنشاء قائمة تشغيل",
     "addToPlaylist": "إضافة إلى قائمة التشغيل",
-    "removeFromPlaylist": "إزالة من قائمة التشغيل"
+    "removeFromPlaylist": "إزالة من قائمة التشغيل",
+    "empty": "قائمة التشغيل فارغة",
+    "add_tracks": "إضافة المسارات",
+    "my_playlists": "قوائم تشغيلي",
+    "tracks_count": "{{count}} مسار",
+    "see_more": "عرض المزيد",
+    "clear": "مسح قائمة التشغيل",
+    "removeTrack": "إزالة المسار",
+    "type": "قائمة تشغيل",
+    "trash": "مسح",
+    "tracks": "المسارات",
+    "duration": "المدة"
   },
   "sidebar": {
     "library": "المكتبة",

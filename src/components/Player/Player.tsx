@@ -4,7 +4,7 @@ import { usePlayerControls } from '@/hooks/ui/usePlayer';
 import { useTranslationContext } from '@/providers/TranslationProvider';
 import { useTheme } from '@/hooks/settings/useTheme';
 import Image from 'next/image';
-import { convertDuration } from '@/utils/tools';
+import { convertDuration, normalizeImageUrl } from '@/utils/tools';
 import styles from './Player.module.scss';
 
 export default function Player() {
@@ -23,6 +23,8 @@ export default function Player() {
     stop,
     toggleMute,
     handleVolumeChange,
+    nextTrack,
+    previousTrack,
   } = usePlayerControls();
 
   const renderPlayButton = () => {
@@ -49,10 +51,9 @@ export default function Player() {
     <div className={styles.player}>
       <div className={styles.songInfo}>
         <Image
-          src={
-            currentTrackFull?.album?.image?.formattedImageURL ||
-            '/assets/images/default-album.jpg'
-          }
+          src={normalizeImageUrl(
+            currentTrackFull?.artist?.image?.formattedImageURL
+          )}
           alt={t('player.albumCover')}
           className={styles.albumCover}
           width={56}
@@ -80,11 +81,44 @@ export default function Player() {
           </button>
           <button
             type="button"
+            className={styles.controlButton}
+            onClick={previousTrack}
+          >
+            <Image
+              src={`/assets/icons/next-arrow${theme === 'dark' ? '-white' : ''}.svg`}
+              alt={t('player.previous')}
+              width={24}
+              height={24}
+              style={{ transform: 'rotate(180deg)' }}
+            />
+          </button>
+          <button
+            type="button"
             className={styles.playButton}
             onClick={isPlaying ? pause : play}
             aria-label={isPlaying ? t('player.pause') : t('player.play')}
           >
             {renderPlayButton()}
+          </button>
+          <button
+            type="button"
+            className={styles.controlButton}
+            onClick={nextTrack}
+          >
+            <Image
+              src={`/assets/icons/next-arrow${theme === 'dark' ? '-white' : ''}.svg`}
+              alt={t('player.next')}
+              width={24}
+              height={24}
+            />
+          </button>
+          <button type="button" className={styles.controlButton}>
+            <Image
+              src={`/assets/icons/loop${theme === 'dark' ? '-white' : ''}.svg`}
+              alt={t('player.loop')}
+              width={24}
+              height={24}
+            />
           </button>
         </div>
 

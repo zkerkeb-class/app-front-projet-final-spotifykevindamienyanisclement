@@ -13,6 +13,7 @@ import {
   useEffect,
 } from 'react';
 import logger from '@/utils/logger';
+import { storage } from '@/utils/tools';
 
 interface PlayerContextType {
   isPlaying: boolean;
@@ -44,9 +45,20 @@ interface PlayerContextType {
   loadAlbum: (album: Album) => Promise<void>;
   handleTimeUpdate: () => void;
   handleVolumeChange: (volume: number) => void;
+  nextTrack: () => void;
+  previousTrack: () => void;
+  playlist: TrackFull[];
+  currentTrackIndex: number;
+  setPlaylist: (playlist: TrackFull[]) => void;
+  loadPlaylist: (tracks: TrackFull[], startIndex?: number) => void;
 }
 
 const PlayerContext = createContext<PlayerContextType | undefined>(undefined);
+
+const STORAGE_KEYS = {
+  PLAYLIST: 'player_playlist',
+  CURRENT_INDEX: 'player_current_index',
+} as const;
 
 export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
@@ -63,6 +75,12 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({
   const [currentTrack, setCurrentTrack] = useState<Track | null>(null);
   const [currentArtist, setCurrentArtist] = useState<Artist | null>(null);
   const [currentAlbum, setCurrentAlbum] = useState<Album | null>(null);
+  const [playlist, setPlaylist] = useState<TrackFull[]>(() => {
+    return storage.get<TrackFull[]>(STORAGE_KEYS.PLAYLIST, []);
+  });
+  const [currentTrackIndex, setCurrentTrackIndex] = useState<number>(() => {
+    return storage.get<number>(STORAGE_KEYS.CURRENT_INDEX, -1);
+  });
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -149,6 +167,40 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({
 
         setCurrentTrackFull(trackFull);
 
+        if (playlist.length === 0) {
+          const newPlaylist = [trackFull];
+          setPlaylist(newPlaylist);
+          setCurrentTrackIndex(0);
+          localStorage.setItem(
+            STORAGE_KEYS.PLAYLIST,
+            JSON.stringify(newPlaylist)
+          );
+          localStorage.setItem(STORAGE_KEYS.CURRENT_INDEX, '0');
+        } else {
+          const trackIndex = playlist.findIndex(
+            track => track.id === trackFull.id
+          );
+          if (trackIndex !== -1) {
+            setCurrentTrackIndex(trackIndex);
+            localStorage.setItem(
+              STORAGE_KEYS.CURRENT_INDEX,
+              trackIndex.toString()
+            );
+          } else {
+            const newPlaylist = [...playlist, trackFull];
+            setPlaylist(newPlaylist);
+            setCurrentTrackIndex(playlist.length);
+            localStorage.setItem(
+              STORAGE_KEYS.PLAYLIST,
+              JSON.stringify(newPlaylist)
+            );
+            localStorage.setItem(
+              STORAGE_KEYS.CURRENT_INDEX,
+              playlist.length.toString()
+            );
+          }
+        }
+
         if (audioRef.current) {
           audioRef.current.src = soundUrl;
           initializeAudio();
@@ -159,8 +211,41 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({
         setIsPlaying(false);
       }
     },
-    [isPlaying, pause, play, initializeAudio]
+    [isPlaying, pause, play, initializeAudio, playlist]
   );
+
+  const nextTrack = useCallback(() => {
+    if (playlist.length === 0 || currentTrackIndex === -1) {
+      logger.warn('No playlist available or no current track');
+      return;
+    }
+
+    const nextIndex = (currentTrackIndex + 1) % playlist.length;
+    const trackToPlay = playlist[nextIndex];
+
+    if (trackToPlay) {
+      loadTrackFull(trackToPlay).catch(error => {
+        logger.error('Error loading next track:', error);
+      });
+    }
+  }, [currentTrackIndex, playlist, loadTrackFull]);
+
+  const previousTrack = useCallback(() => {
+    if (playlist.length === 0 || currentTrackIndex === -1) {
+      logger.warn('No playlist available or no current track');
+      return;
+    }
+
+    const previousIndex =
+      currentTrackIndex === 0 ? playlist.length - 1 : currentTrackIndex - 1;
+    const trackToPlay = playlist[previousIndex];
+
+    if (trackToPlay) {
+      loadTrackFull(trackToPlay).catch(error => {
+        logger.error('Error loading previous track:', error);
+      });
+    }
+  }, [currentTrackIndex, playlist, loadTrackFull]);
 
   const handleTimeUpdate = useCallback(() => {
     if (audioRef.current) {
@@ -183,6 +268,33 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({
     [volume]
   );
 
+  const loadPlaylist = useCallback(
+    (tracks: TrackFull[], startIndex: number = 0) => {
+      if (tracks.length === 0) {
+        logger.warn('Attempting to load empty playlist');
+        return;
+      }
+
+      setPlaylist(tracks);
+      setCurrentTrackIndex(startIndex);
+
+      try {
+        localStorage.setItem(STORAGE_KEYS.PLAYLIST, JSON.stringify(tracks));
+        localStorage.setItem(STORAGE_KEYS.CURRENT_INDEX, startIndex.toString());
+      } catch (error) {
+        logger.error('Error saving playlist to localStorage:', error);
+      }
+
+      const trackToPlay = tracks[startIndex];
+      if (trackToPlay) {
+        loadTrackFull(trackToPlay).catch(error => {
+          logger.error('Error loading track from playlist:', error);
+        });
+      }
+    },
+    [loadTrackFull]
+  );
+
   // Gestionnaire d'événements audio
   useEffect(() => {
     if (audioRef.current) {
@@ -192,6 +304,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({
         setIsPlaying(false);
         setCurrentTime(0);
         setProgress(0);
+        nextTrack();
       };
 
       const handleLoadedMetadata = () => {
@@ -216,7 +329,25 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({
       };
     }
     return undefined;
-  }, [handleTimeUpdate]);
+  }, [handleTimeUpdate, nextTrack]);
+
+  useEffect(() => {
+    const savedPlaylist = storage.get<TrackFull[]>(STORAGE_KEYS.PLAYLIST, []);
+    const savedIndex = storage.get<number>(STORAGE_KEYS.CURRENT_INDEX, -1);
+
+    setPlaylist(savedPlaylist);
+    setCurrentTrackIndex(savedIndex);
+
+    const trackToPlay = savedPlaylist[savedIndex];
+    if (trackToPlay) {
+      setCurrentTrackFull(trackToPlay);
+    }
+  }, []);
+
+  useEffect(() => {
+    storage.set(STORAGE_KEYS.PLAYLIST, playlist);
+    storage.set(STORAGE_KEYS.CURRENT_INDEX, currentTrackIndex);
+  }, [playlist, currentTrackIndex]);
 
   const contextValue = useMemo(
     () => ({
@@ -249,6 +380,12 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({
       loadAlbum,
       handleTimeUpdate,
       handleVolumeChange,
+      nextTrack,
+      previousTrack,
+      playlist,
+      currentTrackIndex,
+      setPlaylist,
+      loadPlaylist,
     }),
     [
       isPlaying,
@@ -270,6 +407,9 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({
       loadAlbum,
       handleTimeUpdate,
       handleVolumeChange,
+      nextTrack,
+      previousTrack,
+      loadPlaylist,
     ]
   );
 

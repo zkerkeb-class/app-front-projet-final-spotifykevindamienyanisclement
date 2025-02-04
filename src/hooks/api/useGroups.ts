@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import type { Group, GroupFull } from '@/types/api/group';
 
-export function useGroups(limit: number = 10) {
+export function useGroups(limit: number = 50) {
   const [groups, setGroups] = useState<Group[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);

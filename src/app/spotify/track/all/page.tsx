@@ -8,12 +8,13 @@ import Card from '@/components/Cards/Card/Card';
 import { useTracks } from '@/hooks/api/useTracks';
 import { usePlayerControls } from '@/hooks/ui/usePlayer';
 import { Track } from '@/types/api/track';
+import { normalizeImageUrl } from '@/utils/tools';
 import styles from './page.module.scss';
 
 export default function AllTracksPage() {
   const router = useRouter();
   const { t } = useTranslationContext();
-  const { tracks, loading, error } = useTracks(undefined, 50);
+  const { tracks, loading, error } = useTracks(50);
   const { loadTrackFull, play } = usePlayerControls();
 
   const handleTrackPlay = useCallback(
@@ -69,7 +70,7 @@ export default function AllTracksPage() {
         type="track"
         title={track.title}
         description={track.artist?.name}
-        imageUrl={track.album?.image?.formattedImageURL}
+        imageUrl={normalizeImageUrl(track?.album?.image?.formattedImageURL)}
         href={`/spotify/album/${track.albumId}/track/${track.id}`}
         onPlay={() => handleTrackPlay(track)}
       />

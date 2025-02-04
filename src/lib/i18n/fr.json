@@ -119,9 +119,21 @@
     "noArtist": "Aucun artiste"
   },
   "playlist": {
+    "name": "Liste de lecture",
     "create": "Créer une playlist",
     "addToPlaylist": "Ajouter à la playlist",
-    "removeFromPlaylist": "Retirer de la playlist"
+    "removeFromPlaylist": "Retirer de la playlist",
+    "empty": "Votre playlist est vide",
+    "add_tracks": "Ajouter des titres",
+    "my_playlists": "Mes playlists",
+    "tracks_count": "{{count}} titres",
+    "see_more": "Voir plus",
+    "clear": "Vider la liste de lecture",
+    "removeTrack": "Supprimer de la playlist",
+    "type": "Playlist",
+    "trash": "Supprimer",
+    "tracks": "titres",
+    "duration": "Durée"
   },
   "sidebar": {
     "library": "Bibliothèque",
@@ -139,7 +151,9 @@
     "playlists": {
       "title": "Créez votre première playlist",
       "description": "C'est simple, nous allons vous aider",
-      "button": "Créer une playlist"
+      "button": "Créer une playlist",
+      "empty": "Aucune playlist",
+      "login_required": "Connectez-vous pour créer une playlist"
     }
   },
   "home": {

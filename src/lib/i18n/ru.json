@@ -119,7 +119,18 @@
   "playlist": {
     "create": "Создать плейлист",
     "addToPlaylist": "Добавить в плейлист",
-    "removeFromPlaylist": "Удалить из плейлиста"
+    "removeFromPlaylist": "Удалить из плейлиста",
+    "empty": "Плейлист пуст",
+    "add_tracks": "Добавить треки",
+    "my_playlists": "Мои плейлисты",
+    "tracks_count": "{{count}} треков",
+    "see_more": "Показать больше",
+    "clear": "Очистить плейлист",
+    "removeTrack": "Удалить трек",
+    "type": "Плейлист",
+    "trash": "Удалить",
+    "tracks": "треки",
+    "duration": "Длительность"
   },
   "sidebar": {
     "library": "Библиотека",

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import type { Artist, ArtistFull } from '@/types/api/artist';
 
-export function useArtists(limit: number = 10) {
+export function useArtists(limit: number = 50) {
   const [artists, setArtists] = useState<Artist[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);

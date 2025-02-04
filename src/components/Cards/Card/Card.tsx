@@ -8,6 +8,7 @@ import { useAuth } from '@/context/userContext';
 import AuthModal from '@/components/Modal/AuthModal/AuthModal';
 import { usePlayer } from '@/context/playerContext';
 import { TrackFull } from '@/types/api/track';
+import { normalizeImageUrl } from '@/utils/tools';
 import styles from './Card.module.scss';
 
 interface CardProps {
@@ -64,7 +65,7 @@ export default function Card({
       >
         <div className={styles.imageContainer}>
           <Image
-            src={imageUrl || '/images/default-album.jpg'}
+            src={normalizeImageUrl(imageUrl) || '/images/default-album.jpg'}
             alt={title}
             width={100}
             height={100}

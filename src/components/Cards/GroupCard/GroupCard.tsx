@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useTranslationContext } from '@/providers/TranslationProvider';
+import { normalizeImageUrl } from '@/utils/tools';
 import styles from './GroupCard.module.scss';
 
 interface GroupCardProps {
@@ -42,9 +43,7 @@ export default function GroupCard({
       <div className={styles.imageContainer}>
         <Image
           src={
-            imageUrl
-              ? `${process.env.NEXT_PUBLIC_API_URL}/${imageUrl}`
-              : '/assets/images/default-artist.jpg'
+            normalizeImageUrl(imageUrl) || '/assets/images/default-artist.jpg'
           }
           alt={name}
           width={160}

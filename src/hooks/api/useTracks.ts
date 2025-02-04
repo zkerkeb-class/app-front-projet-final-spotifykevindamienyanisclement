@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import type { Track, TrackFull } from '@/types/api/track';
 
-export function useTracks(albumId?: number, limit: number = 10) {
+export function useTracks(limit: number, albumId?: number) {
   const [tracks, setTracks] = useState<Track[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
@@ -43,7 +43,7 @@ export function useTrackById(id: number) {
   useEffect(() => {
     const fetchAlbumById = async () => {
       try {
-        const response = await fetch(`/api/track?id=${id}`);
+        const response = await fetch(`/api/track/${id}`);
         const data = await response.json();
         setTrack(data);
       } catch (err) {

@@ -6,12 +6,13 @@ import { useTranslationContext } from '@/providers/TranslationProvider';
 import MainLayout from '@/components/Layout/MainLayout';
 import Card from '@/components/Cards/Card/Card';
 import { useAlbums } from '@/hooks/api/useAlbums';
+import { normalizeImageUrl } from '@/utils/tools';
 import styles from './page.module.scss';
 
 export default function AllAlbumsPage() {
   const router = useRouter();
   const { t } = useTranslationContext();
-  const { albums, loading, error } = useAlbums();
+  const { albums, loading, error } = useAlbums(50);
 
   const handleAlbumClick = useCallback(
     (albumId: number) => {
@@ -33,7 +34,7 @@ export default function AllAlbumsPage() {
         type="album"
         title={album.title}
         description={album.artistId?.toString()}
-        imageUrl={`${album.image?.formattedImageURL}`}
+        imageUrl={normalizeImageUrl(album?.image?.formattedImageURL)}
         href={`/spotify/album/${album.id}`}
         onPlay={() => handleAlbumClick(album.id)}
       />

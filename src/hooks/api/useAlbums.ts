@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import type { Album, AlbumFull } from '@/types/api/album';
 
-export function useAlbums(limit: number = 10) {
+export function useAlbums(limit: number = 50) {
   const [albums, setAlbums] = useState<Album[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);

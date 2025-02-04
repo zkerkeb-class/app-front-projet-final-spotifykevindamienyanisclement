@@ -2,9 +2,11 @@ import { NextResponse } from 'next/server';
 import { Artist, ArtistFull } from '@/types/api/artist';
 import logger from '@/utils/logger';
 
-async function getArtists(): Promise<Artist[]> {
+async function getArtists(limit: number): Promise<Artist[]> {
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/artist`);
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/artist?limit=${limit}`
+    );
     return (await response.json()) as Artist[];
   } catch (error) {
     logger.error('Error fetching artists:', error);
@@ -33,6 +35,6 @@ export async function GET(request: Request) {
     return NextResponse.json(artist);
   }
 
-  const artists = await getArtists();
+  const artists = await getArtists(50);
   return NextResponse.json(artists);
 }
