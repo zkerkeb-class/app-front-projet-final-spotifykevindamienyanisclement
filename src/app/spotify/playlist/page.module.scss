@@ -1,252 +1,393 @@
+@use '@/styles/helpers/responsive' as *;
+
 .container {
-  padding: 24px;
+  padding: 2.4rem;
   color: var(--text-base);
-}
 
-.playlistContent {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.playlistHeader {
-  display: flex;
-  gap: 24px;
-  padding: 24px;
-}
-
-.playlistCover {
-  width: 232px;
-  height: 232px;
-  flex-shrink: 0;
-  box-shadow: 0 4px 60px var(--color-gradient-end);
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  @include respond-to('md') {
+    padding: 0rem;
   }
-}
 
-.emptyPlaylistCover {
-  width: 100%;
-  height: 100%;
-  background-color: var(--background-elevated);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+  .playlistContent {
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
 
-.playlistInfo {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  gap: 8px;
-}
-
-.playlistType {
-  font-size: 14px;
-  text-transform: uppercase;
-  font-weight: 500;
-}
-
-.playlistName {
-  font-size: 96px;
-  font-weight: 900;
-  line-height: 96px;
-  padding: 8px 0;
-}
-
-.playlistCount {
-  font-size: 16px;
-  color: var(--text-subdued);
-}
-
-.trackList {
-  display: flex;
-  flex-direction: column;
-  padding: 0 24px;
-}
-
-.trackListHeader {
-  display: grid;
-  grid-template-columns: 48px 1fr 1fr 120px;
-  padding: 8px 16px;
-  border-bottom: 1px solid var(--color-opacity);
-  color: var(--text-subdued);
-  font-size: 14px;
-  font-weight: 500;
-  position: sticky;
-  top: 0;
-  background-color: var(--background-base);
-  z-index: 1;
-}
-
-.trackItem {
-  display: grid;
-  grid-template-columns: 48px 1fr 1fr 120px;
-  padding: 8px 16px;
-  border-radius: 4px;
-  align-items: center;
-  cursor: pointer;
-  transition: background-color 0.2s;
-
-  &:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-
-    .deleteButton {
-      opacity: 1;
+    @include respond-to('md') {
+      padding: 0rem;
     }
 
-    .trackNumber {
-      span {
-        opacity: 0;
+    .playlistHeader {
+      display: flex;
+      gap: 2.4rem;
+      padding: 2.4rem;
+
+      @include respond-to('md') {
+        padding: 1.4rem;
       }
 
-      img {
-        opacity: 1;
+      .playlistCover {
+        width: 23.2rem;
+        height: 23.2rem;
+        flex-shrink: 0;
+        box-shadow: 0 0.4rem 6rem var(--color-gradient-end);
+
+        @include respond-to('md') {
+          width: 12.8rem;
+          height: 12.8rem;
+        }
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+
+          @include respond-to('md') {
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+        .emptyPlaylistCover {
+          width: 100%;
+          height: 100%;
+          background-color: var(--background-elevated);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          @include respond-to('md') {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+
+      .playlistInfo {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        gap: 0.8rem;
+
+        @include respond-to('md') {
+          gap: 0.4rem;
+        }
+
+        .playlistType {
+          font-size: 1.4rem;
+          text-transform: uppercase;
+          font-weight: 500;
+
+          @include respond-to('md') {
+            font-size: 1.2rem;
+          }
+        }
+
+        .playlistName {
+          font-size: 9.6rem;
+          font-weight: 900;
+          line-height: 9.6rem;
+          padding: 0.8rem 0;
+
+          @include respond-to('md') {
+            font-size: 2.4rem;
+            line-height: 2.4rem;
+          }
+        }
+
+        .playlistCount {
+          font-size: 1.6rem;
+          color: var(--text-subdued);
+
+          @include respond-to('md') {
+            font-size: 1.2rem;
+          }
+        }
       }
     }
-  }
-}
 
-.trackNumber {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-subdued);
-  font-size: 16px;
-  cursor: pointer;
-  width: 32px;
+    .trackList {
+      display: flex;
+      flex-direction: column;
+      padding: 0 2.4rem;
 
-  span {
-    opacity: 1;
-    transition: opacity 0.2s;
-  }
+      @include respond-to('md') {
+        padding: 0rem;
+      }
 
-  img {
-    position: absolute;
-    opacity: 0;
-    transition: opacity 0.2s;
-    left: 50%;
-    transform: translateX(-50%);
-  }
+      .trackListHeader {
+        display: grid;
+        grid-template-columns: 4.8rem 1fr 1fr 12rem;
+        padding: 0.8rem 1.6rem;
+        border-bottom: 0.1rem solid var(--color-opacity);
+        color: var(--text-subdued);
+        font-size: 1.4rem;
+        font-weight: 500;
+        position: sticky;
+        top: 0;
+        background-color: var(--background-base);
+        z-index: 1;
 
-  &:hover {
-    color: var(--text-base);
-  }
-}
+        @include respond-to('md') {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 1.4rem;
+        }
 
-.trackTitleSection {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  min-width: 0;
-}
+        .trackNumber {
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: var(--text-subdued);
+          font-size: 1.6rem;
+          cursor: pointer;
+          width: 3.2rem;
 
-.trackCover {
-  width: 40px;
-  height: 40px;
-  border-radius: 4px;
-  object-fit: cover;
-}
+          @include respond-to('md') {
+            font-size: 1.4rem;
+            width: 2.4rem;
+          }
 
-.trackInfo {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  min-width: 0;
-}
+          span {
+            opacity: 1;
+            transition: opacity 0.2s;
 
-.trackTitle {
-  font-size: 16px;
-  font-weight: 400;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
+            @include respond-to('md') {
+              font-size: 1.4rem;
+            }
+          }
 
-.artistName {
-  font-size: 14px;
-  color: var(--text-subdued);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
+          img {
+            position: absolute;
+            opacity: 0;
+            transition: opacity 0.2s;
+            left: 50%;
+            transform: translateX(-50%);
 
-.albumName {
-  font-size: 14px;
-  color: var(--text-subdued);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
+            @include respond-to('md') {
+              width: 1.6rem;
+              height: 1.6rem;
+            }
+          }
 
-.trackActions {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 16px;
-}
+          &:hover {
+            color: var(--text-base);
+          }
+        }
 
-.trackDuration {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--text-subdued);
-  font-size: 14px;
+        .trackTitle {
+          font-size: 1.6rem;
+          font-weight: 400;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
 
-  img {
-    width: 16px;
-    height: 16px;
-  }
-}
+          @include respond-to('md') {
+            font-size: 1.4rem;
+          }
+        }
 
-.playlistDuration {
-  margin-left: 8px;
-  color: var(--text-subdued);
-  font-size: 14px;
-}
+        .artistName {
+          font-size: 1.4rem;
+          color: var(--text-subdued);
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
 
-.deleteButton {
-  opacity: 0;
-  padding: 8px;
-  color: var(--text-subdued);
-  transition: all 0.2s;
-  border-radius: 50%;
+          @include respond-to('md') {
+            font-size: 1.4rem;
+          }
+        }
 
-  &:hover {
-    color: var(--text-base);
-    background-color: rgba(255, 255, 255, 0.1);
-    transform: scale(1.1);
-  }
-}
+        .trackDuration {
+          display: flex;
+          align-items: center;
+          gap: 0.8rem;
+          color: var(--text-subdued);
+          font-size: 1.4rem;
 
-.emptyState {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  padding: 48px;
-  text-align: center;
+          @include respond-to('md') {
+            font-size: 1.4rem;
+          }
 
-  p {
-    font-size: 16px;
-    color: var(--text-subdued);
-  }
-}
+          img {
+            width: 1.6rem;
+            height: 1.6rem;
 
-.addTracksButton {
-  padding: 12px 32px;
-  border-radius: 24px;
-  background-color: var(--color-primary);
-  color: white;
-  font-size: 14px;
-  font-weight: 500;
-  transition: transform 0.2s;
+            @include respond-to('md') {
+              width: 1.4rem;
+              height: 1.4rem;
+            }
+          }
+        }
+      }
 
-  &:hover {
-    transform: scale(1.05);
+      .trackItem {
+        display: grid;
+        grid-template-columns: 4.8rem 1fr 1fr 12rem;
+        padding: 0.8rem 1.6rem;
+        border-radius: 0.4rem;
+        align-items: center;
+        cursor: pointer;
+        transition: background-color 0.2s;
+
+        @include respond-to('md') {
+          padding: 1.4rem;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          grid-template-columns: 1fr 1fr;
+        }
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.1);
+
+          .deleteButton {
+            opacity: 1;
+          }
+
+          .trackNumber {
+            span {
+              opacity: 0;
+            }
+
+            img {
+              opacity: 1;
+            }
+          }
+        }
+
+        .trackTitleSection {
+          display: flex;
+          align-items: center;
+          gap: 1.6rem;
+          min-width: 0;
+
+          @include respond-to('md') {
+            gap: 0.8rem;
+          }
+
+          .trackCover {
+            width: 4rem;
+            height: 4rem;
+            border-radius: 0.4rem;
+            object-fit: cover;
+
+            @include respond-to('md') {
+              width: 3.2rem;
+              height: 3.2rem;
+            }
+          }
+
+          .trackInfo {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            min-width: 0;
+
+            @include respond-to('md') {
+              gap: 0.4rem;
+            }
+          }
+        }
+
+        .albumName {
+          font-size: 1.4rem;
+          color: var(--text-subdued);
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+
+          @include respond-to('md') {
+            font-size: 1.4rem;
+          }
+        }
+
+        .trackActions {
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          gap: 1.6rem;
+
+          @include respond-to('md') {
+            gap: 0.8rem;
+          }
+
+          .deleteButton {
+            opacity: 0;
+            padding: 0.8rem;
+            color: var(--text-subdued);
+            transition: all 0.2s;
+            border-radius: 50%;
+
+            @include respond-to('md') {
+              padding: 0.4rem;
+            }
+
+            &:hover {
+              color: var(--text-base);
+              background-color: rgba(255, 255, 255, 0.1);
+              transform: scale(1.1);
+
+              @include respond-to('md') {
+                transform: scale(1.05);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .emptyState {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.6rem;
+      padding: 4.8rem;
+      text-align: center;
+
+      @include respond-to('md') {
+        padding: 1.4rem;
+      }
+
+      p {
+        font-size: 1.6rem;
+        color: var(--text-subdued);
+
+        @include respond-to('md') {
+          font-size: 1.4rem;
+        }
+      }
+
+      .addTracksButton {
+        padding: 1.2rem 3.2rem;
+        border-radius: 2.4rem;
+        background-color: var(--color-primary);
+        color: white;
+        font-size: 1.4rem;
+        font-weight: 500;
+        transition: transform 0.2s;
+
+        @include respond-to('md') {
+          padding: 0.8rem 2.4rem;
+        }
+
+        &:hover {
+          transform: scale(1.05);
+        }
+      }
+    }
+
+    .playlistDuration {
+      margin-left: 8px;
+      color: var(--text-subdued);
+      font-size: 14px;
+
+      @include respond-to('md') {
+        font-size: 1.4rem;
+      }
+    }
   }
 }

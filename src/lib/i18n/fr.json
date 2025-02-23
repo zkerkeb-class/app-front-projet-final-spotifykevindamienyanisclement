@@ -1,5 +1,6 @@
 {
   "common": {
+    "hello": "Bonjour, {{name}} comment ça va ?",
     "welcome": "Bienvenue",
     "close": "Fermer",
     "search": "Rechercher",
@@ -24,6 +25,11 @@
     "modal": {
       "close": "Fermer la fenêtre modale",
       "overlay": "Cliquer pour fermer"
+    },
+    "nav": {
+      "home": "Accueil",
+      "search": "Rechercher",
+      "library": "Bibliothèque"
     }
   },
   "other": {
@@ -116,7 +122,14 @@
     "unknownArtist": "Artiste inconnu",
     "noTrack": "Aucun titre",
     "noAlbum": "Aucun album",
-    "noArtist": "Aucun artiste"
+    "noArtist": "Aucun artiste",
+    "startJamSession": "Démarrer une session d'écoute partagée",
+    "shareSession": "Partager la session",
+    "leaveSession": "Quitter la session",
+    "jamSession": {
+      "joined": "{{username}} a rejoint la session",
+      "left": "{{username}} a quitté la session"
+    }
   },
   "playlist": {
     "name": "Liste de lecture",
@@ -157,9 +170,11 @@
     }
   },
   "home": {
-    "topTracks": "Top titres",
+    "topTracks": "Tous les titres",
     "popularArtists": "Artistes populaires",
-    "recentAlbums": "Albums récents"
+    "recentAlbums": "Albums récents",
+    "mostListenedTracks": "20 titres les plus écoutés",
+    "lastListenedTracks": "20 titres les plus récemment écoutés"
   },
   "network": {
     "offline": "Vous êtes hors ligne",
@@ -219,6 +234,7 @@
     "topTracks": "Meilleurs titres",
     "relatedArtists": "Artistes similaires",
     "biography": "Biographie",
-    "about": "À propos"
+    "about": "À propos",
+    "group": "Groupe"
   }
 }

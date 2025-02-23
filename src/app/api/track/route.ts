@@ -28,7 +28,6 @@ async function getAllTracks(limit: number): Promise<Track[]> {
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const id = searchParams.get('id');
   const albumId = searchParams.get('albumId');
 
   if (albumId) {

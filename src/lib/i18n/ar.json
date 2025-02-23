@@ -1,5 +1,6 @@
 {
   "common": {
+    "hello": "مرحباً, {{name}} كيف حالك؟",
     "welcome": "مرحباً",
     "close": "إغلاق",
     "search": "بحث",
@@ -22,6 +23,11 @@
     "modal": {
       "close": "إغلاق النافذة المنبثقة",
       "overlay": "انقر للإغلاق"
+    },
+    "nav": {
+      "home": "الرئيسية",
+      "search": "البحث",
+      "library": "المكتبة"
     }
   },
   "other": {
@@ -113,9 +119,17 @@
     "unknownArtist": "فنان غير معروف",
     "noTrack": "لا يوجد مسار",
     "noAlbum": "لا يوجد ألبوم",
-    "noArtist": "لا يوجد فنان"
+    "noArtist": "لا يوجد فنان",
+    "startJamSession": "إنشاء جلسة إستماع مشتركة",
+    "shareSession": "مشاركة الجلسة",
+    "leaveSession": "خروج من الجلسة",
+    "jamSession": {
+      "joined": "{{username}} قد حضر الجلسة",
+      "left": "{{username}} قد غادر الجلسة"
+    }
   },
   "playlist": {
+    "name": "قائمة تشغيل",
     "create": "إنشاء قائمة تشغيل",
     "addToPlaylist": "إضافة إلى قائمة التشغيل",
     "removeFromPlaylist": "إزالة من قائمة التشغيل",
@@ -153,7 +167,9 @@
   "home": {
     "topTracks": "أفضل المسارات",
     "popularArtists": "الفنانون المشهورون",
-    "recentAlbums": "الألبومات الحديثة"
+    "recentAlbums": "الألبومات الحديثة",
+    "mostListenedTracks": "20 مساراً مستمعاً أكثر",
+    "lastListenedTracks": "20 مساراً مستمعاً آخر"
   },
   "network": {
     "offline": "أنت خارج الإنترنت",
@@ -213,6 +229,7 @@
     "topTracks": "أفضل المسارات",
     "relatedArtists": "فنانون متشابهون",
     "biography": "السيرة الذاتية",
-    "about": "حول"
+    "about": "حول",
+    "group": "المجموعة"
   }
 }

@@ -65,7 +65,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
-  const [volume, setVolume] = useState(1);
+  const [volume, setVolume] = useState(0.5);
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
@@ -404,6 +404,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({
       currentTime,
       currentTrackFull,
       currentTrack,
+      currentTrackIndex,
       currentArtist,
       currentAlbum,
       play,
@@ -418,6 +419,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({
       nextTrack,
       previousTrack,
       loadPlaylist,
+      playlist,
     ]
   );
 

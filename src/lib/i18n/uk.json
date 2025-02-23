@@ -1,5 +1,6 @@
 {
   "common": {
+    "hello": "Ласкаво просимо, {{name}} як справи?",
     "welcome": "Ласкаво просимо",
     "close": "Закрити",
     "search": "Пошук",
@@ -23,6 +24,11 @@
     "modal": {
       "close": "Закрити модальне вікно",
       "overlay": "Натисніть, щоб закрити"
+    },
+    "nav": {
+      "home": "Головна",
+      "search": "Пошук",
+      "library": "Бібліотека"
     }
   },
   "other": {
@@ -114,9 +120,17 @@
     "unknownArtist": "Невідомий виконавець",
     "noTrack": "Немає треку",
     "noAlbum": "Немає альбому",
-    "noArtist": "Немає виконавця"
+    "noArtist": "Немає виконавця",
+    "startJamSession": "Почати спільну сесію прослуховування",
+    "shareSession": "Поділитися сесією",
+    "leaveSession": "Покинути сесію",
+    "jamSession": {
+      "joined": "{{username}} приєднався до сесії",
+      "left": "{{username}} покинув сесію"
+    }
   },
   "playlist": {
+    "name": "Плейлист",
     "create": "Створити плейлист",
     "addToPlaylist": "Додати до плейлиста",
     "removeFromPlaylist": "Видалити з плейлиста",
@@ -154,7 +168,9 @@
   "home": {
     "topTracks": "Найкращі треки",
     "popularArtists": "Популярні виконавці",
-    "recentAlbums": "Нові альбоми"
+    "recentAlbums": "Нові альбоми",
+    "mostListenedTracks": "20 найпопулярніших треків",
+    "lastListenedTracks": "20 останніх прослужених треків"
   },
   "network": {
     "offline": "Ви в автономному режимі",
@@ -214,6 +230,7 @@
     "topTracks": "Найкращі треки",
     "relatedArtists": "Схожі виконавці",
     "biography": "Біографія",
-    "about": "Про виконавця"
+    "about": "Про виконавця",
+    "group": "Група"
   }
 }

@@ -1,5 +1,6 @@
 {
   "common": {
+    "hello": "Witaj, {{name}} jak się masz?",
     "welcome": "Witamy",
     "close": "Zamknij",
     "search": "Szukaj",
@@ -23,6 +24,11 @@
     "modal": {
       "close": "Zamknij okno modalne",
       "overlay": "Kliknij, aby zamknąć"
+    },
+    "nav": {
+      "home": "Strona główna",
+      "search": "Szukaj",
+      "library": "Biblioteka"
     }
   },
   "other": {
@@ -114,9 +120,17 @@
     "unknownArtist": "Nieznany artysta",
     "noTrack": "Brak utworu",
     "noAlbum": "Brak albumu",
-    "noArtist": "Brak artysty"
+    "noArtist": "Brak artysty",
+    "startJamSession": "Rozpocznij wspólną sesję słuchania",
+    "shareSession": "Udostępnij sesję",
+    "leaveSession": "Opuść sesję",
+    "jamSession": {
+      "joined": "{{username}} dołączył do sesji",
+      "left": "{{username}} opuścił sesję"
+    }
   },
   "playlist": {
+    "name": "Playlista",
     "create": "Utwórz playlistę",
     "addToPlaylist": "Dodaj do playlisty",
     "removeFromPlaylist": "Usuń z playlisty",
@@ -154,7 +168,9 @@
   "home": {
     "topTracks": "Najpopularniejsze utwory",
     "popularArtists": "Popularni artyści",
-    "recentAlbums": "Najnowsze albumy"
+    "recentAlbums": "Najnowsze albumy",
+    "mostListenedTracks": "20 najczęściej słuchanych utworów",
+    "lastListenedTracks": "20 ostatnio słuchanych utworów"
   },
   "network": {
     "offline": "Jesteś offline",
@@ -214,6 +230,7 @@
     "topTracks": "Najpopularniejsze utwory",
     "relatedArtists": "Powiązani artyści",
     "biography": "Biografia",
-    "about": "O artyście"
+    "about": "O artyście",
+    "group": "Grupa"
   }
 }

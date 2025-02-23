@@ -1,3 +1,5 @@
+@use '@/styles/helpers/responsive' as *;
+
 .card {
   position: relative;
   display: flex;
@@ -126,6 +128,56 @@
     .content {
       align-items: center;
       text-align: center;
+    }
+  }
+
+  @include respond-to('md') {
+    min-width: 13rem;
+    height: 20rem;
+    padding: 1rem;
+    gap: 1rem;
+
+    .imageContainer {
+      height: 13rem;
+      margin-bottom: 1rem;
+
+      .playButton {
+        width: 4rem;
+        height: 4rem;
+
+        svg {
+          width: 2rem;
+          height: 2rem;
+        }
+      }
+    }
+
+    .content {
+      .title {
+        font-size: 1.3rem;
+      }
+
+      .description {
+        font-size: 1.1rem;
+      }
+    }
+  }
+
+  &.track {
+    @include respond-to('md') {
+      height: 5.6rem;
+      padding: 0.8rem;
+      gap: 1rem;
+
+      .imageContainer {
+        width: 3.6rem;
+        height: 3.6rem;
+        margin-bottom: 0;
+      }
+
+      .content {
+        margin-right: 1.2rem;
+      }
     }
   }
 }

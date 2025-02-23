@@ -1,8 +1,14 @@
+@use '@/styles/helpers/responsive' as *;
+
 .container {
   height: 100vh;
   display: flex;
   flex-direction: column;
   background-color: var(--color-background);
+
+  @include respond-to('md') {
+    padding-bottom: 8rem;
+  }
 }
 
 .content {
@@ -10,6 +16,11 @@
   flex: 1;
   overflow: hidden;
   height: calc(100vh - 6.4rem);
+
+  @include respond-to('md') {
+    flex-direction: column;
+    height: calc(100vh - 5.6rem - 8rem);
+  }
 }
 
 .main {
@@ -21,8 +32,16 @@
     var(--color-gradient-start) 0%,
     var(--color-gradient-end) 100%
   );
+
+  @include respond-to('md') {
+    padding: 0;
+  }
 }
 
 .mainContent {
   padding: 2.4rem;
+
+  @include respond-to('md') {
+    padding: 0.6rem;
+  }
 }

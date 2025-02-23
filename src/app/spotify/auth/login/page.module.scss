@@ -1,3 +1,5 @@
+@use '@/styles/helpers/responsive' as *;
+
 .container {
   min-height: 100vh;
   display: flex;
@@ -15,6 +17,13 @@
     padding: 2.4rem 0;
     background-color: var(--color-background);
 
+    @include respond-to('md') {
+      padding: 0 2.4rem;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+    }
+
     .logo {
       margin: 2.4rem 0 3.2rem;
       cursor: pointer;
@@ -31,6 +40,10 @@
     color: var(--color-text-base);
     text-align: center;
     margin-bottom: 3.2rem;
+
+    @include respond-to('md') {
+      font-size: 2.4rem;
+    }
   }
   .form {
     width: 100%;
@@ -38,6 +51,12 @@
     display: flex;
     flex-direction: column;
     gap: 1.6rem;
+
+    @include respond-to('md') {
+      max-width: 100%;
+      gap: 1.2rem;
+      padding: 0 2.4rem;
+    }
   }
 }
 
@@ -157,6 +176,10 @@
     gap: 1.2rem;
     transition: border-color 0.2s ease;
 
+    @include respond-to('md') {
+      font-size: 1.2rem;
+    }
+
     &:hover {
       border-color: var(--color-text-base);
     }
@@ -164,6 +187,11 @@
     img {
       width: 2.4rem;
       height: 2.4rem;
+
+      @include respond-to('md') {
+        width: 1.9rem;
+        height: 1.9rem;
+      }
     }
   }
 }
@@ -177,6 +205,13 @@
   width: 100%;
   padding-top: 2.4rem;
 
+  @include respond-to('md') {
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 5rem;
+    }
+  }
+
   a {
     color: var(--color-text-base);
     text-decoration: underline;
@@ -185,28 +220,6 @@
     &:hover {
       color: var(--color-primary);
     }
-  }
-}
-
-.errorBanner {
-  width: 100%;
-  max-width: 32.4rem;
-  padding: 1.6rem;
-  border-radius: 0.4rem;
-  font-size: 1.4rem;
-  margin-bottom: 2.4rem;
-  text-align: center;
-
-  &.error {
-    background-color: var(--color-error-bg, rgba(235, 87, 87, 0.1));
-    color: var(--color-error, #eb5757);
-    border: 1px solid var(--color-error, #eb5757);
-  }
-
-  &.warning {
-    background-color: var(--color-warning-bg, rgba(242, 153, 74, 0.1));
-    color: var(--color-warning, #f2994a);
-    border: 1px solid var(--color-warning, #f2994a);
   }
 }
 
@@ -223,4 +236,26 @@
   color: var(--color-error, #eb5757);
   font-size: 1.2rem;
   margin-top: 0.4rem;
+}
+
+.alert {
+  width: 100%;
+  max-width: 32.4rem;
+  padding: 1.6rem;
+  border-radius: 0.4rem;
+  font-size: 1.4rem;
+  margin-bottom: 2.4rem;
+  text-align: center;
+
+  &.errorBanner {
+    background-color: var(--color-error-bg);
+    color: var(--color-error);
+    border: 1px solid var(--color-error);
+  }
+
+  &.warningBanner {
+    background-color: var(--color-warning-bg);
+    color: var(--color-warning);
+    border: 1px solid var(--color-warning);
+  }
 }

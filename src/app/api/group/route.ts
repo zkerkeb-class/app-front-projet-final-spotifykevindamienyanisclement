@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { Group, GroupFull, GroupResponse } from '@/types/api/group';
+import { Group, GroupFull } from '@/types/api/group';
 import logger from '@/utils/logger';
 
 async function getGroups(): Promise<Group[]> {

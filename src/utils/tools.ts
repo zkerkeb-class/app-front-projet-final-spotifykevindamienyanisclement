@@ -15,21 +15,29 @@ export const convertProgress = (currentTime: number, duration: number) => {
 };
 
 export const normalizeImageUrl = (url: string | undefined | null): string => {
-  if (!url) return '/assets/images/default-album.jpg';
+  if (!url) {
+    return '/assets/images/default-album.jpg';
+  }
 
   if (url.startsWith('http://') || url.startsWith('https://')) {
     return url;
   }
 
-  if (url.startsWith('uploads/')) {
-    return `${process.env.NEXT_PUBLIC_API_URL}/${url}`;
+  const normalizedUrl = url.replace(/\\/g, '/');
+
+  if (normalizedUrl.startsWith('uploads/')) {
+    return `${process.env.NEXT_PUBLIC_API_URL}/${normalizedUrl}`;
   }
 
-  if (url.startsWith('assets/images/')) {
-    return `/${url}`;
+  if (normalizedUrl.startsWith('assets/images/')) {
+    return `/${normalizedUrl}`;
   }
 
-  return url;
+  if (!normalizedUrl.startsWith('/')) {
+    return `/${normalizedUrl}`;
+  }
+
+  return normalizedUrl;
 };
 
 export const storage = {

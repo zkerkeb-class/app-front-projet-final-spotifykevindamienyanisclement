@@ -1,5 +1,6 @@
 {
   "common": {
+    "hello": "Hola, {{name}} cómo estás?",
     "welcome": "Bienvenido",
     "close": "Cerrar",
     "search": "Buscar",
@@ -23,6 +24,11 @@
     "modal": {
       "close": "Cerrar ventana modal",
       "overlay": "Clic para cerrar"
+    },
+    "nav": {
+      "home": "Inicio",
+      "search": "Buscar",
+      "library": "Biblioteca"
     }
   },
   "other": {
@@ -114,9 +120,17 @@
     "unknownArtist": "Artista desconocido",
     "noTrack": "No hay canción",
     "noAlbum": "No hay álbum",
-    "noArtist": "No hay artista"
+    "noArtist": "No hay artista",
+    "startJamSession": "Iniciar sesión compartida",
+    "shareSession": "Compartir sesión",
+    "leaveSession": "Salir de la sesión",
+    "jamSession": {
+      "joined": "{{username}} ha entrado en la sesión",
+      "left": "{{username}} ha salido de la sesión"
+    }
   },
   "playlist": {
+    "name": "Lista de reproducción",
     "create": "Crear lista",
     "addToPlaylist": "Añadir a la lista",
     "removeFromPlaylist": "Eliminar de la lista",
@@ -154,7 +168,9 @@
   "home": {
     "topTracks": "Mejores canciones",
     "popularArtists": "Artistas populares",
-    "recentAlbums": "Álbumes recientes"
+    "recentAlbums": "Álbumes recientes",
+    "mostListenedTracks": "20 canciones más escuchadas",
+    "lastListenedTracks": "20 canciones escuchadas últimamente"
   },
   "network": {
     "offline": "Estás fuera de línea",
@@ -214,6 +230,7 @@
     "topTracks": "Mejores canciones",
     "relatedArtists": "Artistas relacionados",
     "biography": "Biografía",
-    "about": "Acerca de"
+    "about": "Acerca de",
+    "group": "Grupo"
   }
 }

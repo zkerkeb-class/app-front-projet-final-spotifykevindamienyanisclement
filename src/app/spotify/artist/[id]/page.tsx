@@ -11,6 +11,7 @@ import { usePlayerControls } from '@/hooks/ui/usePlayer';
 import { useCallback } from 'react';
 import logger from '@/utils/logger';
 import { normalizeImageUrl } from '@/utils/tools';
+import Link from 'next/link';
 import styles from './page.module.scss';
 
 export default function ArtistPage() {
@@ -18,7 +19,7 @@ export default function ArtistPage() {
   const { id } = useParams();
   const { t } = useTranslationContext();
   const { artist, loading, error } = useArtistById(Number(id));
-  const { loadTrackFull, isPlaying, play, pause, currentTrackFull } =
+  const { loadTrackFull, isPlaying, play, currentTrackFull } =
     usePlayerControls();
 
   const handleTrackPlay = useCallback(
@@ -95,13 +96,22 @@ export default function ArtistPage() {
               alt={artist.name}
               fill
               className={styles.image}
-              priority
+              loading="lazy"
             />
           </div>
           <div className={styles.artistInfo}>
             <h1 className={styles.name}>
               {artist.name || t('player.unknownArtist')}
             </h1>
+            {artist.group && (
+              <div className={styles.group}>
+                <Link href={`/spotify/group/${artist.group.id}`}>
+                  <p className={styles.groupName}>
+                    {t('artist.group')} - {artist.group.name}
+                  </p>
+                </Link>
+              </div>
+            )}
           </div>
         </div>
 
@@ -213,6 +223,25 @@ export default function ArtistPage() {
                   href={`/spotify/album/${album.id}`}
                 />
               ))}
+            </HorizontalScroll>
+          </section>
+
+          <section className={styles.section}>
+            <div className={styles.sectionHeader}>
+              <h2 className={styles.sectionTitle}>{t('artist.group')}</h2>
+            </div>
+            <HorizontalScroll>
+              {artist.group && (
+                <Card
+                  key={artist.group.id}
+                  type="group"
+                  title={artist.group.name}
+                  href={`/spotify/group/${artist.group.id}`}
+                  imageUrl={normalizeImageUrl(
+                    artist.group?.image?.formattedImageURL
+                  )}
+                />
+              )}
             </HorizontalScroll>
           </section>
         </div>

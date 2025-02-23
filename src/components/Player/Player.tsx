@@ -5,7 +5,10 @@ import { useTranslationContext } from '@/providers/TranslationProvider';
 import { useTheme } from '@/hooks/settings/useTheme';
 import Image from 'next/image';
 import { convertDuration, normalizeImageUrl } from '@/utils/tools';
+import { useState } from 'react';
+import { useAuth } from '@/context/userContext';
 import styles from './Player.module.scss';
+import JamMode from './JamMode/JamMode';
 
 export default function Player() {
   const { t } = useTranslationContext();
@@ -26,6 +29,9 @@ export default function Player() {
     nextTrack,
     previousTrack,
   } = usePlayerControls();
+  const { isAuthenticated } = useAuth();
+
+  const [showMobileVolume, setShowMobileVolume] = useState(false);
 
   const renderPlayButton = () => {
     const iconName = isPlaying ? 'pause' : 'play';
@@ -52,12 +58,14 @@ export default function Player() {
       <div className={styles.songInfo}>
         <Image
           src={normalizeImageUrl(
-            currentTrackFull?.artist?.image?.formattedImageURL
+            currentTrackFull?.artist?.image?.formattedImageURL ||
+              currentTrackFull?.album?.image?.formattedImageURL
           )}
           alt={t('player.albumCover')}
           className={styles.albumCover}
           width={56}
           height={56}
+          priority
         />
         <div className={styles.songDetails}>
           <h4 className={styles.songTitle}>
@@ -158,6 +166,7 @@ export default function Player() {
           onChange={e => handleVolumeChange(parseFloat(e.target.value))}
           className={styles.volumeSlider}
         />
+        {isAuthenticated && <JamMode />}
       </div>
     </div>
   );

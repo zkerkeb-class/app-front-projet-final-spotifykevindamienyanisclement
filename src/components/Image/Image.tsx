@@ -1,5 +1,9 @@
-import Image from 'next/image';
-import { useState } from 'react';
+import NextImage from 'next/image';
+import { useState, useEffect } from 'react';
+import { useTranslationContext } from '@/providers/TranslationProvider';
+import { useTheme } from '@/hooks/settings/useTheme';
+import logger from '@/utils/logger';
+import styles from './Image.module.scss';
 
 interface ImageProps {
   src: string;
@@ -19,28 +23,71 @@ const ImageComponent = ({
   priority = false,
 }: ImageProps) => {
   const [error, setError] = useState(false);
+  const [imageSrc, setImageSrc] = useState<string>(src);
+  const { theme } = useTheme();
+  const { t } = useTranslationContext();
   const cdnUrl = 'https://spotify-api-0gmj.onrender.com';
 
-  const imageUrl = src.startsWith('http') ? src : `${cdnUrl}${src}`;
+  useEffect(() => {
+    const checkImageSupport = async () => {
+      const baseUrl = src.startsWith('http') ? src : `${cdnUrl}${src}`;
+      const imageUrl = new URL(baseUrl);
+      const extension = imageUrl.pathname.split('.').pop()?.toLowerCase();
+
+      // Vérifier le support AVIF
+      if (extension !== 'avif') {
+        try {
+          const avifUrl = baseUrl.replace(`.${extension}`, '.avif');
+          const avifResponse = await fetch(avifUrl, { method: 'HEAD' });
+          if (avifResponse.ok) {
+            setImageSrc(avifUrl);
+            return;
+          }
+        } catch (e) {
+          logger.warn('AVIF not supported or not available');
+        }
+      }
+
+      // Vérifier le support WebP
+      if (extension !== 'webp') {
+        try {
+          const webpUrl = baseUrl.replace(`.${extension}`, '.webp');
+          const webpResponse = await fetch(webpUrl, { method: 'HEAD' });
+          if (webpResponse.ok) {
+            setImageSrc(webpUrl);
+            return;
+          }
+        } catch (e) {
+          logger.warn('WebP not supported or not available');
+        }
+      }
+
+      if (extension === 'jpg') {
+        setImageSrc(baseUrl);
+      }
+
+      // Fallback vers l'image originale
+      setImageSrc(baseUrl);
+    };
+
+    checkImageSupport();
+  }, [src, cdnUrl]);
 
   return (
-    <div className={`relative ${className}`}>
+    <div className={`${styles.imageContainer} ${className}`}>
       {!error ? (
-        <Image
-          src={imageUrl}
+        <NextImage
+          src={imageSrc}
           alt={alt}
           width={width}
           height={height}
-          className={`object-cover ${className}`}
+          className={styles.image}
           onError={() => setError(true)}
           priority={priority}
         />
       ) : (
-        <div
-          className={`bg-gray-200 flex items-center justify-center ${className}`}
-          style={{ width, height }}
-        >
-          <span className="text-gray-400">Image non disponible</span>
+        <div className={styles.fallback} style={{ width, height }}>
+          <span>{t('common.image.unavailable')}</span>
         </div>
       )}
     </div>

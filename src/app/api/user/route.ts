@@ -23,7 +23,9 @@ async function updateReadingPlaylist(trackId: number) {
     );
 
     if (!response.ok) {
-      throw new Error('Failed to update reading playlist');
+      const errorData = await response.json();
+      logger.error('API Error:', errorData);
+      throw new Error(errorData.message || 'Failed to update reading playlist');
     }
 
     return await response.json();

@@ -1,3 +1,5 @@
+@use '@/styles/helpers/responsive' as *;
+
 .container {
   width: 100%;
   padding: 2.4rem;
@@ -5,17 +7,8 @@
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
 
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 3.2rem;
-
-    .title {
-      font-size: 2.4rem;
-      font-weight: 700;
-      color: var(--color-text-base);
-    }
+  a:hover {
+    cursor: pointer;
   }
 
   .section {
@@ -31,7 +24,8 @@
       align-items: center;
       margin-bottom: 2rem;
 
-      @media (max-width: 768px) {
+      @include respond-to('md') {
+        font-size: 1.4rem;
         margin-bottom: 1.6rem;
       }
     }
@@ -41,8 +35,8 @@
       font-weight: 700;
       color: var(--color-text-base);
 
-      @media (max-width: 768px) {
-        font-size: 2rem;
+      @include respond-to('md') {
+        font-size: 1.6rem;
       }
     }
 
@@ -53,6 +47,19 @@
       text-transform: capitalize;
       cursor: pointer;
       transition: color 0.2s ease;
+
+      @include respond-to('md') {
+        font-size: 0rem;
+
+        &::before {
+          content: '+';
+          background-color: var(--color-primary);
+          color: var(--color-background);
+          padding: 0.2rem 0.8rem;
+          border-radius: 2rem;
+          font-size: 2rem;
+        }
+      }
 
       &:hover {
         color: var(--color-text-base);

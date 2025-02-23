@@ -1,5 +1,6 @@
 {
   "common": {
+    "hello": "Hello, {{name}} how are you?",
     "welcome": "Welcome",
     "close": "Close",
     "search": "Search",
@@ -23,6 +24,11 @@
     "modal": {
       "close": "Close modal window",
       "overlay": "Click to close"
+    },
+    "nav": {
+      "home": "Home",
+      "search": "Search",
+      "library": "Library"
     }
   },
   "other": {
@@ -114,9 +120,17 @@
     "unknownArtist": "Unknown artist",
     "noTrack": "No track",
     "noAlbum": "No album",
-    "noArtist": "No artist"
+    "noArtist": "No artist",
+    "startJamSession": "Start a shared listening session",
+    "shareSession": "Share session",
+    "leaveSession": "Leave session",
+    "jamSession": {
+      "joined": "{{username}} has joined the session",
+      "left": "{{username}} has left the session"
+    }
   },
   "playlist": {
+    "name": "Playlist",
     "create": "Create Playlist",
     "addToPlaylist": "Add to Playlist",
     "removeFromPlaylist": "Remove from Playlist",
@@ -154,7 +168,9 @@
   "home": {
     "topTracks": "Top tracks",
     "popularArtists": "Popular artists",
-    "recentAlbums": "Recent albums"
+    "recentAlbums": "Recent albums",
+    "mostListenedTracks": "20 most listened tracks",
+    "lastListenedTracks": "20 last listened tracks"
   },
   "network": {
     "offline": "You are offline",
@@ -214,6 +230,7 @@
     "topTracks": "Top Tracks",
     "relatedArtists": "Related Artists",
     "biography": "Biography",
-    "about": "About"
+    "about": "About",
+    "group": "Group"
   }
 }

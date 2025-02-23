@@ -99,7 +99,9 @@ export default function Register() {
         <h1 className={styles.title}>{t('auth.signup')}</h1>
 
         {alert && (
-          <div className={`${styles.errorBanner} ${styles[alert.type]}`}>
+          <div
+            className={`${styles.alert} ${alert.type === 'error' ? styles.errorBanner : styles.warningBanner}`}
+          >
             {alert.message}
           </div>
         )}

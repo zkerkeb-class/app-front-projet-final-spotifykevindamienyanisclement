@@ -1,6 +1,10 @@
 {
   "editor.formatOnSave": true,
   "editor.tabSize": 2,
+  "editor.minimap.enabled": false,
+  "editor.hideCursorInOverviewRuler": true,
+  "editor.scrollbar.horizontal": "hidden",
+  "editor.scrollbar.vertical": "hidden",
   "files.autoSave": "onFocusChange",
   "javascript.validate.enable": false,
   "eslint.enable": true,

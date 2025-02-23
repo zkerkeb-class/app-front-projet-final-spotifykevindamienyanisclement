@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { Icon } from '@iconify/react';
 import { useTranslationContext } from '@/providers/TranslationProvider';
 import classNames from 'classnames';
 import { useCallback, useState } from 'react';
@@ -12,7 +11,7 @@ import { normalizeImageUrl } from '@/utils/tools';
 import styles from './Card.module.scss';
 
 interface CardProps {
-  type: 'album' | 'track' | 'artist' | 'group';
+  type: 'album' | 'track' | 'artist' | 'group' | 'playlist';
   title: string;
   description?: string;
   imageUrl?: string;
@@ -65,7 +64,9 @@ export default function Card({
       >
         <div className={styles.imageContainer}>
           <Image
-            src={normalizeImageUrl(imageUrl) || '/images/default-album.jpg'}
+            src={
+              normalizeImageUrl(imageUrl) || '/assets/images/default-album.jpg'
+            }
             alt={title}
             width={100}
             height={100}
@@ -79,7 +80,7 @@ export default function Card({
           >
             <Image
               src="/assets/icons/play.svg"
-              alt="Play"
+              alt={t('player.play')}
               width={24}
               height={24}
             />

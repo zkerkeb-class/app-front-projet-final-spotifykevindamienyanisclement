@@ -1,3 +1,5 @@
+@use '@/styles/helpers/responsive' as *;
+
 .container {
   min-height: 100vh;
   background: var(--color-gradient-album);
@@ -9,10 +11,20 @@
   gap: 2.4rem;
   padding: 3.2rem;
 
+  @include respond-to('md') {
+    padding: 0.4rem;
+  }
+
   .albumCover {
     width: 23.2rem;
     height: 23.2rem;
     box-shadow: 0 4px 60px var(--color-opacity);
+
+    @include respond-to('md') {
+      width: 16rem;
+      height: 16rem;
+      border-radius: 1.4rem;
+    }
   }
 
   .albumInfo {
@@ -21,9 +33,17 @@
     justify-content: flex-end;
     gap: 0.8rem;
 
+    @include respond-to('md') {
+      gap: 0.4rem;
+    }
+
     .type {
       font-size: 1.4rem;
       font-weight: 500;
+
+      @include respond-to('md') {
+        font-size: 1.2rem;
+      }
     }
 
     .title {
@@ -31,6 +51,10 @@
       font-weight: 900;
       letter-spacing: -0.04em;
       line-height: 1;
+
+      @include respond-to('md') {
+        font-size: 2rem;
+      }
     }
 
     .meta {
@@ -39,21 +63,38 @@
       gap: 0.8rem;
       margin-top: 0.8rem;
 
+      @include respond-to('md') {
+        margin-top: 0.4rem;
+        font-size: 1.2rem;
+      }
+
       .artistImage {
         width: 2.8rem;
         height: 2.8rem;
         border-radius: 50%;
+
+        @include respond-to('md') {
+          height: 2.6rem;
+        }
       }
 
       .artist {
         font-size: 1.4rem;
         font-weight: 700;
         color: var(--color-text-base);
+
+        @include respond-to('md') {
+          font-size: 1rem;
+        }
       }
 
       .dot {
         font-size: 1.4rem;
         color: var(--color-text-subdued);
+
+        @include respond-to('md') {
+          font-size: 0.5rem;
+        }
       }
 
       .year,
@@ -61,6 +102,11 @@
       .duration {
         font-size: 1.4rem;
         color: var(--color-text-subdued);
+
+        @include respond-to('md') {
+          font-size: 0.9rem;
+          margin-right: 0.4rem;
+        }
       }
     }
   }
@@ -69,8 +115,16 @@
 .content {
   padding: 2.4rem 3.2rem;
 
+  @include respond-to('md') {
+    padding: 2.4rem;
+  }
+
   .controls {
     margin-bottom: 3.2rem;
+
+    @include respond-to('md') {
+      margin-bottom: 2.4rem;
+    }
 
     .playButton {
       width: 5.6rem;
@@ -82,6 +136,11 @@
       justify-content: center;
       transition: all 0.2s ease;
 
+      @include respond-to('md') {
+        width: 4rem;
+        height: 4rem;
+      }
+
       &:hover {
         transform: scale(1.04);
         background-color: var(--color-text-bright-accent);
@@ -91,6 +150,11 @@
         width: 2.4rem;
         height: 2.4rem;
         filter: var(--icon-filter);
+
+        @include respond-to('md') {
+          width: 1.6rem;
+          height: 1.6rem;
+        }
       }
     }
   }
@@ -105,6 +169,13 @@
       color: var(--color-text-subdued);
       font-size: 1.4rem;
       font-weight: 500;
+
+      @include respond-to('md') {
+        font-size: 1.6rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
 
       .durationHeader {
         display: flex;
@@ -125,6 +196,12 @@
       cursor: pointer;
       align-items: center;
 
+      @include respond-to('md') {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
       &:hover {
         background-color: var(--color-opacity-hover);
 
@@ -139,6 +216,11 @@
 
       .trackNumber {
         color: var(--color-text-subdued);
+
+        @include respond-to('md') {
+          width: 3.6rem;
+          height: 1.6rem;
+        }
       }
 
       .playButton {
@@ -162,8 +244,18 @@
         align-items: center;
         gap: 0.8rem;
 
+        @include respond-to('md') {
+          gap: 0.4rem;
+        }
+
         .trackTitle {
           font-size: 1.6rem;
+
+          @include respond-to('md') {
+            font-size: 1.2rem;
+            text-wrap: auto;
+            text-align: center;
+          }
         }
 
         .explicit {

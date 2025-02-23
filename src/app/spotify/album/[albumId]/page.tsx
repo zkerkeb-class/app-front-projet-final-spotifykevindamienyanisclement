@@ -118,7 +118,7 @@ export default function AlbumPage() {
         </div>
       </div>
     ));
-  }, [album?.tracks, handleTrackClick, handleTrackPlay, t, theme]);
+  }, [album?.tracks, handleTrackPlay, t, theme]);
 
   if (loading) {
     return (
@@ -142,26 +142,40 @@ export default function AlbumPage() {
     <MainLayout>
       <div className={styles.container}>
         <div className={styles.header}>
-          <Image
-            src={normalizeImageUrl(album?.image?.formattedImageURL)}
-            alt={album.title}
-            width={232}
-            height={232}
-            className={styles.albumCover}
-            onError={() => setAlbumImageError(true)}
-          />
+          {!albumImageError ? (
+            <Image
+              src={normalizeImageUrl(
+                album?.image?.formattedImageURL || album?.image?.avifImageUrl
+              )}
+              alt={album.title}
+              width={232}
+              height={232}
+              className={styles.albumCover}
+              onError={() => setAlbumImageError(true)}
+              priority
+            />
+          ) : (
+            <div className={styles.albumCover} />
+          )}
           <div className={styles.albumInfo}>
             <span className={styles.type}>{t('album.title')}</span>
             <h1 className={styles.title}>{album.title}</h1>
             <div className={styles.meta}>
-              <Image
-                src={normalizeImageUrl(album?.artist?.image?.formattedImageURL)}
-                alt={album.artist?.name || ''}
-                width={28}
-                height={28}
-                className={styles.artistImage}
-                onError={() => setArtistImageError(true)}
-              />
+              {!artistImageError ? (
+                <Image
+                  src={normalizeImageUrl(
+                    album?.artist?.image?.formattedImageURL ||
+                      album?.group?.image?.formattedImageURL
+                  )}
+                  alt={album.artist?.name || ''}
+                  width={28}
+                  height={28}
+                  className={styles.artistImage}
+                  onError={() => setArtistImageError(true)}
+                />
+              ) : (
+                <div className={styles.artistImage} />
+              )}
               <span className={styles.artist}>{album.artist?.name}</span>
               <span className={styles.dot}>•</span>
               <span className={styles.year}>

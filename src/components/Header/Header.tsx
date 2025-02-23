@@ -18,18 +18,30 @@ export default function Header() {
   const router = useRouter();
   const { logout } = useAuth();
   const { t } = useTranslationContext();
-  const [scrolled, setScrolled] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const { theme } = useTheme();
   const { isRTL } = useDirection();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const token = Cookies.get('token');
   const username = Cookies.get('username');
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 0);
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [isMobileMenuOpen]);
 
   const handleLogout = useCallback(() => {
     logout();
@@ -44,21 +56,34 @@ export default function Header() {
 
   return (
     <header
-      className={`${styles.header} ${scrolled ? styles.headerScrolled : ''}`}
+      className={`${styles.header} ${isScrolled ? styles.headerScrolled : ''}`}
     >
-      <div
-        className={`${styles.leftSection} ${isRTL ? styles.rtlSection : ''}`}
-      >
+      <div className={styles.leftSection}>
         <Link href="/" className={styles.logoLink}>
           <Image
             src={getLogoPath()}
             alt="Spotify"
-            className={styles.logo}
             width={96}
             height={32}
+            className={styles.logo}
           />
           <span className={styles.logoText}>Spotify</span>
         </Link>
+
+        <div className={styles.burgerMenu}>
+          <button
+            type="button"
+            className={`${styles.burgerButton} ${
+              isMobileMenuOpen ? styles.active : ''
+            }`}
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label={t('header.toggleMenu')}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+        </div>
       </div>
 
       <div className={styles.centerSection}>
@@ -118,6 +143,65 @@ export default function Header() {
           </>
         )}
       </div>
+
+      <div
+        className={`${styles.mobileMenu} ${isMobileMenuOpen ? styles.active : ''}`}
+      >
+        <nav className={styles.mobileNav}>
+          {token && username && (
+            <span className={styles.hello}>
+              {t('common.hello').replace('{{name}}', username)}
+            </span>
+          )}
+          <Link href="/" className={styles.navItem}>
+            {t('common.nav.home')}
+          </Link>
+          <Link href="/search" className={styles.navItem}>
+            {t('common.nav.search')}
+          </Link>
+          <Link href="/spotify/playlist" className={styles.navItem}>
+            {t('playlist.name')}
+          </Link>
+          <div className={styles.settingsGroup}>
+            <LanguageSelector />
+            <ThemeToggle />
+            <AccessibilityMenu />
+          </div>
+          <div className={styles.mobileButtons}>
+            {token && username ? (
+              <button
+                type="button"
+                className={styles.logoutButton}
+                onClick={handleLogout}
+              >
+                {t('auth.logout')}
+              </button>
+            ) : (
+              <>
+                <button
+                  type="button"
+                  className={styles.loginButton}
+                  onClick={() => router.push('/spotify/auth/login')}
+                >
+                  {t('auth.login')}
+                </button>
+                <button
+                  type="button"
+                  className={styles.signupButton}
+                  onClick={() => router.push('/spotify/auth/register')}
+                >
+                  {t('auth.signup')}
+                </button>
+              </>
+            )}
+          </div>
+        </nav>
+      </div>
+
+      <div
+        className={`${styles.overlay} ${isMobileMenuOpen ? styles.active : ''}`}
+        onClick={() => setIsMobileMenuOpen(false)}
+      />
     </header>
   );
 }

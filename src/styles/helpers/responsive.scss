@@ -1,0 +1,37 @@
+@use 'sass:map';
+
+// Breakpoints
+$breakpoints: (
+  'xs': 320px,
+  'sm': 576px,
+  'md': 768px,
+  'lg': 992px,
+  'xl': 1200px,
+  'xxl': 1400px,
+);
+
+// Mixins
+@mixin respond-to($breakpoint) {
+  @if map.has-key($breakpoints, $breakpoint) {
+    @media screen and (max-width: map.get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint '#{$breakpoint}' n'existe pas";
+  }
+}
+
+// Hide on mobile
+@mixin hide-on-mobile {
+  @include respond-to('md') {
+    display: none;
+  }
+}
+
+// Show on mobile
+@mixin show-on-mobile {
+  display: none;
+  @include respond-to('md') {
+    display: block;
+  }
+}

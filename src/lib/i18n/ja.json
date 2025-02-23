@@ -1,5 +1,6 @@
 {
   "common": {
+    "hello": "こんにちは、{{name}} お元気ですか？",
     "welcome": "ようこそ",
     "close": "閉じる",
     "search": "検索",
@@ -23,6 +24,11 @@
     "modal": {
       "close": "モーダルウィンドウを閉じる",
       "overlay": "クリックして閉じる"
+    },
+    "nav": {
+      "home": "ホーム",
+      "search": "検索",
+      "library": "ライブラリ"
     }
   },
   "other": {
@@ -114,9 +120,17 @@
     "unknownArtist": "不明なアーティスト",
     "noTrack": "トラックがありません",
     "noAlbum": "アルバムがありません",
-    "noArtist": "アーティストがありません"
+    "noArtist": "アーティストがありません",
+    "startJamSession": "共有リスニングセッションを開始",
+    "shareSession": "セッションを共有",
+    "leaveSession": "セッションを離れる",
+    "jamSession": {
+      "joined": "{{username}} がセッションに参加しました",
+      "left": "{{username}} がセッションを離れました"
+    }
   },
   "playlist": {
+    "name": "プレイリスト",
     "create": "プレイリストを作成",
     "addToPlaylist": "プレイリストに追加",
     "removeFromPlaylist": "プレイリストから削除",
@@ -154,7 +168,9 @@
   "home": {
     "topTracks": "トップトラック",
     "popularArtists": "人気のアーティスト",
-    "recentAlbums": "最新アルバム"
+    "recentAlbums": "最新アルバム",
+    "mostListenedTracks": "20 回聴いた曲",
+    "lastListenedTracks": "最近聴いた曲"
   },
   "network": {
     "offline": "オフラインです",
@@ -214,6 +230,7 @@
     "topTracks": "人気の曲",
     "relatedArtists": "関連アーティスト",
     "biography": "バイオグラフィー",
-    "about": "概要"
+    "about": "概要",
+    "group": "グループ"
   }
 }

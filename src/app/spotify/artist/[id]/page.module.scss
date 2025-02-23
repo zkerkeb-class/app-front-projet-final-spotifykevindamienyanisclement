@@ -1,3 +1,5 @@
+@use '@/styles/helpers/responsive' as *;
+
 .container {
   min-height: 100vh;
   background: var(--color-gradient-artist);
@@ -9,16 +11,29 @@
     gap: 2.4rem;
     align-items: flex-end;
 
+    @include respond-to('md') {
+      padding: 1.4rem;
+    }
+
     .artistImage {
       position: relative;
       width: 23.2rem;
       height: 23.2rem;
       flex-shrink: 0;
 
+      @include respond-to('md') {
+        width: 13rem;
+        height: 13rem;
+      }
+
       .image {
         object-fit: cover;
         border-radius: 50%;
         box-shadow: 0 4px 60px var(--color-opacity);
+
+        @include respond-to('md') {
+          box-shadow: none;
+        }
       }
     }
 
@@ -45,19 +60,22 @@
         color: var(--color-text-base);
         margin-bottom: 1.6rem;
         line-height: 1.1;
+
+        @include respond-to('md') {
+          font-size: 2rem;
+        }
       }
 
-      .stats {
-        display: flex;
-        align-items: center;
-        gap: 2.4rem;
-        color: var(--color-text-subdued);
-        font-size: 1.4rem;
+      .group {
+        margin-top: 1.6rem;
 
-        .stat {
-          display: flex;
-          align-items: center;
-          gap: 0.4rem;
+        .groupName {
+          font-size: 1.4rem;
+          color: var(--color-text-subdued);
+
+          &:hover {
+            color: var(--color-primary);
+          }
         }
       }
     }
@@ -71,6 +89,11 @@
       gap: 1.6rem;
       margin-bottom: 3.2rem;
 
+      @include respond-to('md') {
+        margin-top: 0rem;
+        margin-bottom: 2.4rem;
+      }
+
       .playButton {
         width: 5.6rem;
         height: 5.6rem;
@@ -81,6 +104,16 @@
         align-items: center;
         justify-content: center;
         transition: transform 0.2s ease;
+
+        @include respond-to('md') {
+          width: 4.4rem;
+          height: 4.4rem;
+
+          img {
+            width: 1.8rem;
+            height: 1.8rem;
+          }
+        }
 
         &:hover {
           transform: scale(1.04);
@@ -97,6 +130,10 @@
         font-weight: 700;
         transition: all 0.2s ease;
 
+        @include respond-to('md') {
+          font-size: 1.2rem;
+        }
+
         &:hover {
           transform: scale(1.02);
           border-color: var(--color-text-base);
@@ -106,6 +143,11 @@
 
     .section {
       margin-bottom: 4rem;
+
+      @include respond-to('md') {
+        margin-bottom: 2.4rem;
+        padding: 0;
+      }
 
       .sectionHeader {
         display: flex;
@@ -118,6 +160,10 @@
         font-size: 2.4rem;
         font-weight: 700;
         color: var(--color-text-base);
+
+        @include respond-to('md') {
+          font-size: 1.9rem;
+        }
       }
 
       .showAllButton {
@@ -126,6 +172,19 @@
         color: var(--color-text-subdued);
         text-transform: uppercase;
         transition: color 0.2s ease;
+
+        @include respond-to('md') {
+          font-size: 0rem;
+
+          &::before {
+            content: '+';
+            background-color: var(--color-primary);
+            color: var(--color-background);
+            padding: 0.2rem 0.8rem;
+            border-radius: 2rem;
+            font-size: 2rem;
+          }
+        }
 
         &:hover {
           color: var(--color-text-base);
@@ -149,6 +208,12 @@
         border-radius: 0.4rem;
         cursor: pointer;
         transition: background-color 0.2s ease;
+
+        @include respond-to('md') {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
 
         &:hover {
           background-color: var(--color-opacity-hover);
@@ -196,15 +261,29 @@
           flex-direction: column;
           gap: 0.4rem;
 
+          @include respond-to('md') {
+            gap: 0.2rem;
+          }
+
           .trackTitle {
             font-size: 1.6rem;
             font-weight: 400;
             color: var(--color-text-base);
+
+            @include respond-to('md') {
+              text-wrap: auto;
+              text-align: center;
+              font-size: 1.2rem;
+            }
           }
 
           .trackStats {
             font-size: 1.4rem;
             color: var(--color-text-subdued);
+
+            @include respond-to('md') {
+              font-size: 1.2rem;
+            }
           }
         }
 

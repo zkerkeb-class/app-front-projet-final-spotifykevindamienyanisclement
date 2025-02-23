@@ -1,5 +1,6 @@
 {
   "common": {
+    "hello": "Привет, {{name}} как дела?",
     "welcome": "Добро пожаловать",
     "close": "Закрыть",
     "search": "Поиск",
@@ -23,6 +24,11 @@
     "modal": {
       "close": "Закрыть модальное окно",
       "overlay": "Нажмите, чтобы закрыть"
+    },
+    "nav": {
+      "home": "Главная",
+      "search": "Поиск",
+      "library": "Библиотека"
     }
   },
   "other": {
@@ -114,9 +120,17 @@
     "unknownArtist": "Неизвестный исполнитель",
     "noTrack": "Нет трека",
     "noAlbum": "Нет альбома",
-    "noArtist": "Нет исполнителя"
+    "noArtist": "Нет исполнителя",
+    "startJamSession": "Начать общую сессию прослушивания",
+    "shareSession": "Поделиться сессией",
+    "leaveSession": "Покинуть сессию",
+    "jamSession": {
+      "joined": "{{username}} присоединился к сессии",
+      "left": "{{username}} покинул сессию"
+    }
   },
   "playlist": {
+    "name": "Плейлист",
     "create": "Создать плейлист",
     "addToPlaylist": "Добавить в плейлист",
     "removeFromPlaylist": "Удалить из плейлиста",
@@ -154,7 +168,9 @@
   "home": {
     "topTracks": "Лучшие треки",
     "popularArtists": "Популярные исполнители",
-    "recentAlbums": "Новые альбомы"
+    "recentAlbums": "Новые альбомы",
+    "mostListenedTracks": "20 наиболее прослушанных треков",
+    "lastListenedTracks": "20 последних прослушанных треков"
   },
   "network": {
     "offline": "Вы в автономном режиме",
@@ -214,6 +230,7 @@
     "topTracks": "Лучшие треки",
     "relatedArtists": "Похожие исполнители",
     "biography": "Биография",
-    "about": "О исполнителе"
+    "about": "О исполнителе",
+    "group": "Группа"
   }
 }

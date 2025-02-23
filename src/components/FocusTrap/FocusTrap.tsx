@@ -37,7 +37,9 @@ export default function FocusTrap({ children }: Props) {
     firstFocusable?.focus();
 
     return () => {
-      ref.current?.removeEventListener('keydown', handleTabKey);
+      if (ref.current) {
+        ref.current.removeEventListener('keydown', handleTabKey);
+      }
     };
   }, []);
 

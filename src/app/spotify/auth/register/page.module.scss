@@ -1,3 +1,5 @@
+@use '@/styles/helpers/responsive' as *;
+
 .container {
   min-height: 100vh;
   display: flex;
@@ -7,6 +9,10 @@
   background-color: var(--color-background);
   padding: 2.4rem;
 
+  @include respond-to('md') {
+    padding: 0 2.4rem;
+  }
+
   .content {
     width: 100%;
     max-width: 48rem;
@@ -14,6 +20,13 @@
     flex-direction: column;
     align-items: center;
     gap: 2.4rem;
+
+    @include respond-to('md') {
+      padding: 0 2.4rem;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+    }
 
     .logo {
       margin: 2.4rem 0 3.2rem;
@@ -30,6 +43,10 @@
     font-weight: 700;
     color: var(--color-text-base);
     text-align: center;
+
+    @include respond-to('md') {
+      font-size: 2.4rem;
+    }
   }
 
   .form {
@@ -37,6 +54,11 @@
     display: flex;
     flex-direction: column;
     gap: 1.6rem;
+
+    @include respond-to('md') {
+      max-width: 100%;
+      gap: 1.2rem;
+    }
   }
 }
 
@@ -44,6 +66,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
+  margin-bottom: 1.4rem;
 
   label {
     font-size: 1.4rem;
@@ -145,6 +168,10 @@
     gap: 1.2rem;
     transition: all 0.2s ease;
 
+    @include respond-to('md') {
+      font-size: 1.2rem;
+    }
+
     &:hover {
       border-color: var(--color-text-base);
       transform: scale(1.02);
@@ -153,6 +180,16 @@
     &:active {
       transform: scale(0.98);
     }
+
+    img {
+      width: 2.4rem;
+      height: 2.4rem;
+
+      @include respond-to('md') {
+        width: 1.9rem;
+        height: 1.9rem;
+      }
+    }
   }
 }
 
@@ -160,6 +197,13 @@
   font-size: 1.6rem;
   color: var(--color-text-subdued);
   text-align: center;
+  margin-bottom: 2.4rem;
+  @include respond-to('md') {
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 5rem;
+    }
+  }
 
   a {
     color: var(--color-text-base);
@@ -170,18 +214,6 @@
       color: var(--color-primary);
     }
   }
-}
-
-.errorBanner {
-  width: 100%;
-  max-width: 32.4rem;
-  padding: 1.6rem;
-  border-radius: 0.4rem;
-  background-color: var(--color-error-bg);
-  color: var(--color-error);
-  font-size: 1.4rem;
-  margin-bottom: 2.4rem;
-  text-align: center;
 }
 
 .inputError {
@@ -196,4 +228,26 @@
   color: var(--color-error);
   font-size: 1.2rem;
   margin-top: 0.4rem;
+}
+
+.alert {
+  width: 100%;
+  max-width: 32.4rem;
+  padding: 1.6rem;
+  border-radius: 0.4rem;
+  font-size: 1.4rem;
+  margin-bottom: 2.4rem;
+  text-align: center;
+
+  &.errorBanner {
+    background-color: var(--color-error-bg);
+    color: var(--color-error);
+    border: 1px solid var(--color-error);
+  }
+
+  &.warningBanner {
+    background-color: var(--color-warning-bg);
+    color: var(--color-warning);
+    border: 1px solid var(--color-warning);
+  }
 }

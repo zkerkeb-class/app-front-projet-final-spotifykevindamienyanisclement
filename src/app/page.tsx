@@ -10,6 +10,10 @@ import { useAlbums } from '@/hooks/api/useAlbums';
 import { useArtists } from '@/hooks/api/useArtists';
 import { useTracks } from '@/hooks/api/useTracks';
 import { useGroups } from '@/hooks/api/useGroups';
+import {
+  useLastListenedPlaylist,
+  useMostListenedPlaylist,
+} from '@/hooks/api/usePlaylist';
 import { usePlayerControls } from '@/hooks/ui/usePlayer';
 import Link from 'next/link';
 import { normalizeImageUrl } from '@/utils/tools';
@@ -27,6 +31,16 @@ export default function Home() {
   } = useArtists(10);
   const { tracks, loading: tracksLoading, error: tracksError } = useTracks(10);
   const { groups, loading: groupsLoading, error: groupsError } = useGroups(10);
+  const {
+    playlist: lastListenedPlaylist,
+    loading: lastListenedPlaylistLoading,
+    error: lastListenedPlaylistError,
+  } = useLastListenedPlaylist();
+  const {
+    playlist: mostListenedPlaylist,
+    loading: mostListenedPlaylistLoading,
+    error: mostListenedPlaylistError,
+  } = useMostListenedPlaylist();
   const { loadTrackFull } = usePlayerControls();
 
   const handleTrackClick = useCallback(
@@ -57,6 +71,62 @@ export default function Home() {
     [router]
   );
 
+  const renderMostListenedPlaylist = useMemo(() => {
+    if (mostListenedPlaylistLoading) {
+      return <div className={styles.loading}>{t('common.loading')}</div>;
+    }
+    if (mostListenedPlaylistError) {
+      return (
+        <div className={styles.error}>{mostListenedPlaylistError.message}</div>
+      );
+    }
+    return mostListenedPlaylist?.map(track => (
+      <Card
+        key={track.id}
+        type="track"
+        title={track.title}
+        description={track.artist?.name || track.album?.title}
+        imageUrl={normalizeImageUrl(track.album?.image?.formattedImageURL)}
+        href={`/spotify/album/${track.albumId}/track/${track.id}`}
+        onPlay={() => handleAlbumClick(track.albumId)}
+      />
+    ));
+  }, [
+    mostListenedPlaylist,
+    mostListenedPlaylistLoading,
+    mostListenedPlaylistError,
+    t,
+    handleAlbumClick,
+  ]);
+
+  const renderLastListenedPlaylist = useMemo(() => {
+    if (lastListenedPlaylistLoading) {
+      return <div className={styles.loading}>{t('common.loading')}</div>;
+    }
+    if (lastListenedPlaylistError) {
+      return (
+        <div className={styles.error}>{lastListenedPlaylistError.message}</div>
+      );
+    }
+    return lastListenedPlaylist?.map(item => (
+      <Card
+        key={item.id}
+        type="track"
+        title={item.track.title}
+        description={item.track.artist?.name || item.track.album?.title}
+        imageUrl={normalizeImageUrl(item.track.album?.image?.formattedImageURL)}
+        href={`/spotify/album/${item.track.albumId}/track/${item.track.id}`}
+        onPlay={() => handleAlbumClick(item.track.albumId)}
+      />
+    ));
+  }, [
+    lastListenedPlaylist,
+    lastListenedPlaylistLoading,
+    lastListenedPlaylistError,
+    t,
+    handleAlbumClick,
+  ]);
+
   const renderTracks = useMemo(() => {
     if (tracksLoading) {
       return <div className={styles.loading}>{t('common.loading')}</div>;
@@ -69,8 +139,8 @@ export default function Home() {
         key={track.id}
         type="track"
         title={track.title}
-        description={track.artistId?.toString()}
-        imageUrl={normalizeImageUrl(track?.album?.image?.formattedImageURL)}
+        description={track.artist?.name || track.album?.title}
+        imageUrl={normalizeImageUrl(track.album?.image?.formattedImageURL)}
         href={`/spotify/album/${track.albumId}/track/${track.id}`}
         onPlay={() => {
           if (track.sound) {
@@ -161,12 +231,32 @@ export default function Home() {
       <div className={styles.container} ref={scrollContainerRef}>
         <section className={styles.section}>
           <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>{t('home.topTracks')}</h2>
-            <Link href="/spotify/track/all" className={styles.showAllButton}>
+            <h2 className={styles.sectionTitle}>
+              {t('home.mostListenedTracks')}
+            </h2>
+            <Link
+              href="/spotify/playlist/most-listened"
+              className={styles.showAllButton}
+            >
               {t('common.showAll')}
             </Link>
           </div>
-          <HorizontalScroll>{renderTracks}</HorizontalScroll>
+          <HorizontalScroll>{renderMostListenedPlaylist}</HorizontalScroll>
+        </section>
+
+        <section className={styles.section}>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>
+              {t('home.lastListenedTracks')}
+            </h2>
+            <Link
+              href="/spotify/playlist/last-listened"
+              className={styles.showAllButton}
+            >
+              {t('common.showAll')}
+            </Link>
+          </div>
+          <HorizontalScroll>{renderLastListenedPlaylist}</HorizontalScroll>
         </section>
 
         <section className={styles.section}>
@@ -187,6 +277,16 @@ export default function Home() {
             </Link>
           </div>
           <HorizontalScroll>{renderAlbums}</HorizontalScroll>
+        </section>
+
+        <section className={styles.section}>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>{t('home.topTracks')}</h2>
+            <Link href="/spotify/track/all" className={styles.showAllButton}>
+              {t('common.showAll')}
+            </Link>
+          </div>
+          <HorizontalScroll>{renderTracks}</HorizontalScroll>
         </section>
       </div>
     </MainLayout>

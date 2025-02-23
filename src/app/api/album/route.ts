@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { Album, AlbumFull, AlbumResponse } from '@/types/api/album';
+import { Album, AlbumFull } from '@/types/api/album';
 import logger from '@/utils/logger';
 
 async function getAlbums(): Promise<Album[]> {
