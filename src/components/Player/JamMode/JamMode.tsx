@@ -12,7 +12,7 @@ export default function JamMode() {
   const { session, createSession, joinSession, leaveSession } = useJamSession();
 
   const handleCreateSession = useCallback(async () => {
-    const sessionId = await createSession();
+    const sessionId = await createSession('Nouvelle session');
     if (sessionId) {
       joinSession(sessionId);
       setShowShareModal(true);

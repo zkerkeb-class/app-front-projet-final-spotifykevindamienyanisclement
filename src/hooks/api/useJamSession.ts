@@ -4,14 +4,20 @@ import { useAuth } from '@/context/userContext';
 import logger from '@/utils/logger';
 
 interface JamParticipant {
-  id: string;
+  id: number;
+  userId: number;
   username: string;
 }
 
 interface JamSession {
-  id: string;
+  id: number;
+  name: string;
+  hostId: number;
+  currentTrackId: number | null;
+  isActive: boolean;
   participants: JamParticipant[];
-  hostId: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export function useJamSession() {
@@ -20,11 +26,20 @@ export function useJamSession() {
   const { isAuthenticated } = useAuth();
   const { play, pause, setCurrentTime: updateCurrentTime } = usePlayer();
 
-  const createSession = useCallback(async () => {
+  const createSession = useCallback(async (name: string) => {
     try {
-      const response = await fetch('/api/jam/create', {
+      const response = await fetch('/api/jam-session', {
         method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name }),
       });
+
+      if (!response.ok) {
+        throw new Error('Erreur lors de la création de la session');
+      }
+
       const data = await response.json();
       return data.sessionId;
     } catch (error) {
@@ -34,60 +49,112 @@ export function useJamSession() {
   }, []);
 
   const joinSession = useCallback(
-    (sessionId: string) => {
+    async (sessionId: number) => {
       if (!isAuthenticated) return;
 
-      const ws = new WebSocket(
-        `${process.env.NEXT_PUBLIC_WS_URL}/jam/${sessionId}`
-      );
+      try {
+        const response = await fetch(`/api/jam-session/${sessionId}/join`, {
+          method: 'POST',
+        });
 
-      ws.onmessage = event => {
-        const data = JSON.parse(event.data);
-
-        switch (data.type) {
-          case 'SESSION_UPDATE':
-            setSession(data.session);
-            break;
-          case 'PLAYBACK_UPDATE':
-            if (data.isPlaying) {
-              play();
-            } else {
-              pause();
-            }
-            updateCurrentTime(data.currentTime);
-            break;
-          default:
-            logger.warn('Message type non géré:', data.type);
-            break;
+        if (!response.ok) {
+          throw new Error('Erreur lors de la jointure de la session');
         }
-      };
 
-      setSocket(ws);
+        const ws = new WebSocket(
+          `${process.env.NEXT_PUBLIC_WS_URL}/jam/${sessionId}`
+        );
+
+        ws.onmessage = event => {
+          const data = JSON.parse(event.data);
+
+          switch (data.type) {
+            case 'SESSION_UPDATE':
+              setSession(data.session);
+              break;
+            case 'TRACK_CHANGE':
+              // Gérer le changement de piste
+              break;
+            case 'TRACK_POSITION':
+              updateCurrentTime(data.data.position);
+              break;
+            case 'TRACK_PLAY_STATE':
+              if (data.data.isPlaying) {
+                play();
+              } else {
+                pause();
+              }
+              break;
+            default:
+              logger.warn('Message type non géré:', data.type);
+          }
+        };
+
+        setSocket(ws);
+      } catch (error) {
+        logger.error('Erreur lors de la jointure de la session:', error);
+      }
     },
     [isAuthenticated, play, pause, updateCurrentTime]
   );
 
-  const leaveSession = useCallback(() => {
-    if (socket) {
-      socket.close();
-      setSocket(null);
-      setSession(null);
-    }
-  }, [socket]);
+  const leaveSession = useCallback(async () => {
+    if (!session) return;
 
-  const updatePlayback = useCallback(
-    (newIsPlaying: boolean, newCurrentTime: number) => {
-      if (socket && socket.readyState === WebSocket.OPEN) {
-        socket.send(
-          JSON.stringify({
-            type: 'PLAYBACK_UPDATE',
-            isPlaying: newIsPlaying,
-            currentTime: newCurrentTime,
-          })
+    try {
+      await fetch(`/api/jam-session/${session.id}/leave`, {
+        method: 'DELETE',
+      });
+
+      if (socket) {
+        socket.close();
+        setSocket(null);
+      }
+      setSession(null);
+    } catch (error) {
+      logger.error('Erreur lors du départ de la session:', error);
+    }
+  }, [session, socket]);
+
+  const updateTrackPosition = useCallback(
+    async (position: number) => {
+      if (!session) return;
+
+      try {
+        await fetch(`/api/jam-session/${session.id}/position`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ position }),
+        });
+      } catch (error) {
+        logger.error('Erreur lors de la mise à jour de la position:', error);
+      }
+    },
+    [session]
+  );
+
+  const updatePlayState = useCallback(
+    async (isPlaying: boolean) => {
+      if (!session) return;
+
+      try {
+        await fetch(`/api/jam-session/${session.id}/playstate`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ isPlaying }),
+        });
+      } catch (error) {
+        logger.error(
+          'Erreur lors de la mise à jour du statut de lecture:',
+          error
         );
       }
     },
-    [socket]
+    [session]
   );
 
   useEffect(() => {
@@ -103,7 +170,8 @@ export function useJamSession() {
     createSession,
     joinSession,
     leaveSession,
-    updatePlayback,
+    updateTrackPosition,
+    updatePlayState,
     isConnected: socket?.readyState === WebSocket.OPEN,
   };
 }
