@@ -3,4 +3,4 @@ export const STORAGE_KEYS = {
   CURRENT_INDEX: 'currentIndex',
 };
 
-export const PREVIEW_COUNT = 6;
+export const PREVIEW_COUNT = 4;
