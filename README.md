@@ -2,6 +2,20 @@
 
 Ce projet est une application Next.js configurée pour une architecture frontend
 moderne et performante.
+## Vidéo final :
+
+Présentation backoffice:
+https://youtu.be/-WG75jLeZrs
+
+Dans la playlist suivante:
+https://www.youtube.com/playlist?list=PLcCqUdvgYsMZojxutL1-rMEKctJbXrwHS
+- Trie
+- Filtrage
+- Responsive + gestion des images (avif/webp/jpeg)
+- Envoie des logs pino dans un fichier de log
+
+Metrics Backoffice:
+https://youtu.be/O3FKgbYg4kw
 
 ## Démarrage
 
